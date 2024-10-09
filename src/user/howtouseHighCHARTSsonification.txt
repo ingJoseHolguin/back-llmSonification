@@ -1,0 +1,218 @@
+Highcharts Sonification Studio
+Highcharts has teamed up with the Sonification Lab at Georgia Institute of Technology to bring you a free tool for exploring audio charts and sonification - using sound to visualize data.
+
+Go to app
+ Background
+The Sonification Lab at Georgia Institute of Technology has been a pioneer of sonification research for years, and were the original authors of a tool called the Sonification Sandbox. This new Sonification Studio collaboration is an attempt at bringing together the learnings from Georgia Tech's Sonification Sandbox with Highcharts' modern web-based charting and sonification technology, resulting in a more flexible and robust tool for exploration of audio charts.
+
+Goals and pricing
+The goal of this tool is to provide a simple, intuitive, and accessible way for users to import their data, edit it, visualize it, sonify it, and export the results to a useful format. We want users to be able to use the tool without having to write code, and without prior sonification expertise.
+
+Highcharts Sonification Studio is free to use, and no login is required.
+
+The tool - excluding its code dependencies - is open sourced under the BSD 3-clause license to allow for extensions and forks from the community, and ensure the tool remains available to all. An appropriate Highcharts license is required for commercial forks or distribution of the tool. See HSS License for more details.
+
+ How to use
+We strive to keep the tool easy to use. For detailed instructions, visit our tutorial page. Please let us know if you have questions or require assistance, and we will be happy to help.
+
+Georgia Institute of Technology also maintains a community page with tutorials for the tool, and we encourage you to visit that page for more in-depth information. There is also an accompanying YouTube channel with video tutorials.
+
+ Advanced use
+For more advanced audio charts for programmers, try out Highcharts, the underlying technology used to build this tool. Highcharts supports more advanced features and use cases than what we are able to make available in this tool.
+
+ Development
+The tool is still in active development, and functionality is subject to change. Project files from the current version are not guaranteed to work with future versions, although we will strive to keep backwards compatibility as we add features. Please get in touch should you have trouble loading an old project file, as we may be able to help.
+
+Please visit the GitHub repository for the tool to make contributions, log issues, or fork the code to make your own version.
+
+Known issues:
+The data grid component has multiple usability issues, especially for screen reader users. This grid is a 3rd party component and will be replaced.
+Some browsers can have issues with exporting video and audio, and the supported export formats are limited. You may want to use your own screen-recording sofware to work around this, depending on your use case.
+For an up-to-date detailed overview of known issues, visit our GitHub issues page.
+
+Planned features:
+Implement our own, accessible, data grid.
+Better sonification navigation for screen reader users.
+Drag playback slider to scrub.
+Series-specific sonification contexts and notifications.
+More chart types.
+Installable progressive webapp-version, possibly a desktop application version.
+If you have requests for features not listed here, please get in touch with us.
+
+ Feedback
+We would love to hear about your experiences with the tool, as well as thoughts you might have on the direction we are taking. To get involved, please do not hesitate to contact us.
+
+You can send us an email directly at accessibility@highsoft.com, and we will get back to you.
+
+Our public GitHub repository for the tool supports logging issues, as well as pull requests for contributions. It is also possible to fork the code and make your own customized version. Please note the licensing requirements for commercial use.
+
+You can also write a post in the Highcharts Sonification Studio feedback thread in our public support forum, which we monitor regularly. Note that you will have to register for a free user account in order to post messages in the forum.
+
+Get started using the Highcharts Sonification Studio to create charts and sonifications.
+
+Select a category below to get an introduction to the topic.
+
+ Expand all
+1. Import your data
+There are multiple ways to get your data into the Highcharts Sonification Studio to get started. You will find these by selecting the Data tab.
+
+Data grid
+Data can be entered directly into the data grid spreadsheet.
+
+The first column contains the X values of the resulting chart. The second column will be the Y values. If you add more columns, they will signify Y values of additional data series. For a regular line chart, this means additional lines.
+
+In the first row you can put column headers. The column headers will determine the default names of your data series unless you change them in the chart configuration.
+
+Data grid showing two columns of numbers. Below is the resulting line chart.
+Empty cells will be treated as null values, and represent missing data.
+
+Data grid showing some numbers missing in the second column. Below is the resulting line chart with missing segments.
+It is possible to use text for the X values, which can be useful for certain types of charts.
+
+Data grid with text in the first column, numbers in the second. Below is the resulting column chart with text for each column on the X axis.
+Clicking the Grid Tools button will expand a toolbar with additional functionality for the data grid. You can add more rows to the grid, clear/empty the grid, or fill columns with the result of an equation.
+
+
+Import CSV data
+It is possible to import existing CSV data into the grid, from the Import menu. Most data analysis tools will allow you to save data in this format, including Google Sheet and Microsoft Excel.
+
+
+Google Sheet
+Instead of using the grid, you can select to use a Google Sheet as a data source. The data is automatically kept up to date with future changes to the Google Sheet.
+
+When you select to use a Google Sheet as a source, the tool will guide you through the process of setting up the necessary configuration in order to access your Google Sheet.
+
+
+2. Configure the chart
+Selecting the Chart tab, you can see the resulting chart from your data, and make changes to the chart and sonification configurations in the sidebar.
+
+To configure the visual chart, select the Visual tab in the sidebar.
+
+You can select between Global settings and Data series settings. Global settings are configuration options that apply to the entire chart, while Data series settings apply only to a specific data series - such as a specific line in a line chart.
+
+Sidebar with nested tab controls, showing the Visual tab selected.
+Chart types
+The application supports multiple types of visualizations, including basic line, column, and pie charts, as well as scatter plots.
+
+You can set the default type for all data series under Global settings, and override the type for specific data series under Data series settings. This allows you to combine multiple chart types in one chart.
+
+
+The less common chart types included are:
+
+Smoothed line charts
+These are line charts that draw arcs between points instead of straight lines, smoothing the overall flow of the line. The data and sonification is not smoothed, only the visual line.
+
+
+Area charts
+These are line charts where the area between the line and the x-axis has been "colored in", or filled. Area charts are often used to visually signal that the values show an accumulated total or volume. They are also sometimes referred to as "mountain charts" since they may look like a drawing of a mountain range.
+
+
+Smoothed area charts
+As with smoothed line charts, these are area charts with visual smoothing of the line.
+
+
+Hide a data series
+A common use case is having data in the data set that you do not want to include in the chart or the sonification. You can choose to not include a data series in the chart and sonification by going to "Data series settings" and deselecting the "Series visible" option. Note that the data series will still show up in the chart legend (if legend is enabled), and can be made visible again by clicking in the legend. If you also wish to exclude the data series from the legend, you will have to remove it from the data set.
+
+
+Zooming
+Click-and-drag zooming along the X-axis is enabled by default. This also affects the sonification, as only the zoomed area is sonified. You can control the zoom options under "Global settings" / "Advanced" / "Chart zoom".
+
+Legend and series labels
+In some cases you may want to enable an explanatory chart legend, showing which data series are present in the chart. This can be done under "Global settings" / "Advanced" / "Enable legend". Note that in many cases, enabling data series labels (also under "Global settings" / "Advanced") may be a better user experience, and make the chart easier to follow.
+
+
+Axis types
+For each axis, you can select between multiple types: Linear, logarithmic, category, and date. The tool will try to make an intelligent guess based on your data set. Category axes are used for text, while date axes are used for data with timestamps. Several date formats are supported, but a safe and unambiguous bet is YYYY/MM/DD. Alternatively, you can use the number of elapsed milliseconds since January 1, 1970, UTC (UNIX Epoch), and manually set the axis type to Date.
+
+Note that when using Date axis types, configuring the min/max values for the axis currently requires using elapsed milliseconds since the UNIX Epoch (Jan 1st, 1970).
+
+
+3. Configure the sonification
+Similarly to the Chart configurations, the sonification settings can be adjusted in the sidebar under the main Chart tab.
+
+To configure the sonification settings, select the Audio tab in the sidebar.
+
+You can select between Global settings and Data series settings. Global settings are configuration options that apply to the entire chart, while Data series settings apply only to a specific data series - such as a specific line in a line chart.
+
+Sidebar with nested tab controls, showing the Audio tab selected.
+Remove a data series from the sonification
+A common use case is having data series that you do not want included in the sonification, but still presented visually. This can be configured under Data series settings / Instrument / Audio enabled for series. By deselecting this option, the data series will not be included in the sonification, but will still be visible. Hiding the data series visually can be done under the Visual settings.
+
+Sidebar showing the Audio enabled setting.
+Play detail and speed
+These settings can be found under Global settings / Basic.
+
+Play speed refers to the duration of the sonification, and will affect how quickly the sonification is played.
+
+With Play detail, you can adjust the detail level of the sonification - how many notes are played. This does not affect the data, or the play duration. When detail is low, and few notes are played, the tool will group data together and play each group as one. The minimum and maximum of each group will be played, to preserve peaks in the data.
+
+
+Audio mapping
+Under settings for each data series, you can adjust how the data is mapped to sound.
+
+For each series, you can select an instrument sound. Both melodic and percussive instrument presets are available. For more realistic sounding instruments, you may want to export your sonification as MIDI, and import it into a Digital Audio Workstation (DAW) of your choice.
+
+You can map the data values to several audio parameters, including pitch, panning, volume, and note duration. You can also map data values to sound effects, like tremolo, and filters.
+
+Sidebar showing volume mapped to Y-values, with minimum and maximum settings.
+For example, mapping the Y-values to volume from low to high would cause the audio to get louder when the Y-values go up, and go quieter as the Y-values go down.
+
+You can also select fixed values for the parameters, such as a fixed volume for a data series.
+
+Sidebar showing volume set to a fixed value of 100.
+Audio parameters explained
+These are the controls available for changing how the sound plays:
+
+Pitch
+Pitch refers to how high or how low notes are. Picture how notes change and get higher on a piano as you play the piano keys further towards the right side of the instrument.
+
+Pan
+Panning refers to the position of a sound in stereo. If you are wearing headphones you can hear how changing the panning places a sound from the left to the right ear.
+
+Volume
+Volume refers to how loud the sound is, from silent, to quiet, to loud.
+
+Note duration
+Note duration controls how long each note plays for. It only has an affect with instruments that can play long notes, such as flute, saxophone, trumpet, or the basic1 and basic2 instruments. Be aware that notes can get cut short if the play speed or play detail is set high.
+
+Lowpass filter
+A lowpass filter reduces high frequencies, which makes sounds sound more dull. You can control how much of the high frequencies is reduced.
+
+Highpass filter
+A highpass filter reduces low frequencies, which makes sounds sound thinner. You can control how much of the low frequencies is reduced.
+
+Tremolo depth
+A tremolo effect causes the volume to go up and down repeatedly as the sound plays. Tremolo depth controls how much the volume changes.
+
+Tremolo speed
+Related to tremolo depth, tremolo speed controls how fast the volume changes.
+
+Contexts
+Under Global settings, you can add "Global audio context cues". These are sounds that play in the background along with the sonification, to add context. For example, you may want to play a click for every tick mark on the X-axis, to give the listener a better sense of time as the sonification plays.
+
+Currently, you can only add context cues based on X-axis values.
+
+You can define when the sound(s) will play, and there are basic settings for which sound to play.
+
+Sidebar showing one context cue added, with settings for sound type and when to play.
+4. Export your results
+Under the Export menu you can select different formats to export your project to.
+
+Export button clicked, and exporting option list expanded.
+Video will export to a video playing back the sonification. If the play marker setting is enabled (Audio / Global / Enable chart play marker), a marker will show along the chart as the sonification plays.
+Audio only will export the sonification to an audio file, without the visual chart.
+Audio as MIDI will export the sonification to a MIDI file, for further processing of the sounds.
+Image will export the visual chart to a static PNG image.
+Vector image will export the visual chart to a static SVG image. An SVG image will typically be smaller than a PNG image in filesize, and can be scaled to any size without becoming blurry.
+CSV data will export the data to a text file that can be imported to Microsoft Excel or other data processing tools.
+Text description will export the text description of the chart to a text file.
+Highcharts JS Config will export the chart and sonification Javascript configuration needed to recreate the project using the Highcharts JS programming library.
+5. Manage projects
+Under the Project menu you can manage your Sonification Studio project.
+
+Project button clicked, and project option list expanded.
+New Project will reset the data, the visual, and the audio settings to default. This will allow you to start over on a new project.
+Open Project will allow you to load a saved project, or a Highcharts Sonification Studio project sent to you by someone else.
+Save Project As will allow you to download a project file to open later, or share with someone else.
+Note that current data and all settings are by default saved in your browser, unless you have disabled local storage in your browser settings, or you clear your browser data.
