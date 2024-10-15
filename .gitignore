@@ -1,1 +1,6 @@
+sonification-studio/node_modules/
+sonification-studio/.DS_Store
+sonification-studio/dist/
+sonification-studio/.cache/
+sonification-studio/vendor/
 venv/
