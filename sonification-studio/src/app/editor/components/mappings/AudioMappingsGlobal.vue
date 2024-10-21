@@ -28,6 +28,16 @@
                 </keep-alive>
             </SEAccordionItem>
             <SEAccordionItem
+                heading="ChatBot"
+                :selected="AudioMappingsGlobalChatbot"
+                controls="audio-global-defaults"
+                @click="onChatAccordionClick"
+            >
+                <keep-alive>
+                    <AudioMappingsGlobalChatbot id="audio-global-defaults" />
+                </keep-alive>
+            </SEAccordionItem>
+            <SEAccordionItem
                 heading="Global audio context cues"
                 :selected="expandedGlobalAudioContextsAccordionItem"
                 controls="audio-global-contexts"
@@ -50,6 +60,7 @@ import SEAccordionContainer from '../basic/SEAccordionContainer.vue';
 import AudioMappingsGlobalBasic from './AudioMappingsGlobalBasic.vue';
 import AudioMappingsGlobalDefaults from './AudioMappingsGlobalDefaults.vue';
 import AudioMappingsGlobalContexts from './AudioMappingsGlobalContexts.vue';
+import AudioMappingsGlobalChatbot from './AudioMappingsGlobalChatbot.vue';
 import { mapState } from 'vuex';
 
 export default {
@@ -58,12 +69,14 @@ export default {
         AudioMappingsGlobalBasic,
         AudioMappingsGlobalContexts,
         AudioMappingsGlobalDefaults,
+        AudioMappingsGlobalChatbot,
         SEAccordionItem
     },
     computed: mapState('viewStore', [
         'expandedGlobalAudioBasicAccordionItem',
         'expandedGlobalAudioDefaultsAccordionItem',
-        'expandedGlobalAudioContextsAccordionItem'
+        'expandedGlobalAudioContextsAccordionItem',
+        'expandedGlobalChatbot'
     ]),
     methods: {
         onBasicAccordionClick(e: Event, item: unknown, isSelected: boolean) {
@@ -74,6 +87,9 @@ export default {
         },
         onContextsAccordionClick(e: Event, item: unknown, isSelected: boolean) {
             this.$store.commit('viewStore/setExpandedGlobalAudioContextsAccordionItem', isSelected);
+        },
+        async onChatAccordionClick(e: Event, item: unknown, isSelected: boolean) {
+            this.$store.commit('viewStore/setExpandedGlobalChatbot', isSelected);
         }
     }
 };

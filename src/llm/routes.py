@@ -14,13 +14,14 @@ index = None
 
 @llm.route('/', methods=['GET'])  
 def home():
-    return "¡Hola, llm!"
+    return jsonify(message="llM en linea")
 
 @llm.route('/loadDocuments')
 def loadDocuments():
     global documents
     documents = SimpleDirectoryReader("./src/documentsdb").load_data()    
-    return jsonify({'message': 'Documents load' + str(documents[0]) }), 201
+    return jsonify({'Documents': 'Documents load' + str(documents[0], ),
+                    'message': 'OK' }), 201
 
 @llm.route('/loadModel')
 def loadModel():
@@ -28,7 +29,7 @@ def loadModel():
     embed_model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
     Settings.embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/all-MiniLM-L6-v2")
     Settings.llm = Ollama(model="llama3.2:1b", request_timeout=360.0)
-    return jsonify({'message': 'Load Model llama3.2:1b and all-MiniLM-L6-v2'  }), 201
+    return jsonify({'message': 'OK'  }), 201
 
 
 @llm.route('/promtUser', methods=['POST'])

@@ -6,14 +6,7 @@ import Tutorial from '../home/Tutorial.vue';
 import App from '../App.vue';
 import { removeFocusOutlineUnlessKeypress } from '../editor/core/utils/removeFocusOutline';
 import Announcer from '../editor/core/utils/Announcer';
-import { devtools } from '@vue/devtools';
-
-if (process.env.NODE_ENV === 'development')
-    devtools.connect(/* host (the default is "http://localhost"), port (the default is 8090) */);
-
 const routeAnnouncer = new Announcer();
-
-Vue.config.devtools = true; // Habilitar Vue Devtools
 
 Vue.use(VueRouter);
 
