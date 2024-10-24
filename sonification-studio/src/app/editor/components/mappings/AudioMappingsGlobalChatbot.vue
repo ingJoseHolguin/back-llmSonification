@@ -31,14 +31,25 @@
 
 <script lang="ts">
 import axios from 'axios';
+import { string } from 'mathjs';
+import { mapState } from 'vuex';
 
 export default {
     data() {
         return {
             newMessage: '',
             messages: [],
-            isModelLoaded: false,
+            isModelLoaded: false
         };
+    },
+    computed: {
+        ...mapState({
+            speed: state => state.globalSonifyParametersStore.speed,
+            detail: state => state.globalSonifyParametersStore.detail,
+            playMarkerEnabled: state => state.globalSonifyParametersStore.playMarkerEnabled,
+            tooltipMarkerEnabled: state => state.globalSonifyParametersStore.tooltipMarkerEnabled,
+            order: state => state.globalSonifyParametersStore.order
+        })
     },
     methods: {
         createMessage(sender, text) {
@@ -47,12 +58,18 @@ export default {
         async sendMessage() {
             if (this.newMessage.trim() === '') return;
 
-            if (!this.isModelLoaded) {
+            const globalAudioDataSettings = {
+                speed: this.speed,
+                detail: this.detail,
+                playMarkerEnabled: this.playMarkerEnabled,
+                tooltipMarkerEnabled: this.tooltipMarkerEnabled,
+                order: this.order
+            };
 
+
+            if (!this.isModelLoaded) {
                 try {
-                    this.messages.push(this.createMessage('Bot', 'test'));
                     const testServer = await axios.get('http://127.0.0.1:5000/llm/', { timeout: 10000 });
-                    this.messages.push(this.createMessage('Bot', testServer));
 
                     if (testServer.data.message === 'llM en linea') {
                         this.messages.push(this.createMessage('Bot', 'LLM connected'));
@@ -63,7 +80,6 @@ export default {
 
                     if (loadDocuments.data.message === 'OK' && loadLLM.data.message === 'OK') {
                         this.isModelLoaded = true;
-                        this.messages.push(this.createMessage('Bot', 'LLM and documents loaded successfully.'));
                     } else {
                         this.messages.push(this.createMessage('Bot', 'Error: Could not load LLM or documents.'));
                     }
@@ -79,9 +95,23 @@ export default {
             this.messages.push(userMessage);
 
             try {
+
+                const SPEED = this.speed;
                 const response = await axios.post('http://127.0.0.1:5000/llm/promtUser', {
                     userPrompt: this.newMessage,
+                    speed: this.speed,
+                    detail: this.detail,
+                    playMarkerEnabled: this.playMarkerEnabled,
+                    tooltipMarkerEnabled: this.tooltipMarkerEnabled,
+                    order: this.order
                 });
+
+
+
+                console.log(response);
+                console.log(globalAudioDataSettings);
+
+
 
                 const botResponse = this.createMessage('Bot', response.data.message);
                 this.messages.push(botResponse);
