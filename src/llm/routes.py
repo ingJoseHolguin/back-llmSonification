@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, Blueprint
+from flask import  request, jsonify, Blueprint
 from llama_index.core import  SimpleDirectoryReader, VectorStoreIndex, Settings
 from sentence_transformers import SentenceTransformer
 from llama_index.llms.ollama import Ollama
@@ -76,3 +76,69 @@ def promtUser():
         'play_marker_enabled': str(play_marker_enabled),
         'tooltip_marker_enabled': str(tooltip_marker_enabled)
     }), 201
+
+
+""" import logging
+
+# Create a logger
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+# Create a file handler and a stream handler
+file_handler = logging.FileHandler('llm.log')
+stream_handler = logging.StreamHandler()
+
+# Create a formatter and add it to the handlers
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(formatter)
+stream_handler.setFormatter(formatter)
+
+# Add the handlers to the logger
+logger.addHandler(file_handler)
+logger.addHandler(stream_handler)
+
+# Replace the print statements with logger.info
+@llm.route('/promtUser', methods=['POST'])
+def promtUser():
+    # Comprueba si se están enviando datos en formato JSON
+    if request.is_json:
+        data = request.get_json()
+        user_prompt = data.get('userPrompt')
+        speed = data.get('speed')
+        detail = data.get('detail')
+        play_marker_enabled = data.get('playMarkerEnabled')
+        tooltip_marker_enabled = data.get('tooltipMarkerEnabled')
+    else:
+        # Si no es JSON, intenta obtener los datos del formulario
+        user_prompt = request.form.get('userPrompt')
+        speed = request.form.get('speed')
+        detail = request.form.get('detail')
+        play_marker_enabled = request.form.get('playMarkerEnabled')
+        tooltip_marker_enabled = request.form.get('tooltipMarkerEnabled')
+
+    global index, documents
+
+    logger.info(f'userPrompt: {user_prompt}')
+    logger.info(f'Speed: {speed}')
+    logger.info(f'Detail: {detail}')
+    logger.info(f'Play Marker Enabled: {play_marker_enabled}')
+    logger.info(f'Tooltip Marker Enabled: {tooltip_marker_enabled}')
+
+    if not documents:  # Verifica si los documentos están cargados
+        logger.error('No documents loaded. Please load documents first.')
+        return jsonify({'message': 'No documents loaded. Please load documents first.'}), 400
+
+    if index is None:  # Verifica si el índice ha sido inicializado
+        index = VectorStoreIndex.from_documents(documents)
+
+    # Utiliza el índice para hacer la consulta
+    query_engine = index.as_query_engine()
+    response = query_engine.query(str(user_prompt))
+    logger.info(f'Response: {response}')
+    return jsonify({
+        'message': str(response),
+        'speed': str(speed),
+        'detail': str(detail),
+        'play_marker_enabled': str(play_marker_enabled),
+        'tooltip_marker_enabled': str(tooltip_marker_enabled)
+    }), 201 """

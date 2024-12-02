@@ -3,3 +3,8 @@ llama-index
 llama-index-llms-ollama
 sentence-transformers
 llama-index-embeddings-huggingface
+chromadb==0.4.7
+langchain
+langchainhub
+langchain==0.1.16
+langchain-community==0.0.34
