@@ -1,0 +1,98 @@
+Parámetros Generales de Sonificación:
+Play Speed (duración en segundos)
+Establece la velocidad de reproducción de 1 a 100.
+
+Play Detail
+Establece cuántas notas se reproducen, de 1 (baja) a 15 (alta). La cantidad de puntos puede combinarse en una sola nota dependiendo de este ajuste.
+
+Enable Chart Play Marker
+Muestra visualmente la posición actual de reproducción en el gráfico con una cruz en movimiento.
+
+Show Tooltip on Play
+Resalta el punto actual con una descripción emergente mientras se reproduce.
+
+Data Series Order
+Determina el orden de reproducción de las series de datos, ya sea secuencial (una después de otra) o simultáneo (al mismo tiempo).
+
+Default Minimum Note
+La nota más baja a reproducir, indicada como número de notas desde C más bajo (C0).
+
+Default Maximum Note
+La nota más alta a reproducir, indicada como número de notas desde C más bajo (C0).
+
+Default Panning Enabled
+Habilita el paneo del sonido de izquierda a derecha por defecto, basado en el valor de X. Este comportamiento puede modificarse para cada serie de datos.
+
+Default Pan Width
+Ancho del paneo por defecto, de 0 (estrecho) a 100 (ancho). El paneo puede ser modificado para cada serie de datos.
+
+Parámetros de Context Cue:
+Context Cue
+Configuración de la reproducción para momentos específicos en el gráfico.
+
+Play Every X-values
+Especifica la frecuencia con la que se reproduce el contexto para valores X específicos.
+
+Play When
+Determina cuándo debe reproducirse el contexto.
+
+Instrument
+Tipo de instrumento para reproducir la pista de contexto.
+
+Volume
+Volumen del contexto.
+
+Type
+Especifica si el valor es fijo (nota especificada directamente) o mapeado (basado en el valor Y de los datos).
+
+Note
+La nota a reproducir para el contexto.
+
+Note Duration
+Duración de cada nota del contexto, de corta a larga en milisegundos.
+
+Pan
+Establece el paneo de la nota del contexto, de 0 (izquierda) a 100 (derecha). El centro es 50.
+
+Parámetros de Configuración de Series de Datos:
+Audio Settings Type
+Selección entre configuraciones globales para todo el gráfico o configuraciones de serie de datos para una línea específica.
+
+Series
+La serie de datos a la que se aplican las configuraciones.
+
+Instrument
+Tipo de instrumento para reproducir esta serie de datos.
+
+Audio Enabled for Series
+Habilita la reproducción de audio para esta serie de datos.
+
+Round to Musical Notes
+Redondea todas las frecuencias a la nota musical más cercana.
+
+Note Pitch
+Habilita el control de la frecuencia de las notas. Puede ser predeterminado, fijo o mapeado.
+
+Note Panning
+Habilita el paneo para esta serie de datos. Puede ser predeterminado, fijo o mapeado.
+
+Note Volume
+Habilita el control de volumen para esta serie de datos. Puede ser predeterminado, fijo o mapeado.
+
+Note Duration
+Habilita el control de duración de las notas para esta serie. La duración solo tendrá efecto con instrumentos que reproduzcan notas largas.
+
+Lowpass Filter
+Filtro pasa-bajo que elimina las frecuencias altas, haciendo el sonido más apagado.
+
+Highpass Filter
+Filtro pasa-alto que elimina las frecuencias bajas, haciendo el sonido más delgado.
+
+Tremolo Depth
+Controla la cantidad de cambio en el volumen en un efecto de trémolo.
+
+Tremolo Speed
+Controla la velocidad del cambio de volumen en un efecto de trémolo.
+
+
+

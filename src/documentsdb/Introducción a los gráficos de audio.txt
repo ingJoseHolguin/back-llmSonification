@@ -1,0 +1,50 @@
+En términos científicos, la sonificación es un término colectivo que se utiliza para transmitir información o percibir datos mediante audio no verbal. Se utiliza en todas partes; por ejemplo, imaginemos un reloj de pie que suena cada segundo y suena cada hora.
+En la visualización de datos, la sonificación permite explorar los datos sin ayuda visual. Ayuda a las personas a comprender los datos mediante el uso del sentido del oído en lugar del de la vista. Esto puede ser especialmente útil para personas con discapacidades visuales o para situaciones en las que la interpretación visual de los datos es difícil, pero también se puede utilizar para crear experiencias de visualización de datos más atractivas en general o para notificar a los usuarios que se requiere su atención.
+La sonificación con grandes conjuntos de datos puede tener importantes beneficios en términos de accesibilidad, ya que muchos usuarios ciegos o con baja visión consideran que la sonificación es útil para obtener una descripción general de los datos, así como para identificar tendencias, patrones, valores atípicos y puntos de interés.
+En Highcharts, ofrecemos un módulo de sonificación que le permite tener un control total de la reproducción de sus datos mediante sonido. El módulo de sonificación admite una amplia gama de casos de uso diferentes y está diseñado teniendo en cuenta la flexibilidad.
+La siguiente tabla muestra algunos de los diferentes parámetros de audio que puedes asignar con el módulo de sonificación y lo que hacen:
+Pitch: With this pitch mapping, higher notes will be played when the Y-value goes higher. You can picture a piano, where the Y-axis is laid out across the keys. For low Y-values, the low piano keys are played, and for high Y-values, the higher keys are played.
+Stereo pan:Stereo panning refers to where in a stereo field a sound is placed. If you are wearing headphones, you will hear low Y-values in the left ear, and high ones in the right ear. Normally we map this to the X-value instead, so that we get a feeling of playing the chart from left to right.
+Frequency: Frequency is similar to pitch mapping, but instead of mapping to notes on a piano, we are mapping to wave frequency in Hertz. The wave frequency doubles for each octave, so mapping higher in frequency will very quickly cause high musical notes. For this reason you would usually use pitch mapping instead.
+Tremolo: Tremolo refers to periodical changes in volume. You can map to both the speed and intensity of the volume changes. In this case we are mapping to both, where a higher Y-value causes both faster and more dramatic volume changes.
+ Volume: With this volume mapping the pitch is always the same, but low Y-values are played at low volume, while high values are played at high volume. Noticing subtle differences in volume can be hard, and also hardware dependent, so this should usually be combined with other mappings.
+ Lowpass: Lowpass filters filter out high frequencies, making the sound more dull. You can map to both the dropoff frequency of the filter as well as a resonance. The resonance adds emphasis to the frequencies around the dropoff frequency. In this case we are making low Y-values more dull, and higher ones more natural.
+ Highpass: Highpass filters filter out low frequencies, making the sound thinner. Similarly to the lowpass filter, you can map to both dropoff frequency and resonance. In this case we are making low Y-values more thin, and higher ones more natural.
+Note duration: Note duration refers to how long each note plays for. It only has an effect with continuous instruments that can hold notes indefinitely, in this case a flute. Here we are making low Y-values play short notes, and high values play long notes.
+ Note gap: Here we are mapping pitch to an array of notes. When pitch is an array, multiple notes are played for each point. Note gap refers to how long to wait between each of these notes. In this demo, low Y-values have more space between the notes, and high Y-values play the notes faster.
+Mapeo eficaz
+La sonificación es tanto una ciencia como un arte, y si bien no existe una forma "correcta" definitiva de hacerlo, aquí hay 7 consejos científicos que pueden ser útiles si el objetivo es que la experiencia del sonido sea intuitiva:
+
+El mapeo de tonos suele ser intuitivo si se trata de comunicar cantidad o tamaño. En el caso del tamaño, se suele asumir que un tono más bajo significa más grande.
+G4 a F6 es el rango de tono más preciso para la mayoría de los humanos, si un rango estrecho es aceptable.
+Se pueden utilizar diferentes instrumentos/timbres para categorizar sonidos y crear separación, pero las comparaciones entre diferentes instrumentos a veces pueden ser más difíciles.
+La duración se puede utilizar para transmitir importancia. Utilícela con precaución, ya que puede superponerse a otros sonidos y también interrumpir el flujo de interacción del usuario si la duración es demasiado larga.
+El volumen se puede utilizar para transmitir intensidad, pero puede ser difícil escuchar pequeñas diferencias en el volumen y este puede escucharse de manera diferente en distintos dispositivos.
+El tempo, como el del trémolo o la variación del intervalo entre notas, es bueno para transmitir la intensidad o la velocidad de algo. Para la mayoría de las personas es relativamente fácil percibir pequeñas diferencias en el tempo.
+La panorámica estéreo suele ser útil, pero requiere que el usuario tenga auriculares o altavoces estéreo, por lo que no suele confiarse únicamente en ella.
+
+Codificación dual:
+
+Es perfectamente posible asignar la misma propiedad de datos a múltiples parámetros de audio, y esto suele ser una buena idea. Por ejemplo, podría asignar valores Y tanto al volumen, la duración y el tono para enfatizar la importancia de un cambio en el valor Y para un conjunto de datos en particular.
+
+Sobrecarga de información:
+
+Puede resultar fácil abrumar al usuario con información sonora si hay demasiadas cosas ocurriendo a la vez con la sonificación. Esto se aplica especialmente a varias series que se reproducen al mismo tiempo.
+
+En general, cambiar más de tres parámetros a la vez puede ser un caos. La mayoría de las personas pueden hacer un seguimiento sistemático de dos cambios a la vez si son lo suficientemente distintos.
+
+Dicho esto, la sonificación también se utiliza a veces para dar sentido a conjuntos de datos grandes y complejos, donde el objetivo no es tanto comunicar todos los datos, sino escuchar patrones o anomalías. En estos casos, los paisajes sonoros suelen ser más complejos y ocurren muchas cosas a la vez.
+
+Instrumentos
+Hay dos tipos de pistas disponibles en el módulo de sonificación de Highcharts: pistas de instrumentos y pistas de voz. Una pista de instrumentos es una pista que reproduce una secuencia de notas utilizando el sintetizador integrado de Highcharts.
+
+Todas las opciones de configuración para las pistas de instrumentos se pueden encontrar en defaultInstrumentOptions en la documentación de la API.
+
+Preajustes disponibles
+Hay varios ajustes preestablecidos disponibles para diferentes sonidos de instrumentos. En términos generales, hay 4 tipos de sonidos diferentes:
+
+Sonidos punteados y entrecortados que no se sostienen: esto incluye ajustes preestablecidos como piano, vibraphoney plucked. Estos funcionan bien cuando se desea una separación entre notas. La asignación de duración de notas no tiene efecto en estos.
+Sonidos continuos y sostenidos : esto incluye ajustes preestablecidos como flute, y . Estos instrumentos funcionan bien para tocar de forma continua.saxophonebasic1basic2
+Sonidos de percusión: son sonidos sin melodía, como chop, shakery noise. La asignación de un tono no tiene ningún efecto sobre estos.
+Sonidos de efectos: son sonidos a los que se les agregan algunos efectos adicionales que varían con el tono, como windy wobble.
+

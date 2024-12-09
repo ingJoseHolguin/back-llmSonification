@@ -10,6 +10,7 @@
             id="mainContentView"
             ref="mainContentView"
         />
+        <ChatWindow />
         <Footer />
         <div ref="announcePolite" />
         <div ref="announceAssertive" />
@@ -31,6 +32,7 @@ import hcNoDataInit from 'highcharts/modules/no-data-to-display';
 import hcSonificationInit from 'highcharts/modules/sonification';
 import hcAccessibilityInit from 'highcharts/modules/accessibility';
 import hcThemeInit from 'highcharts/themes/high-contrast-light';
+import ChatWindow from './components/ChatWindow.vue';
 import { negativeLogPlugin } from './core/utils/chartUtils';
 hcThemeInit(Highcharts);
 hcMoreInit(Highcharts);
@@ -62,6 +64,7 @@ export default {
     store,
     components: {
         Header,
+        ChatWindow,
         MainContentView,
         Footer
     },
@@ -126,4 +129,63 @@ export default {
         padding-left: 110px;
         margin-left: -100px;
     }
+    .chat-window {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.chat-body {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.message {
+    margin-bottom: 10px;
+}
+
+.message-sender {
+    color: blue;
+}
+
+.message-emitter {
+    color: green;
+}
+
+.input-group {
+    display: flex;
+}
+
+.chat-input {
+    flex-grow: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.send-button {
+    margin-left: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
 </style>
