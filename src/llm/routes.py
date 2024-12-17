@@ -29,8 +29,9 @@ def loadModel():
     global embed_model, index
     embed_model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
     Settings.embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/all-MiniLM-L6-v2")
-    Settings.llm = Ollama(model="llama3.2:1b", request_timeout=360.0)
+    Settings.llm = Ollama(model="llama3.1:8b", request_timeout=360.0)
     return jsonify({'message': 'OK'  }), 201
+#llama3.3:70b-instruct-q2_K 
 
 
 @llm.route('/promtUser', methods=['POST'])
@@ -65,10 +66,40 @@ def promtUser():
     if index is None:  # Verifica si el índice ha sido inicializado
         index = VectorStoreIndex.from_documents(documents)
 
+    formatted_prompt = f"""
+    Eres un experto en **Highcharts Sonification Studio** y en **sonificación de datos**. Responde de manera clara y natural, como si estuvieras conversando con alguien que busca asistencia sobre estos temas. No utilices subtítulos, títulos ni formatos adicionales. La respuesta debe ser fluida, directa y sin divisiones.
+
+    Considera lo siguiente:
+
+    - Si la solicitud es una **consulta de información** sobre sonificación de datos o el uso de **Highcharts Sonification Studio**, responde de manera informativa.
+    - Si la solicitud implica **ajustar parámetros** (como cambiar la velocidad o modificar configuraciones), responde indicando que es un **ajuste de parámetros**.
+    - Si la solicitud implica **realizar una acción** (como generar un gráfico o ejecutar un proceso de sonificación), responde indicando que es una **acción**.
+    - Si la solicitud está fuera del contexto de sonificación de datos o **Highcharts Sonification Studio**, indica que solo puedes ayudar con esos temas.
+
+    Tu respuesta debe estar en formato JSON con estos campos:
+    {{
+    "type of request": "Indica si fue **consulta de información**, **ajuste de parámetros**, **acción** o **fuera de contexto**.",
+    "guide": "Responde con una explicación clara, detallada y los pasos a seguir para cumplir con la solicitud.",
+    "suggestions": {{
+        "type_of_request": "Identifica el tipo de solicitud del usuario",
+        "speed": "valor sugerido basado en la configuración actual",
+        "detail": "valor sugerido basado en la configuración actual",
+        "play_marker_enabled": "valor sugerido basado en la configuración actual",
+        "tooltip_marker_enabled": "valor sugerido basado en la configuración actual"
+    }}
+    }}
+
+    Prompt del usuario: {user_prompt}
+    Configuración actual:
+    - Speed: {speed}
+    - Detail: {detail}
+    - Play Marker Enabled: {play_marker_enabled}
+    - Tooltip Marker Enabled: {tooltip_marker_enabled}
+    """
 
     # Utiliza el índice para hacer la consulta
     query_engine = index.as_query_engine()
-    response = query_engine.query(str(user_prompt))
+    response = query_engine.query(str(formatted_prompt))
     return jsonify({
         'message': str(response),
         'speed': str(speed),
