@@ -29,7 +29,7 @@ def loadModel():
     global embed_model, index
     embed_model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
     Settings.embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/all-MiniLM-L6-v2")
-    Settings.llm = Ollama(model="llama3.1:8b", request_timeout=360.0)
+    Settings.llm = Ollama(model="deepseek-r1:7b", request_timeout=360.0)   #llama3.1:8b
     return jsonify({'message': 'OK'  }), 201
 #llama3.3:70b-instruct-q2_K 
 
