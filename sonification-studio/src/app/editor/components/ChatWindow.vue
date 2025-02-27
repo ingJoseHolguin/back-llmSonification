@@ -123,6 +123,17 @@ export default {
 
                 const botResponse = this.createMessage('Bot', response.data.message);
                 this.messages.push(botResponse);
+
+                if (response.data.suggestions) {
+                    const newConfig = {
+                        speed: response.data.suggestions.speed,
+                        detail: response.data.suggestions.detail,
+                        playMarkerEnabled: response.data.suggestions.play_marker_enabled,
+                        tooltipMarkerEnabled: response.data.suggestions.tooltip_marker_enabled
+                    };
+
+                    this.$store.commit('globalSonifyParametersStore/updateParameters', newConfig);
+                }
             } catch (error) {
                 console.error('Error al enviar el mensaje:', error);
                 this.messages.push(this.createMessage('Bot', 'Error: Service LLM.'));

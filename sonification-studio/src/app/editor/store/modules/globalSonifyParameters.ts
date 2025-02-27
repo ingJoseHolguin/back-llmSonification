@@ -48,6 +48,7 @@ const defaultState = () => ({
     contexts: []
 });
 
+
 export const globalSonifyParametersStore = {
     namespaced: true,
 
@@ -130,6 +131,15 @@ export const globalSonifyParametersStore = {
                     makeDefaultContext(1, 'milliseconds'),
                 payload.inactive ? { playWhenType: 'never' } : {}
             ));
+        },
+
+        updateAudioSettings(state: any, newSettings: Partial<typeof defaultState>) {
+            Object.assign(state, newSettings);
+        }
+    },
+    actions: {
+        updateAudioSettings({ commit }, settings: Partial<typeof defaultState>) {
+            commit('updateAudioSettings', settings);
         }
     }
 };
