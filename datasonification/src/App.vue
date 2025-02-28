@@ -1,102 +1,118 @@
 <template>
-  <div class="app-container" :class="currentTheme">
-    <header class="app-header">
-      <h1>Dashboard de Visualización y Sonificación</h1>
-    </header>
-    
-    <div class="main-content">
-      <!-- Panel lateral izquierdo para configuración -->
-      <ConfigPanel />
-      
-      <div class="chart-container">
-        <!-- Componente principal para visualizar el gráfico -->
-        <ChartView />
-        
-        <!-- Controles para la sonificación -->
-        <SonificationControl />
-        
-        <!-- Componente para importación de datos -->
-        <DataImport />
-      </div>
+  <div id="app" class="app-container">
+    <!-- Barra Superior -->
+    <PageHeader />
+
+    <!-- Contenedor Principal -->
+    <div class="main-container">
+      <!-- Panel Izquierdo -->
+      <LeftSidebar />
+
+      <!-- Contenido Principal -->
+      <main class="main-content">
+        <h1>Área de Trabajo</h1>
+        <p>Aquí puedes mostrar la gráfica o cualquier otro contenido.</p>
+        <MainContent />
+      </main>
+
+      <!-- Panel Derecho -->
+      <RightSidebar />
     </div>
-    
-    <!-- Chatbot desplegable/minimizable -->
-    <ChatbotWidget />
-    
-    <!-- Router view para navegación entre diferentes vistas -->
-    <router-view />
+
+    <!-- Pie de Página -->
+    <PageFooter />
   </div>
 </template>
 
 <script>
-import { computed } from 'vue'
-import { useStore } from 'vuex'
-import ChartView from './components/ChartView.vue'
-import ConfigPanel from './components/ConfigPanel.vue'
-import SonificationControl from './components/SonificationControl.vue'
-import ChatbotWidget from './components/ChatbotWidget.vue'
-import DataImport from './components/DataImport.vue'
+import PageHeader from './components/PageHeader.vue';
+import MainContent from './components/MainContent.vue';
+import PageFooter from './components/PageFooter.vue';
+import LeftSidebar from './components/LeftSidebar.vue';
+import RightSidebar from './components/RightSidebar.vue';
 
 export default {
-  name: 'App',
   components: {
-    ChartView,
-    ConfigPanel,
-    SonificationControl,
-    ChatbotWidget,
-    DataImport
-  },
-  setup() {
-    const store = useStore()
-    
-    // Obtener el tema actual desde el store de Vuex
-    const currentTheme = computed(() => store.state.themeStore.currentTheme)
-    
-    return {
-      currentTheme
-    }
+    PageHeader,
+    LeftSidebar,
+    MainContent,
+    RightSidebar,
+    PageFooter
   }
-}
+};
 </script>
+<style>
+@import './styles/global.css';
 
-<style lang="scss">
-@import './styles/variables.scss';
-
+/* Estilos generales */
 .app-container {
   display: flex;
-  flex-direction: column;
-  height: 100vh;
-  transition: background-color 0.3s ease;
-  
-  &.light-theme {
-    background-color: var(--bg-color-light);
-    color: var(--text-color-light);
-  }
-  
-  &.dark-theme {
-    background-color: var(--bg-color-dark);
-    color: var(--text-color-dark);
-  }
+  flex-direction: column; /* Organiza los elementos en columna */
+  height: 100vh; /* Altura total de la pantalla */
+  overflow: hidden; /* Evita desbordamientos */
 }
 
-.app-header {
-  padding: 1rem;
-  text-align: center;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.main-content {
+.main-container {
   display: flex;
-  flex: 1;
+  flex: 1; /* Ocupa todo el espacio restante después del header y footer */
   overflow: hidden;
 }
 
-.chart-container {
-  flex: 1;
-  padding: 1rem;
+/* Header */
+header {
+  background-color: #2c3e50;
+  color: white;
+  padding: 10px 20px;
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  overflow-y: auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Footer */
+footer {
+  background-color: #f8f9fa;
+  padding: 10px 20px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+}
+
+/* Paneles Laterales */
+.left-sidebar,
+.right-sidebar {
+  width: 250px; /* Ancho inicial de los paneles */
+  padding: 10px;
+  background-color: #2c3e50;
+  color: white;
+  transition: width 0.3s ease, padding 0.3s ease;
+  overflow: hidden;
+}
+
+.left-sidebar.collapsed,
+.right-sidebar.collapsed {
+  width: 50px; /* Ancho reducido cuando está colapsado */
+  padding: 10px 0;
+}
+
+/* Contenido Principal */
+.main-content {
+  flex: 1; /* El contenido principal ocupa todo el espacio restante */
+  padding: 20px;
+  background-color: #f9f9f9;
+  overflow-y: auto; /* Permite desplazamiento vertical si es necesario */
+}
+
+/* Botones de Colapso */
+.toggle-button {
+  background-color: #1abc9c;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.toggle-button:hover {
+  background-color: #16a085;
 }
 </style>

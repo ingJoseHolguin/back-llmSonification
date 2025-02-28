@@ -1,28 +1,11 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-import './styles/global.css'
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
+import store from './store';
 
-// Importar Highcharts correctamente
-import Highcharts from 'highcharts'
-import HighchartsVue from 'highcharts-vue'
+const app = createApp(App);
 
-// Importar módulos de Highcharts correctamente
-import exportingModule from 'highcharts/modules/exporting'
-import accessibilityModule from 'highcharts/modules/accessibility'
+app.use(router);
+app.use(store);
 
-// Inicializar módulos de Highcharts (la manera correcta)
-exportingModule(Highcharts)
-accessibilityModule(Highcharts)
-
-// Crear la aplicación
-const app = createApp(App)
-
-// Registrar plugins
-app.use(router)
-app.use(store)
-app.use(HighchartsVue)
-
-// Montar la aplicación
-app.mount('#app')
+app.mount('#app');
