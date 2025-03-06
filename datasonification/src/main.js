@@ -1,17 +1,12 @@
-import { createApp } from 'vue';
+import { createApp } from 'vue';  // Usamos 'createApp' en lugar de 'Vue'
 import App from './App.vue';
-import router from './router';
-import store from './store';
-//import { Chart } from "highcharts-vue";
-import Highcharts from "highcharts";
-import sonificationModule from "highcharts/modules/sonification";
 
-sonificationModule(Highcharts);
 
+// Crear la instancia de la aplicación Vue
 const app = createApp(App);
 
-app.use(router);
-app.use(store);
-//app.component("highchartsVue", Chart);
+// Usar HighchartsVue en la aplicación
 
+
+// Montar la aplicación
 app.mount('#app');
