@@ -11,7 +11,6 @@
       <!-- Contenido Principal -->
       <main class="main-content">
         <h1>Área de Trabajo</h1>
-        <p>Aquí puedes mostrar la gráfica o cualquier otro contenido.</p>
         <MainContent />
       </main>
 

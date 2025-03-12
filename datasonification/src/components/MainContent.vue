@@ -1,76 +1,269 @@
 <template>
-  <div>
-    <canvas ref="chart"></canvas>
-    <button @click="sonifyData">Sonificar Datos</button>
-  </div>
+  <figure class="highcharts-figure">
+    <div id="controls">
+      <select id="preset" v-model="selectedScale" @change="updateScale">
+        <option v-for="scale in availableScales" :key="scale" :value="scale">
+          {{ scale }}
+        </option>
+      </select>
+      <button id="sonify" @click="toggleSonify">Play chart</button>
+    </div>
+    <div id="container" ref="chartContainer"></div>
+    <p class="highcharts-description">
+      Here we are demonstrating using musical scales when mapping. Select between the scales in the dropdown before playing the chart, and hear the difference. Custom scales are supported as well, and demonstrated in the demo code.
+    </p>
+  </figure>
 </template>
 
 <script>
-import { Chart } from 'chart.js';
-import * as Tone from 'tone';
+// Importar Highcharts como módulo completo
+import Highcharts from 'highcharts';
+// Importar módulos necesarios
+import 'highcharts/modules/sonification';
+import 'highcharts/modules/accessibility';
 
 export default {
+  name: 'MusicalScaleSonification',
   data() {
     return {
-      dataVector: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100], // Ejemplo de vector de datos
       chart: null,
+      selectedScale: 'major',
+      availableScales: []
     };
   },
   mounted() {
-    this.renderChart();
+    // Asegurarse de que el DOM está listo
+    this.$nextTick(() => {
+      // Configurar opciones globales de Highcharts para evitar problemas de locale
+      Highcharts.setOptions({
+        lang: {
+          decimalPoint: '.',
+          thousandsSep: ','
+        }
+      });
+      
+      // Verificar si los módulos están correctamente cargados
+      if (!Highcharts.sonification) {
+        console.error('El módulo de sonificación no está cargado correctamente');
+        this.loadHighchartsModules();
+      } else {
+        this.initializeChart();
+      }
+    });
   },
   methods: {
-    renderChart() {
-      const ctx = this.$refs.chart.getContext('2d');
-      this.chart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: this.dataVector.map((_, i) => `Punto ${i + 1}`),
-          datasets: [{
-            label: 'Datos',
-            data: this.dataVector,
-            borderColor: 'blue',
-            fill: false,
-          }],
-        },
-        options: {
-          responsive: true,
-          scales: {
-            y: {
-              beginAtZero: true,
-            },
-          },
-        },
-      });
-    },
-    sonifyData() {
-      const synth = new Tone.Synth().toDestination();
-      const now = Tone.now();
+    loadHighchartsModules() {
+      // Cargar los scripts directamente desde CDN
+      const loadScript = (src) => {
+        return new Promise((resolve, reject) => {
+          const script = document.createElement('script');
+          script.src = src;
+          script.onload = resolve;
+          script.onerror = reject;
+          document.head.appendChild(script);
+        });
+      };
 
-      this.dataVector.forEach((value, index) => {
-        const frequency = this.mapValueToFrequency(value);
-        synth.triggerAttackRelease(frequency, '8n', now + index * 0.5);
+      Promise.all([
+        loadScript('https://code.highcharts.com/highcharts.js'),
+        loadScript('https://code.highcharts.com/modules/sonification.js'),
+        loadScript('https://code.highcharts.com/modules/accessibility.js')
+      ]).then(() => {
+        // Configurar opciones globales después de cargar los scripts
+        Highcharts.setOptions({
+          lang: {
+            decimalPoint: '.',
+            thousandsSep: ','
+          }
+        });
+        this.initializeChart();
+      }).catch(error => {
+        console.error('Error al cargar los scripts de Highcharts:', error);
       });
     },
-    mapValueToFrequency(value) {
-      // Mapea el valor a una frecuencia en Hz
-      const minFreq = 100; // Frecuencia mínima
-      const maxFreq = 1000; // Frecuencia máxima
-      return minFreq + (value / 100) * (maxFreq - minFreq);
+    initializeChart() {
+      try {
+        // Verificar que la referencia al contenedor existe
+        if (!this.$refs.chartContainer) {
+          console.error('El contenedor del gráfico no está disponible');
+          return;
+        }
+
+        // Verificar que Highcharts y sus módulos están disponibles
+        if (!Highcharts || !Highcharts.sonification || !Highcharts.sonification.Scales) {
+          console.error('Highcharts o sus módulos no están disponibles');
+          return;
+        }
+
+        // Agregar una escala personalizada a los presets
+        Highcharts.sonification.Scales.custom = [0, 1, 5, 7, 8, 10, 11];
+        
+        // Obtener todas las escalas disponibles
+        this.availableScales = Object.keys(Highcharts.sonification.Scales);
+        
+        // Crear el gráfico
+        this.chart = Highcharts.chart(this.$refs.chartContainer, {
+          chart: {
+            type: 'line',
+            height: 300
+          },
+          title: {
+            text: 'Musical scales',
+            align: 'left',
+            margin: 25
+          },
+          legend: {
+            enabled: false
+          },
+          // Deshabilitar las etiquetas de los ejes para evitar problemas de formato
+          xAxis: {
+            labels: {
+              enabled: true,
+              formatter: function() {
+                return this.value; // Formato simple sin locale
+              }
+            }
+          },
+          yAxis: {
+            labels: {
+              enabled: true,
+              formatter: function() {
+                return this.value; // Formato simple sin locale
+              }
+            }
+          },
+          accessibility: {
+            landmarkVerbosity: 'one'
+          },
+          sonification: {
+            duration: 3500,
+            defaultInstrumentOptions: {
+              mapping: {
+                noteDuration: 300,
+                pitch: {
+                  min: 'c4',
+                  max: 'c6',
+                  // Así es como se establece una escala al mapear a tono
+                  scale: Highcharts.sonification.Scales[this.selectedScale]
+                }
+              }
+            }
+          },
+          series: [{
+            data: [
+              1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
+              14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
+            ]
+          }]
+        });
+
+        console.log('Gráfico inicializado correctamente');
+      } catch (error) {
+        console.error('Error al inicializar el gráfico:', error);
+      }
     },
+    toggleSonify() {
+      if (this.chart) {
+        try {
+          this.chart.toggleSonify();
+          console.log('Sonificación activada');
+        } catch (error) {
+          console.error('Error al activar la sonificación:', error);
+        }
+      } else {
+        console.error('El gráfico no está inicializado');
+      }
+    },
+    updateScale() {
+      if (this.chart && Highcharts.sonification && Highcharts.sonification.Scales) {
+        try {
+          this.chart.update({
+            sonification: {
+              defaultInstrumentOptions: {
+                mapping: {
+                  pitch: {
+                    scale: Highcharts.sonification.Scales[this.selectedScale]
+                  }
+                }
+              }
+            }
+          }, false);
+          console.log('Escala actualizada a:', this.selectedScale);
+        } catch (error) {
+          console.error('Error al actualizar la escala:', error);
+        }
+      }
+    }
   },
-};
+  beforeUnmount() {
+    // Limpiar al desmontar el componente
+    if (this.chart) {
+      this.chart.destroy();
+    }
+  }
+}
 </script>
 
 <style scoped>
-canvas {
-  max-width: 600px;
-  margin: 20px auto;
+* {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    sans-serif;
 }
-button {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
-  font-size: 16px;
+
+.highcharts-figure {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+#controls {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 1;
+}
+
+#preset {
+  margin-right: 10px;
+  min-height: 30px;
+}
+
+#sonify {
+  background-color: #fff;
+  border: 1px solid #25386f;
+  color: #25386f;
+  font-size: 0.9rem;
+  min-height: 30px;
+  font-weight: 500;
+  border-radius: 4px;
+  padding: 0.375rem 0;
+  width: 7rem;
+  margin-bottom: 0.25rem;
+  margin-top: 0.25rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+#sonify:hover {
+  background-color: #25386f;
+  color: #fff;
+}
+
+.highcharts-description {
+  margin: 0.3rem 10px;
+}
+
+/* Asegurar que el contenedor del gráfico tenga altura */
+#container {
+  min-height: 300px;
 }
 </style>
