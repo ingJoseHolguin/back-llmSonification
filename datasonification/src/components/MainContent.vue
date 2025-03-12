@@ -1,16 +1,26 @@
 <template>
   <figure class="highcharts-figure">
     <div id="controls">
-      <select id="preset" v-model="selectedScale" @change="updateScale">
+      <label for="scale">Scale:</label>
+      <select id="scale" v-model="selectedScale" @change="updateScale">
         <option v-for="scale in availableScales" :key="scale" :value="scale">
           {{ scale }}
         </option>
       </select>
+      
+      <label for="instrument">Instrument:</label>
+      <select id="instrument" v-model="selectedInstrument" @change="updateInstrument">
+        <option v-for="instrument in availableInstruments" :key="instrument" :value="instrument">
+          {{ instrument }}
+        </option>
+      </select>
+      
       <button id="sonify" @click="toggleSonify">Play chart</button>
     </div>
     <div id="container" ref="chartContainer"></div>
     <p class="highcharts-description">
-      Here we are demonstrating using musical scales when mapping. Select between the scales in the dropdown before playing the chart, and hear the difference. Custom scales are supported as well, and demonstrated in the demo code.
+      Here we are demonstrating using musical scales and instrument selection when mapping.
+      Select between the scales and instruments in the dropdowns before playing the chart, and hear the difference.
     </p>
   </figure>
 </template>
@@ -28,7 +38,9 @@ export default {
     return {
       chart: null,
       selectedScale: 'major',
-      availableScales: []
+      selectedInstrument: 'piano',
+      availableScales: [],
+      availableInstruments: []
     };
   },
   mounted() {
@@ -101,6 +113,9 @@ export default {
         // Obtener todas las escalas disponibles
         this.availableScales = Object.keys(Highcharts.sonification.Scales);
         
+        // Obtener todos los instrumentos disponibles
+        this.availableInstruments = Object.keys(Highcharts.sonification.InstrumentPresets);
+        
         // Crear el gráfico
         this.chart = Highcharts.chart(this.$refs.chartContainer, {
           chart: {
@@ -108,7 +123,7 @@ export default {
             height: 300
           },
           title: {
-            text: 'Musical scales',
+            text: 'Musical scales and instruments',
             align: 'left',
             margin: 25
           },
@@ -138,6 +153,7 @@ export default {
           sonification: {
             duration: 3500,
             defaultInstrumentOptions: {
+              instrument: this.selectedInstrument,
               mapping: {
                 noteDuration: 300,
                 pitch: {
@@ -193,6 +209,22 @@ export default {
           console.error('Error al actualizar la escala:', error);
         }
       }
+    },
+    updateInstrument() {
+      if (this.chart && Highcharts.sonification && Highcharts.sonification.InstrumentPresets) {
+        try {
+          this.chart.update({
+            sonification: {
+              defaultInstrumentOptions: {
+                instrument: this.selectedInstrument
+              }
+            }
+          }, false);
+          console.log('Instrumento actualizado a:', this.selectedInstrument);
+        } catch (error) {
+          console.error('Error al actualizar el instrumento:', error);
+        }
+      }
     }
   },
   beforeUnmount() {
@@ -230,11 +262,22 @@ export default {
   top: 5px;
   right: 5px;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-#preset {
+select {
   margin-right: 10px;
   min-height: 30px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 #sonify {
