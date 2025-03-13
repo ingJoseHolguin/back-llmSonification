@@ -10,12 +10,11 @@
 
       <!-- Contenido Principal -->
       <main class="main-content">
-        <h1>Área de Trabajo</h1>
         <MainContent />
       </main>
 
       <!-- Panel Derecho -->
-      <RightSidebar />
+      <!-- <RightSidebar /> -->
     </div>
 
     <!-- Pie de Página -->
@@ -28,14 +27,14 @@ import PageHeader from './components/PageHeader.vue';
 import MainContent from './components/MainContent.vue';
 import PageFooter from './components/PageFooter.vue';
 import LeftSidebar from './components/LeftSidebar.vue';
-import RightSidebar from './components/RightSidebar.vue';
+//import RightSidebar from './components/RightSidebar.vue';
 
 export default {
   components: {
     PageHeader,
     LeftSidebar,
     MainContent,
-    RightSidebar,
+    //RightSidebar,
     PageFooter
   }
 };
