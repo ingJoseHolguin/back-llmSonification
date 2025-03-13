@@ -1,5 +1,7 @@
 <template>
-  <figure class="highcharts-figure">
+  <div>
+    <page-header @data-imported="updateChartData"></page-header>
+    <figure class="highcharts-figure">
     <!-- Área del gráfico ampliada -->
     <div id="container" ref="chartContainer" class="chart-container"></div>
     
@@ -147,6 +149,9 @@
       con múltiples dimensiones de sonido. También puedes pegar una configuración JSON para aplicar rápidamente ajustes complejos.
     </p>
   </figure>
+
+  </div>
+  
 </template>
 
 <script>
@@ -155,13 +160,18 @@ import Highcharts from 'highcharts';
 // Import necessary modules
 import 'highcharts/modules/sonification';
 import 'highcharts/modules/accessibility';
+import PageHeader from './PageHeader.vue';
 
 export default {
   name: 'EnhancedSonificationComponent',
+  components: {
+    PageHeader
+  },
   data() {
     return {
       chart: null,
       isPlaying: false,
+      importedData: [],
       jsonConfig: '',
       isJsonValid: false,
       jsonStatusMessage: '',
@@ -327,6 +337,48 @@ export default {
     });
   },
   methods: {
+    updateChartData(data) {
+      this.importedData = data;
+      
+      // Actualizamos el gráfico si ya está inicializado
+      if (this.chart) {
+        this.chart.series[0].setData(data, true);
+        
+        // Actualizamos el ejemplo de JSON con los nuevos datos
+        this.jsonExample = this.generateJsonWithData(data);
+        
+        // Actualizamos la configuración JSON si es válida
+        if (this.isJsonValid) {
+          const config = JSON.parse(this.jsonConfig);
+          config.data = data;
+          this.jsonConfig = JSON.stringify(config, null, 2);
+        }
+      }
+    },
+    generateJsonWithData(data) {
+        // Limitar la cantidad de datos mostrados en el ejemplo para evitar que sea demasiado largo
+        const sampleData = data.slice(0, 10);
+        
+        return `{
+      "activeParams": ["pitch", "volume", "pan"],
+      "scale": "major",
+      "instrument": "piano",
+      "duration": 5000,
+      "paramRanges": {
+        "pitch": { "min": "c2", "max": "c6" },
+        "volume": { "min": 0.2, "max": 1.0 },
+        "pan": { "min": -1, "max": 1 }
+      },
+      "mappingOptions": {
+        "pitch": {
+          "mapTo": "y",
+          "min": "c2",
+          "max": "c6"
+        }
+      },
+      "data": ${JSON.stringify(sampleData)}${data.length > 10 ? ', ...' : ''}
+    }`;
+      },
     getParamLabel(paramValue) {
       const param = this.availableParams.find(p => p.value === paramValue);
       return param ? param.label : paramValue;
@@ -536,6 +588,12 @@ export default {
         
         // Get all available instruments
         this.availableInstruments = Object.keys(Highcharts.sonification.InstrumentPresets);
+
+        // Usar los datos importados si existen, o los datos de ejemplo
+        const chartData = this.importedData.length > 0 ? 
+          this.importedData : 
+          [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
+            14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
         
         // Create the chart
         this.chart = Highcharts.chart(this.$refs.chartContainer, {
@@ -596,8 +654,7 @@ export default {
             }
           },
           series: [{
-            data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
-              14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+            data: chartData,
             color: '#3070d0'
           }]
         });
