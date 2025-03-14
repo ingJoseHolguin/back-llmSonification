@@ -6,11 +6,17 @@
     <!-- Contenedor Principal -->
     <div class="main-container">
       <!-- Panel Izquierdo -->
-      <LeftSidebar />
+      <LeftSidebar 
+        @request-config="handleRequestConfig" 
+        @update-config="handleUpdateConfig"
+      />
 
       <!-- Contenido Principal -->
       <main class="main-content">
-        <MainContent />
+        <MainContent 
+          ref="mainContent"
+          @provide-config="provideConfig"
+        />
       </main>
 
       <!-- Panel Derecho -->
@@ -28,6 +34,7 @@ import MainContent from './components/MainContent.vue';
 import PageFooter from './components/PageFooter.vue';
 import LeftSidebar from './components/LeftSidebar.vue';
 //import RightSidebar from './components/RightSidebar.vue';
+import { emitter } from './eventBus';
 
 export default {
   components: {
@@ -36,7 +43,16 @@ export default {
     MainContent,
     //RightSidebar,
     PageFooter
-  }
+  },
+  methods: {
+    handleRequestConfig() {
+      const config = this.$refs.mainContent.getCurrentConfig();
+      emitter.emit('provide-config', config); // Emitir la configuración al LeftSidebar
+    },
+    handleUpdateConfig(suggestedConfig) {
+      this.$refs.mainContent.applySuggestedConfig(suggestedConfig);
+    },
+  },
 };
 </script>
 <style>

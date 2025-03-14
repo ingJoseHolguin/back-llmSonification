@@ -1,6 +1,15 @@
 <template>
-  <div>
-    <page-header @data-imported="updateChartData"></page-header>
+ 
+    <div class="import-controls">
+      <button @click="handleFileImport" class="import-button">Importar CSV/Excel</button>
+      <input 
+        type="file" 
+        ref="fileInput" 
+        @change="onFileChange" 
+        accept=".csv,.txt,.xlsx,.xls" 
+        style="display: none;"
+      >
+    
     <figure class="highcharts-figure">
     <!-- Área del gráfico ampliada -->
     <div id="container" ref="chartContainer" class="chart-container"></div>
@@ -160,12 +169,14 @@ import Highcharts from 'highcharts';
 // Import necessary modules
 import 'highcharts/modules/sonification';
 import 'highcharts/modules/accessibility';
-import PageHeader from './PageHeader.vue';
+//import PageHeader from './PageHeader.vue';
+import { parse } from 'papaparse'; // Para CSV
+import * as XLSX from 'xlsx'; // Para Excel
 
 export default {
   name: 'EnhancedSonificationComponent',
   components: {
-    PageHeader
+    //PageHeader
   },
   data() {
     return {
@@ -354,6 +365,77 @@ export default {
           this.jsonConfig = JSON.stringify(config, null, 2);
         }
       }
+    },
+    handleFileImport() {
+      this.$refs.fileInput.click();
+    },
+    onFileChange(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      
+      const fileType = file.name.split('.').pop().toLowerCase();
+      
+      if (fileType === 'csv' || fileType === 'txt') {
+        this.processCSV(file);
+      } else if (fileType === 'xlsx' || fileType === 'xls') {
+        this.processExcel(file);
+      } else {
+        alert('Formato de archivo no soportado. Por favor, sube un archivo CSV, TXT, XLSX o XLS.');
+      }
+    },
+    processCSV(file) {
+      parse(file, {
+        complete: (results) => {
+          this.handleParsedData(results.data);
+        },
+        header: true,
+        skipEmptyLines: true
+      });
+    },
+    processExcel(file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const data = e.target.result;
+        const workbook = XLSX.read(data, { type: 'binary' });
+        const firstSheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[firstSheetName];
+        const jsonData = XLSX.utils.sheet_to_json(worksheet);
+        this.handleParsedData(jsonData);
+      };
+      reader.readAsBinaryString(file);
+    },
+    handleParsedData(data) {
+      if (!data || data.length === 0) {
+        alert('El archivo está vacío o no contiene datos válidos.');
+        return;
+      }
+      
+      const columns = Object.keys(data[0]);
+      if (columns.length === 0) {
+        alert('No se encontraron columnas en los datos.');
+        return;
+      }
+      
+      this.showColumnSelector(columns, data);
+    },
+    showColumnSelector(columns, data) {
+      const columnIndex = prompt('Columnas disponibles: ' + columns.join(', ') + '\nIngresa el nombre de la columna que deseas extraer:');
+      
+      if (!columnIndex || !columns.includes(columnIndex)) {
+        alert('Columna no válida o cancelada.');
+        return;
+      }
+      
+      const vector = data.map(row => {
+        const value = row[columnIndex];
+        return isNaN(Number(value)) ? value : Number(value);
+      });
+      
+      // Llamamos directamente a updateChartData en lugar de emitir un evento
+      this.updateChartData(vector);
+      
+      console.log('Vector extraído:', vector);
+      alert(`Se han extraído ${vector.length} valores de la columna "${columnIndex}".`);
     },
     generateJsonWithData(data) {
         // Limitar la cantidad de datos mostrados en el ejemplo para evitar que sea demasiado largo
@@ -1071,6 +1153,28 @@ label {
     flex-direction: column;
   }
 }
+
+.import-controls {
+margin: 10px 0;
+  text-align: left; /* O donde prefieras ubicar el botón */
+}
+
+
+.import-button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.import-button:hover {
+  background-color: #0056b3;
+}
+
+
 </style>
 
 //json de muestra
