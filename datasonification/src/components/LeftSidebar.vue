@@ -50,7 +50,20 @@ export default {
       messages: [],
       isMinimized: false,
       isLoading: false,
+      currentConfig: null
     };
+  },
+  created() {
+    // Escuchar el evento que proporciona la configuración
+    emitter.on('provide-config', (config) => {
+      this.currentConfig = config;
+      console.log('Configuración recibida en LeftSidebar:', config);
+      this.processPendingMessage();
+    });
+  },
+  beforeUnmount() {
+    // Limpiar el listener al desmontar
+    emitter.off('provide-config');
   },
   methods: {
     toggleVisibility() {
@@ -62,46 +75,97 @@ export default {
     async sendMessage() {
       if (this.newMessage.trim() === '' || this.isLoading) return;
 
+      // Guardar el mensaje del usuario y limpiar el input
       const userMessage = this.createMessage('Usuario', this.newMessage);
       this.messages.push(userMessage);
       const messageText = this.newMessage;
       this.newMessage = '';
       this.scrollToBottom();
 
+      // Activar indicador de carga
       this.isLoading = true;
-      this.$emit('request-config'); // Solicitar configuración
-
-      // Usar una promesa para esperar la configuración
-      const currentConfig = await new Promise(resolve => {
-        emitter.on('provide-config', config => {
-          resolve(config);
-          emitter.off('provide-config'); // Limpiar el listener después de usarlo
-        });
-      });
-
-      try {
-        const response = await axios.post('http://your-backend-url/api/chat', {
-          message: messageText,
-          config: currentConfig,
-        });
-
-        const { botResponse, suggestedConfig } = response.data;
-        const botMessage = this.createMessage('Bot', botResponse);
-        this.messages.push(botMessage);
-        this.scrollToBottom();
-
-        if (suggestedConfig && !this.isConfigEqual(currentConfig, suggestedConfig)) {
-          this.$emit('update-config', suggestedConfig);
-        }
-      } catch (error) {
-        console.error('Error al comunicarse con el backend:', error);
-        const errorMessage = this.createMessage('Bot', 'Error al procesar tu solicitud.');
-        this.messages.push(errorMessage);
-        this.scrollToBottom();
-      } finally {
-        this.isLoading = false;
-      }
+      
+      // Solicitar la configuración actual al componente principal
+      emitter.emit('request-config');
+      
+      // Esta función será llamada cuando se reciba la configuración
+      this.pendingMessage = messageText;
     },
+    
+    async processPendingMessage() {
+  if (!this.pendingMessage || !this.currentConfig) return;
+  
+  const messageText = this.pendingMessage;
+  this.pendingMessage = null;
+  
+  try {
+    // Primero verificar la conexión con el servidor
+    try {
+      const testResponse = await axios.get('http://127.0.0.1:5000/llm/', { timeout: 5000 });
+      console.log('Estado del servidor LLM:', testResponse.data);
+      
+      if (testResponse.data.message !== 'llM en linea') {
+        throw new Error('El servidor LLM no está disponible');
+      }
+    } catch (connectionError) {
+      console.error('Error al conectar con el servidor:', connectionError);
+      this.messages.push(this.createMessage('Bot', 'No se pudo establecer conexión con el servidor. Por favor, verifica que el backend esté en ejecución.'));
+      this.isLoading = false;
+      return;
+    }
+    
+    // Enviar mensaje y configuración actual al backend
+    const response = await axios.post('http://127.0.0.1:5000/llm/chat', {
+      message: messageText,
+      config: this.currentConfig
+    });
+
+    // Procesar la respuesta
+    const { botResponse, suggestedConfig } = response.data;
+    
+    // Mostrar la respuesta del bot
+    this.messages.push(this.createMessage('Bot', botResponse));
+    
+    // Si hay una configuración sugerida y es diferente de la actual, aplicarla
+    if (suggestedConfig) {
+      console.log('Configuración sugerida recibida:', suggestedConfig);
+      
+      if (!this.isConfigEqual(this.currentConfig, suggestedConfig)) {
+        // Informar al componente principal que hay una nueva configuración
+        emitter.emit('update-config', suggestedConfig);
+        
+        // También actualizar nuestra copia local
+        this.currentConfig = suggestedConfig;
+        
+        // Notificar al usuario que la configuración ha sido actualizada
+        this.messages.push(this.createMessage('Bot', 'He actualizado la configuración del gráfico según tu solicitud.'));
+      }
+    }
+  } catch (error) {
+    console.error('Error al comunicarse con el backend:', error);
+    
+    // Mensaje de error más detallado para ayudar en la depuración
+    let errorMessage = 'Error al procesar tu solicitud.';
+    
+    if (error.response) {
+      // Error de respuesta del servidor
+      errorMessage += ` El servidor respondió con código ${error.response.status}.`;
+    } else if (error.request) {
+      // No se recibió respuesta
+      errorMessage += ' No se recibió respuesta del servidor.';
+    } else {
+      // Error al configurar la solicitud
+      errorMessage += ` Error: ${error.message}`;
+    }
+    
+    this.messages.push(this.createMessage('Bot', errorMessage));
+  } finally {
+    // Desactivar indicador de carga
+    this.isLoading = false;
+    this.scrollToBottom();
+  }
+},
+    
     scrollToBottom() {
       this.$nextTick(() => {
         const messageContainer = this.$refs.messageContainer;
@@ -110,15 +174,12 @@ export default {
         }
       });
     },
+    
     isConfigEqual(config1, config2) {
+      if (!config1 || !config2) return false;
       return JSON.stringify(config1) === JSON.stringify(config2);
-    },
-  },
-  watch: {
-    messages() {
-      this.scrollToBottom();
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -158,20 +219,29 @@ export default {
   overflow-y: auto;
   padding: 10px;
   border-bottom: 1px solid #ccc;
+  max-height: 400px; /* Altura máxima para evitar que ocupe toda la pantalla */
 }
 
 .message {
   margin-bottom: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
   word-wrap: break-word;
   max-width: 100%;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 .message-sender {
-  color: #007bff;
+  background-color: #e6f7ff;
+  border-left: 3px solid #007bff;
+  align-self: flex-end;
 }
 
 .message-emitter {
-  color: #28a745;
+  background-color: #f0f9eb;
+  border-left: 3px solid #28a745;
+  align-self: flex-start;
 }
 
 .input-group {
@@ -183,19 +253,22 @@ export default {
 
 .chat-input {
   flex: 1;
-  padding: 5px;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  font-size: 14px;
 }
 
 .send-button {
   margin-left: 10px;
-  padding: 5px 10px;
+  padding: 10px 15px;
   border: none;
   border-radius: 5px;
   background-color: #007bff;
   color: white;
   cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
 }
 
 .send-button:hover {
@@ -210,7 +283,10 @@ export default {
 .loading-indicator {
   text-align: center;
   color: #666;
-  padding: 10px;
+  padding: 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .loading-indicator::before {
@@ -222,7 +298,7 @@ export default {
   border-top: 2px solid #007bff;
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 @keyframes spin {

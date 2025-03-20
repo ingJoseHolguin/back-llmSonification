@@ -1,166 +1,168 @@
 <template>
- 
-    <div class="import-controls">
-      <button @click="handleFileImport" class="import-button">Importar CSV/Excel</button>
-      <input 
-        type="file" 
-        ref="fileInput" 
-        @change="onFileChange" 
-        accept=".csv,.txt,.xlsx,.xls" 
-        style="display: none;"
-      >
-    
-    <figure class="highcharts-figure">
-    <!-- Área del gráfico ampliada -->
-    <div id="container" ref="chartContainer" class="chart-container"></div>
-    
-    <div id="controls">
-      <!-- Panel de configuración organizado en pestañas -->
-      <div class="tabs-container">
-        <div class="tabs">
-          <button 
-            :class="{ 'active-tab': activeTab === 'params' }" 
-            @click="activeTab = 'params'"
-          >
-            Parámetros de Mapeo
-          </button>
-          <button 
-            :class="{ 'active-tab': activeTab === 'json' }" 
-            @click="activeTab = 'json'"
-          >
-            Configuración JSON
-          </button>
-        </div>
+  <div class="main-content-container">
+    <div class="chart-wrapper">
+      <!-- Componente de Highcharts adaptado de tu código -->
+      <div class="import-controls">
+        <button @click="handleFileImport" class="import-button">Importar CSV/Excel</button>
+        <input 
+          type="file" 
+          ref="fileInput" 
+          @change="onFileChange" 
+          accept=".csv,.txt,.xlsx,.xls" 
+          style="display: none;"
+        >
+      </div>
+
+      <figure class="highcharts-figure">
+        <!-- Área del gráfico ampliada -->
+        <div id="container" ref="chartContainer" class="chart-container"></div>
         
-        <!-- Pestaña de parámetros -->
-        <div v-if="activeTab === 'params'" class="tab-content">
-          <div class="parameters-container">
-            <h4>Selecciona Parámetros:</h4>
-            <div class="checkbox-grid">
-              <div v-for="param in availableParams" :key="param.value" class="parameter-checkbox">
-                <input 
-                  type="checkbox" 
-                  :id="param.value" 
-                  :value="param.value" 
-                  v-model="activeParams"
-                  @change="updateMapping"
+        <div id="controls">
+          <!-- Panel de configuración organizado en pestañas -->
+          <div class="tabs-container">
+            <div class="tabs">
+              <button 
+                :class="{ 'active-tab': activeTab === 'params' }" 
+                @click="activeTab = 'params'"
+              >
+                Parámetros de Mapeo
+              </button>
+              <button 
+                :class="{ 'active-tab': activeTab === 'json' }" 
+                @click="activeTab = 'json'"
+              >
+                Configuración JSON
+              </button>
+            </div>
+            
+            <!-- Pestaña de parámetros -->
+            <div v-if="activeTab === 'params'" class="tab-content">
+              <div class="parameters-container">
+                <h4>Selecciona Parámetros:</h4>
+                <div class="checkbox-grid">
+                  <div v-for="param in availableParams" :key="param.value" class="parameter-checkbox">
+                    <input 
+                      type="checkbox" 
+                      :id="param.value" 
+                      :value="param.value" 
+                      v-model="activeParams"
+                      @change="updateMapping"
+                    >
+                    <label :for="param.value">{{ param.label }}</label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Configuración de rango para parámetros activos -->
+              <div v-if="activeParams.length > 0" class="min-max-container">
+                <h4>Configuración de Rangos:</h4>
+                <div v-for="param in activeParams" :key="param" class="param-range-controls">
+                  <h5>{{ getParamLabel(param) }}</h5>
+                  <div class="min-max-controls">
+                    <div class="control-group">
+                      <label :for="`${param}-min`">Min:</label>
+                      <input 
+                        :type="getInputType(param)" 
+                        :id="`${param}-min`" 
+                        v-model="paramRanges[param].min" 
+                        @change="updateParamRange(param)"
+                      />
+                    </div>
+                    <div class="control-group">
+                      <label :for="`${param}-max`">Max:</label>
+                      <input 
+                        :type="getInputType(param)" 
+                        :id="`${param}-max`" 
+                        v-model="paramRanges[param].max" 
+                        @change="updateParamRange(param)"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="control-row">
+                <div class="control-group">
+                  <label for="scale">Escala:</label>
+                  <select id="scale" v-model="selectedScale" @change="updateMapping">
+                    <option v-for="scale in availableScales" :key="scale" :value="scale">
+                      {{ scale }}
+                    </option>
+                  </select>
+                </div>
+                
+                <div class="control-group">
+                  <label for="instrument">Instrumento:</label>
+                  <select id="instrument" v-model="selectedInstrument" @change="updateMapping">
+                    <option v-for="instrument in availableInstruments" :key="instrument" :value="instrument">
+                      {{ instrument }}
+                    </option>
+                  </select>
+                </div>
+                
+                <div class="control-group">
+                  <label for="duration">Duración (ms):</label>
+                  <input 
+                    type="number" 
+                    id="duration" 
+                    v-model.number="sonificationDuration" 
+                    min="1000" 
+                    max="15000" 
+                    step="500"
+                    @change="updateMapping"
+                  />
+                </div>
+              </div>
+            </div>
+            
+            <!-- Pestaña de configuración JSON -->
+            <div v-if="activeTab === 'json'" class="tab-content">
+              <div class="json-config-container">
+                <h4>Configuración JSON:</h4>
+                <textarea 
+                  v-model="jsonConfig" 
+                  placeholder="Pega tu configuración JSON aquí..." 
+                  class="json-textarea"
+                  @input="validateJson"
+                ></textarea>
+                <div class="json-status" :class="{ 'json-valid': isJsonValid, 'json-invalid': !isJsonValid && jsonConfig }">
+                  {{ jsonStatusMessage }}
+                </div>
+                <button 
+                  id="apply-config" 
+                  @click="applyJsonConfig" 
+                  :disabled="!isJsonValid || !jsonConfig"
+                  :class="{ 'button-disabled': !isJsonValid || !jsonConfig }"
                 >
-                <label :for="param.value">{{ param.label }}</label>
-              </div>
-            </div>
-          </div>
-
-          <!-- Configuración de rango para parámetros activos -->
-          <div v-if="activeParams.length > 0" class="min-max-container">
-            <h4>Configuración de Rangos:</h4>
-            <div v-for="param in activeParams" :key="param" class="param-range-controls">
-              <h5>{{ getParamLabel(param) }}</h5>
-              <div class="min-max-controls">
-                <div class="control-group">
-                  <label :for="`${param}-min`">Min:</label>
-                  <input 
-                    :type="getInputType(param)" 
-                    :id="`${param}-min`" 
-                    v-model="paramRanges[param].min" 
-                    @change="updateParamRange(param)"
-                  />
-                </div>
-                <div class="control-group">
-                  <label :for="`${param}-max`">Max:</label>
-                  <input 
-                    :type="getInputType(param)" 
-                    :id="`${param}-max`" 
-                    v-model="paramRanges[param].max" 
-                    @change="updateParamRange(param)"
-                  />
+                  Aplicar Configuración
+                </button>
+                
+                <div class="json-example">
+                  <h5>Ejemplo de formato JSON:</h5>
+                  <pre>{{ jsonExample }}</pre>
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="control-row">
-            <div class="control-group">
-              <label for="scale">Escala:</label>
-              <select id="scale" v-model="selectedScale" @change="updateMapping">
-                <option v-for="scale in availableScales" :key="scale" :value="scale">
-                  {{ scale }}
-                </option>
-              </select>
-            </div>
-            
-            <div class="control-group">
-              <label for="instrument">Instrumento:</label>
-              <select id="instrument" v-model="selectedInstrument" @change="updateMapping">
-                <option v-for="instrument in availableInstruments" :key="instrument" :value="instrument">
-                  {{ instrument }}
-                </option>
-              </select>
-            </div>
-            
-            <div class="control-group">
-              <label for="duration">Duración (ms):</label>
-              <input 
-                type="number" 
-                id="duration" 
-                v-model.number="sonificationDuration" 
-                min="1000" 
-                max="15000" 
-                step="500"
-                @change="updateMapping"
-              />
-            </div>
+          
+          <button id="sonify" @click="toggleSonify">{{ isPlaying ? 'Detener' : 'Reproducir gráfico' }}</button>
+        </div>
+        
+        <div class="help-container" v-if="activeParams.length > 0">
+          <h4>Parámetros Activos:</h4>
+          <div v-for="param in activeParams" :key="param" class="active-param">
+            <strong>{{ getParamLabel(param) }}:</strong> {{ helpTexts[param] }}
           </div>
         </div>
         
-        <!-- Pestaña de configuración JSON -->
-        <div v-if="activeTab === 'json'" class="tab-content">
-          <div class="json-config-container">
-            <h4>Configuración JSON:</h4>
-            <textarea 
-              v-model="jsonConfig" 
-              placeholder="Pega tu configuración JSON aquí..." 
-              class="json-textarea"
-              @input="validateJson"
-            ></textarea>
-            <div class="json-status" :class="{ 'json-valid': isJsonValid, 'json-invalid': !isJsonValid && jsonConfig }">
-              {{ jsonStatusMessage }}
-            </div>
-            <button 
-              id="apply-config" 
-              @click="applyJsonConfig" 
-              :disabled="!isJsonValid || !jsonConfig"
-              :class="{ 'button-disabled': !isJsonValid || !jsonConfig }"
-            >
-              Aplicar Configuración
-            </button>
-            
-            <div class="json-example">
-              <h5>Ejemplo de formato JSON:</h5>
-              <pre>{{ jsonExample }}</pre>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <button id="sonify" @click="toggleSonify">{{ isPlaying ? 'Detener' : 'Reproducir gráfico' }}</button>
+        <p class="highcharts-description">
+          Este gráfico demuestra el mapeo de sonificación multi-parámetro. Selecciona múltiples parámetros de mapeo, 
+          luego elige una escala e instrumento antes de reproducir el gráfico para escuchar cómo los datos se representan 
+          con múltiples dimensiones de sonido. También puedes pegar una configuración JSON para aplicar rápidamente ajustes complejos.
+        </p>
+      </figure>
     </div>
-    
-    <div class="help-container" v-if="activeParams.length > 0">
-      <h4>Parámetros Activos:</h4>
-      <div v-for="param in activeParams" :key="param" class="active-param">
-        <strong>{{ getParamLabel(param) }}:</strong> {{ helpTexts[param] }}
-      </div>
-    </div>
-    
-    <p class="highcharts-description">
-      Este gráfico demuestra el mapeo de sonificación multi-parámetro. Selecciona múltiples parámetros de mapeo, 
-      luego elige una escala e instrumento antes de reproducir el gráfico para escuchar cómo los datos se representan 
-      con múltiples dimensiones de sonido. También puedes pegar una configuración JSON para aplicar rápidamente ajustes complejos.
-    </p>
-  </figure>
-
   </div>
-  
 </template>
 
 <script>
@@ -169,15 +171,12 @@ import Highcharts from 'highcharts';
 // Import necessary modules
 import 'highcharts/modules/sonification';
 import 'highcharts/modules/accessibility';
-//import PageHeader from './PageHeader.vue';
 import { parse } from 'papaparse'; // Para CSV
 import * as XLSX from 'xlsx'; // Para Excel
+import { emitter } from '../eventBus';
 
 export default {
-  name: 'EnhancedSonificationComponent',
-  components: {
-    //PageHeader
-  },
+  name: 'MainContent',
   data() {
     return {
       chart: null,
@@ -325,6 +324,12 @@ export default {
     };
   },
   mounted() {
+    // Configurar listener para solicitudes de configuración
+    emitter.on('request-config', () => {
+      const config = this.getCurrentConfig();
+      emitter.emit('provide-config', config);
+    });
+    
     // Ensure DOM is ready
     this.$nextTick(() => {
       // Set global Highcharts options to avoid locale issues
@@ -347,7 +352,107 @@ export default {
       }
     });
   },
+  beforeUnmount() {
+    // Limpiar el listener al desmontar
+    emitter.off('request-config');
+    
+    // Clean up when component is unmounted
+    if (this.chart) {
+      this.chart.destroy();
+    }
+  },
   methods: {
+    // Método que expone la configuración actual para el chatbot
+    getCurrentConfig() {
+    // Asegúrate de que chart esté inicializado
+    if (!this.chart) {
+      console.warn("El gráfico no está inicializado aún");
+      return {
+        activeParams: this.activeParams,
+        scale: this.selectedScale,
+        instrument: this.selectedInstrument,
+        duration: this.sonificationDuration,
+        paramRanges: JSON.parse(JSON.stringify(this.paramRanges)),
+        data: this.importedData
+      };
+    }
+    
+    // Recolectar datos de configuración actual
+    const config = {
+      activeParams: [...this.activeParams],
+      scale: this.selectedScale,
+      instrument: this.selectedInstrument,
+      duration: this.sonificationDuration,
+      paramRanges: {},
+      data: this.chart.series[0].data.map(point => point.y)
+    };
+    
+    // Incluir rangos para todos los parámetros activos
+    this.activeParams.forEach(param => {
+      config.paramRanges[param] = { ...this.paramRanges[param] };
+    });
+    
+    console.log("Configuración generada:", config);
+    return config;
+  },
+    
+    // Método para aplicar la configuración sugerida por el chatbot
+    applySuggestedConfig(suggestedConfig) {
+    console.log('Aplicando configuración sugerida:', suggestedConfig);
+    
+    try {
+      // Aplicar parámetros activos
+      if (suggestedConfig.activeParams && Array.isArray(suggestedConfig.activeParams)) {
+        this.activeParams = suggestedConfig.activeParams.filter(param => 
+          this.availableParams.some(ap => ap.value === param)
+        );
+      }
+      
+      // Aplicar escala seleccionada
+      if (suggestedConfig.scale && this.availableScales.includes(suggestedConfig.scale)) {
+        this.selectedScale = suggestedConfig.scale;
+      }
+      
+      // Aplicar instrumento seleccionado
+      if (suggestedConfig.instrument && this.availableInstruments.includes(suggestedConfig.instrument)) {
+        this.selectedInstrument = suggestedConfig.instrument;
+      }
+      
+      // Aplicar duración de sonificación
+      if (suggestedConfig.duration && !isNaN(suggestedConfig.duration)) {
+        this.sonificationDuration = Math.max(1000, Math.min(15000, suggestedConfig.duration));
+      }
+      
+      // Aplicar rangos de parámetros
+      if (suggestedConfig.paramRanges) {
+        for (const param in suggestedConfig.paramRanges) {
+          if (this.paramRanges[param]) {
+            if (suggestedConfig.paramRanges[param].min !== undefined) {
+              this.paramRanges[param].min = suggestedConfig.paramRanges[param].min;
+            }
+            if (suggestedConfig.paramRanges[param].max !== undefined) {
+              this.paramRanges[param].max = suggestedConfig.paramRanges[param].max;
+            }
+          }
+        }
+      }
+      
+      // Aplicar datos si se proporcionan
+      if (suggestedConfig.data && Array.isArray(suggestedConfig.data) && this.chart) {
+        this.chart.series[0].setData(suggestedConfig.data, false);
+      }
+      
+      // Actualizar el mapeo y redibujar el gráfico
+      this.updateMapping();
+      if (this.chart) {
+        this.chart.redraw();
+      }
+      
+    } catch (error) {
+      console.error('Error al aplicar la configuración sugerida:', error);
+    }
+  },
+    
     updateChartData(data) {
       this.importedData = data;
       
@@ -438,29 +543,29 @@ export default {
       alert(`Se han extraído ${vector.length} valores de la columna "${columnIndex}".`);
     },
     generateJsonWithData(data) {
-        // Limitar la cantidad de datos mostrados en el ejemplo para evitar que sea demasiado largo
-        const sampleData = data.slice(0, 10);
-        
-        return `{
-      "activeParams": ["pitch", "volume", "pan"],
-      "scale": "major",
-      "instrument": "piano",
-      "duration": 5000,
-      "paramRanges": {
-        "pitch": { "min": "c2", "max": "c6" },
-        "volume": { "min": 0.2, "max": 1.0 },
-        "pan": { "min": -1, "max": 1 }
-      },
-      "mappingOptions": {
-        "pitch": {
-          "mapTo": "y",
-          "min": "c2",
-          "max": "c6"
-        }
-      },
-      "data": ${JSON.stringify(sampleData)}${data.length > 10 ? ', ...' : ''}
-    }`;
-      },
+      // Limitar la cantidad de datos mostrados en el ejemplo para evitar que sea demasiado largo
+      const sampleData = data.slice(0, 10);
+      
+      return `{
+  "activeParams": ["pitch", "volume", "pan"],
+  "scale": "major",
+  "instrument": "piano",
+  "duration": 5000,
+  "paramRanges": {
+    "pitch": { "min": "c2", "max": "c6" },
+    "volume": { "min": 0.2, "max": 1.0 },
+    "pan": { "min": -1, "max": 1 }
+  },
+  "mappingOptions": {
+    "pitch": {
+      "mapTo": "y",
+      "min": "c2",
+      "max": "c6"
+    }
+  },
+  "data": ${JSON.stringify(sampleData)}${data.length > 10 ? ', ...' : ''}
+}`;
+    },
     getParamLabel(paramValue) {
       const param = this.availableParams.find(p => p.value === paramValue);
       return param ? param.label : paramValue;
@@ -532,75 +637,8 @@ export default {
       
       try {
         const config = JSON.parse(this.jsonConfig);
-        
-        // Apply configuration to the component
-        if (config.activeParams && Array.isArray(config.activeParams)) {
-          this.activeParams = config.activeParams.filter(param => 
-            this.availableParams.some(ap => ap.value === param)
-          );
-        }
-        
-        if (config.scale && this.availableScales.includes(config.scale)) {
-          this.selectedScale = config.scale;
-        }
-        
-        if (config.instrument && this.availableInstruments.includes(config.instrument)) {
-          this.selectedInstrument = config.instrument;
-        }
-        
-        if (config.duration && !isNaN(config.duration)) {
-          this.sonificationDuration = Math.max(1000, Math.min(15000, config.duration));
-        }
-        
-        // Apply parameter ranges if provided
-        if (config.paramRanges) {
-          for (const param in config.paramRanges) {
-            if (this.paramRanges[param]) {
-              if (config.paramRanges[param].min !== undefined) {
-                this.paramRanges[param].min = config.paramRanges[param].min;
-              }
-              if (config.paramRanges[param].max !== undefined) {
-                this.paramRanges[param].max = config.paramRanges[param].max;
-              }
-            }
-          }
-        }
-        
-        // Apply custom mapping options if provided
-        if (config.mappingOptions) {
-          // Deep merge the custom mapping options with the default ones
-          for (const param in config.mappingOptions) {
-            if (this.mappingOptionsMapped[param]) {
-              if (typeof config.mappingOptions[param] === 'object') {
-                // Deep merge for nested objects
-                this.mappingOptionsMapped[param] = this.deepMerge(
-                  this.mappingOptionsMapped[param],
-                  config.mappingOptions[param]
-                );
-              } else {
-                // Direct assignment for primitive values
-                this.mappingOptionsMapped[param] = config.mappingOptions[param];
-              }
-            }
-          }
-        }
-        
-        // Apply data if provided
-        if (config.data && Array.isArray(config.data) && this.chart) {
-          this.chart.series[0].setData(config.data, false);
-        }
-        
-        // Update the mapping and redraw the chart
-        this.updateMapping();
-        if (this.chart) {
-          this.chart.redraw();
-        }
-        
-        // Success message
+        this.applySuggestedConfig(config);
         this.jsonStatusMessage = 'Configuración aplicada exitosamente';
-        
-        // Switch to the parameters tab to show applied settings
-        this.activeTab = 'params';
       } catch (e) {
         console.error('Error applying JSON configuration:', e);
         this.jsonStatusMessage = 'Error al aplicar configuración: ' + e.message;
@@ -822,60 +860,6 @@ export default {
       } catch (error) {
         console.error('Error updating mapping:', error);
       }
-    },
-    generateJsonConfig() {
-      // This will update the JSON config to match the current settings
-      // Only call when you want to update the JSON based on UI changes
-      const config = {
-        activeParams: [...this.activeParams],
-        scale: this.selectedScale,
-        instrument: this.selectedInstrument,
-        duration: this.sonificationDuration,
-        mappingOptions: {},
-        paramRanges: {}
-      };
-      
-      // Include ranges for all active parameters
-      this.activeParams.forEach(param => {
-        config.paramRanges[param] = { ...this.paramRanges[param] };
-      });
-      
-      // Only include active parameters' mapping options
-      this.activeParams.forEach(param => {
-        config.mappingOptions[param] = this.mappingOptionsMapped[param];
-      });
-      
-      // Don't update the textarea to avoid overwriting user input
-      // this.jsonConfig = JSON.stringify(config, null, 2);
-    },
-    exportCurrentConfig() {
-      // Generate and return the current configuration as a string
-      const config = {
-        activeParams: [...this.activeParams],
-        scale: this.selectedScale,
-        instrument: this.selectedInstrument,
-        duration: this.sonificationDuration,
-        mappingOptions: {},
-        paramRanges: {}
-      };
-      
-      // Include all parameter ranges
-      this.activeParams.forEach(param => {
-        config.paramRanges[param] = { ...this.paramRanges[param] };
-      });
-      
-      // Include all mapping options
-      this.activeParams.forEach(param => {
-        config.mappingOptions[param] = this.mappingOptionsMapped[param];
-      });
-      
-      return JSON.stringify(config, null, 2);
-    }
-  },
-  beforeUnmount() {
-    // Clean up when component is unmounted
-    if (this.chart) {
-      this.chart.destroy();
     }
   }
 }

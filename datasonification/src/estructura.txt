@@ -1,0 +1,48 @@
+Listado de rutas de carpetas
+El número de serie del volumen es 26BA-EF50
+C:.
+¦   App.vue
+¦   estructura.txt
+¦   eventBus.js
+¦   main.js
+¦   router.js
+¦   
++---assets
+¦       logo.png
+¦       
++---components
+¦       LeftSidebar.vue
+¦       MainContent.vue
+¦       PageFooter.vue
+¦       PageHeader.vue
+¦       PageSidebar.vue
+¦       RightSidebar.vue
+¦       
++---modules
+¦   +---voiceMode
+¦           VoiceChat.vue
+¦           
++---plugins
+¦       persistState.js
+¦       
++---store
+¦   ¦   index.js
+¦   ¦   sonification.js
+¦   ¦   
+¦   +---modules
+¦           dataStore.js
+¦           sonification.js
+¦           themeStore.js
+¦           
++---styles
+¦       global.css
+¦       themes.js
+¦       variables.scss
+¦       
++---utils
+        audioConfig.js
+        chartConfig.js
+        jsonhandlers.js
+        parameterConfig.js
+        sonification.js
+        

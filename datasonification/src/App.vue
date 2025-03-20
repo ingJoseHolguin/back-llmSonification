@@ -2,27 +2,21 @@
   <div id="app" class="app-container">
     <!-- Barra Superior -->
     <PageHeader />
-
+    
     <!-- Contenedor Principal -->
     <div class="main-container">
       <!-- Panel Izquierdo -->
-      <LeftSidebar 
-        @request-config="handleRequestConfig" 
-        @update-config="handleUpdateConfig"
-      />
-
+      <LeftSidebar />
+      
       <!-- Contenido Principal -->
       <main class="main-content">
-        <MainContent 
-          ref="mainContent"
-          @provide-config="provideConfig"
-        />
+        <MainContent ref="mainContent" />
       </main>
-
+      
       <!-- Panel Derecho -->
       <!-- <RightSidebar /> -->
     </div>
-
+    
     <!-- Pie de Página -->
     <PageFooter />
   </div>
@@ -44,17 +38,66 @@ export default {
     //RightSidebar,
     PageFooter
   },
-  methods: {
-    handleRequestConfig() {
-      const config = this.$refs.mainContent.getCurrentConfig();
-      emitter.emit('provide-config', config); // Emitir la configuración al LeftSidebar
-    },
-    handleUpdateConfig(suggestedConfig) {
-      this.$refs.mainContent.applySuggestedConfig(suggestedConfig);
-    },
+  mounted() {
+    // Configurar los listeners para los eventos entre componentes
+    this.setupEventListeners();
   },
+  beforeUnmount() {
+    // Limpiar los listeners al desmontar
+    this.cleanupEventListeners();
+  },
+  methods: {
+    setupEventListeners() {
+      // Escuchar solicitudes de actualización de configuración
+      emitter.on('update-config', this.handleUpdateConfig);
+      
+      // Escuchar solicitudes de configuración
+      emitter.on('request-config', this.handleRequestConfig);
+    },
+    
+    cleanupEventListeners() {
+      // Eliminar todos los listeners
+      emitter.off('update-config', this.handleUpdateConfig);
+      emitter.off('request-config', this.handleRequestConfig);
+    },
+    
+    async handleRequestConfig() {
+      // Asegurar que el componente MainContent esté disponible
+      if (!this.$refs.mainContent) {
+        console.error('MainContent ref no está disponible');
+        return;
+      }
+      
+      // Obtener la configuración actual
+      try {
+        const config = this.$refs.mainContent.getCurrentConfig();
+        console.log('Configuración obtenida:', config);
+        
+        // Emitir la configuración a través del bus de eventos
+        emitter.emit('provide-config', config);
+      } catch (error) {
+        console.error('Error al obtener la configuración:', error);
+        // Emitir un objeto vacío en caso de error
+        emitter.emit('provide-config', {});
+      }
+    },
+    
+    handleUpdateConfig(suggestedConfig) {
+      // Asegurar que el componente MainContent esté disponible
+      if (!this.$refs.mainContent) {
+        console.error('MainContent ref no está disponible');
+        return;
+      }
+      
+      console.log('Aplicando configuración sugerida:', suggestedConfig);
+      
+      // Aplicar la configuración sugerida
+      this.$refs.mainContent.applySuggestedConfig(suggestedConfig);
+    }
+  }
 };
 </script>
+
 <style>
 @import './styles/global.css';
 
@@ -91,20 +134,12 @@ footer {
 }
 
 /* Paneles Laterales */
-.left-sidebar,
-.right-sidebar {
+.left-sidebar, .right-sidebar {
   width: 250px; /* Ancho inicial de los paneles */
   padding: 10px;
-  background-color: #2c3e50;
-  color: white;
+  background-color: #f5f5f5;
   transition: width 0.3s ease, padding 0.3s ease;
   overflow: hidden;
-}
-
-.left-sidebar.collapsed,
-.right-sidebar.collapsed {
-  width: 50px; /* Ancho reducido cuando está colapsado */
-  padding: 10px 0;
 }
 
 /* Contenido Principal */
@@ -113,20 +148,5 @@ footer {
   padding: 20px;
   background-color: #f9f9f9;
   overflow-y: auto; /* Permite desplazamiento vertical si es necesario */
-}
-
-/* Botones de Colapso */
-.toggle-button {
-  background-color: #1abc9c;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 4px;
-  margin-bottom: 10px;
-}
-
-.toggle-button:hover {
-  background-color: #16a085;
 }
 </style>
