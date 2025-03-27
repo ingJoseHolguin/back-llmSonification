@@ -1,2 +1,244 @@
 2025-03-25 16:53:26,239 - llm.routes - INFO - Loaded 4 documents
 2025-03-25 16:58:00,752 - llm.routes - INFO - Loaded 4 documents
+2025-03-26 17:47:01,930 - llm.routes - ERROR - Error en chat: can only concatenate str (not "dict") to str
+2025-03-26 17:47:01,932 - llm.routes - ERROR - Error en chat: can only concatenate str (not "dict") to str
+2025-03-26 17:47:18,735 - llm.routes - ERROR - Error en chat: can only concatenate str (not "dict") to str
+2025-03-26 17:47:18,738 - llm.routes - ERROR - Error en chat: can only concatenate str (not "dict") to str
+2025-03-26 17:47:35,077 - llm.routes - ERROR - Error en chat: can only concatenate str (not "dict") to str
+2025-03-26 17:47:35,080 - llm.routes - ERROR - Error en chat: can only concatenate str (not "dict") to str
+2025-03-26 17:47:38,468 - llm.routes - ERROR - Error en chat: can only concatenate str (not "dict") to str
+2025-03-26 17:47:38,473 - llm.routes - ERROR - Error en chat: can only concatenate str (not "dict") to str
+2025-03-26 17:47:41,140 - llm.routes - ERROR - Error en chat: can only concatenate str (not "dict") to str
+2025-03-26 17:47:41,143 - llm.routes - ERROR - Error en chat: can only concatenate str (not "dict") to str
+2025-03-26 17:47:44,242 - llm.routes - ERROR - Error en chat: can only concatenate str (not "dict") to str
+2025-03-26 17:47:44,246 - llm.routes - ERROR - Error en chat: can only concatenate str (not "dict") to str
+2025-03-26 18:04:41,593 - llm.routes - ERROR - Error en chat: cannot access local variable 'data' where it is not associated with a value
+2025-03-26 18:04:41,598 - llm.routes - ERROR - Error en chat: cannot access local variable 'data' where it is not associated with a value
+2025-03-26 18:08:04,088 - llm.routes - ERROR - Error en chat: can only concatenate str (not "Request") to str
+2025-03-26 18:08:04,090 - llm.routes - ERROR - Error en chat: can only concatenate str (not "Request") to str
+2025-03-26 18:18:08,703 - llm.routes - INFO - Mensaje recibido: hola
+2025-03-26 18:18:08,705 - llm.routes - INFO - Mensaje recibido: None
+2025-03-26 18:18:08,705 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 18:18:08,706 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 18:18:08,923 - llm.routes - INFO - Loaded 4 documents
+2025-03-26 18:18:08,923 - llm.routes - INFO - Loaded 4 documents
+2025-03-26 18:18:34,919 - llm.routes - INFO - Model loaded successfully
+2025-03-26 18:18:34,919 - llm.routes - INFO - Model loaded successfully
+2025-03-26 18:18:35,955 - llm.routes - INFO - Índice creado con éxito
+2025-03-26 18:18:35,956 - llm.routes - ERROR - Error en chat: Invalid format specifier ' [...],
+          "scale": "...",
+          "instrument": "...",
+          "duration": 5000,
+          ...
+        ' for object of type 'str'
+2025-03-26 18:18:35,967 - llm.routes - INFO - Índice creado con éxito
+2025-03-26 18:18:35,967 - llm.routes - ERROR - Error en chat: Invalid format specifier ' [...],
+          "scale": "...",
+          "instrument": "...",
+          "duration": 5000,
+          ...
+        ' for object of type 'str'
+2025-03-26 18:27:36,327 - llm.routes - INFO - Mensaje recibido: hola
+2025-03-26 18:27:36,329 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 18:27:36,330 - llm.routes - ERROR - Error en chat: Invalid format specifier ' [...],
+          "scale": "...",
+          "instrument": "...",
+          "duration": 5000,
+          ...
+        ' for object of type 'str'
+2025-03-26 18:27:36,334 - llm.routes - INFO - Mensaje recibido: None
+2025-03-26 18:27:36,334 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 18:27:36,335 - llm.routes - ERROR - Error en chat: Invalid format specifier ' [...],
+          "scale": "...",
+          "instrument": "...",
+          "duration": 5000,
+          ...
+        ' for object of type 'str'
+2025-03-26 18:29:25,510 - llm.routes - INFO - Mensaje recibido: 
+2025-03-26 18:29:25,511 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 18:29:25,512 - llm.routes - ERROR - Error en chat: Invalid format specifier ' [...],
+          "scale": "...",
+          "instrument": "...",
+          "duration": 5000,
+          ...
+        ' for object of type 'str'
+2025-03-26 18:29:25,514 - llm.routes - INFO - Mensaje recibido: None
+2025-03-26 18:29:25,514 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 18:29:25,515 - llm.routes - ERROR - Error en chat: Invalid format specifier ' [...],
+          "scale": "...",
+          "instrument": "...",
+          "duration": 5000,
+          ...
+        ' for object of type 'str'
+2025-03-26 18:29:38,070 - llm.routes - INFO - Mensaje recibido: hola
+2025-03-26 18:29:38,070 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 18:29:38,073 - llm.routes - ERROR - Error en chat: Invalid format specifier ' [...],
+          "scale": "...",
+          "instrument": "...",
+          "duration": 5000,
+          ...
+        ' for object of type 'str'
+2025-03-26 18:29:38,073 - llm.routes - INFO - Mensaje recibido: None
+2025-03-26 18:29:38,074 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 18:29:38,075 - llm.routes - ERROR - Error en chat: Invalid format specifier ' [...],
+          "scale": "...",
+          "instrument": "...",
+          "duration": 5000,
+          ...
+        ' for object of type 'str'
+2025-03-26 18:29:59,362 - llm.routes - INFO - Mensaje recibido: hola
+2025-03-26 18:29:59,363 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 18:29:59,363 - llm.routes - INFO - Mensaje recibido: None
+2025-03-26 18:29:59,363 - llm.routes - ERROR - Error en chat: Invalid format specifier ' [...],
+          "scale": "...",
+          "instrument": "...",
+          "duration": 5000,
+          ...
+        ' for object of type 'str'
+2025-03-26 18:29:59,364 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 18:29:59,365 - llm.routes - ERROR - Error en chat: Invalid format specifier ' [...],
+          "scale": "...",
+          "instrument": "...",
+          "duration": 5000,
+          ...
+        ' for object of type 'str'
+2025-03-26 18:30:42,346 - llm.routes - INFO - Mensaje recibido: hola
+2025-03-26 18:30:42,347 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 18:30:42,347 - llm.routes - ERROR - Error en chat: Invalid format specifier ' [...],
+          "scale": "...",
+          "instrument": "...",
+          "duration": 5000,
+          ...
+        ' for object of type 'str'
+2025-03-26 18:30:42,377 - llm.routes - INFO - Mensaje recibido: None
+2025-03-26 18:30:42,378 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 18:30:42,378 - llm.routes - ERROR - Error en chat: Invalid format specifier ' [...],
+          "scale": "...",
+          "instrument": "...",
+          "duration": 5000,
+          ...
+        ' for object of type 'str'
+2025-03-26 18:31:51,149 - llm.routes - INFO - Mensaje recibido: sadasda
+2025-03-26 18:31:51,150 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 18:31:51,150 - llm.routes - ERROR - Error en chat: Invalid format specifier ' [...],
+          "scale": "...",
+          "instrument": "...",
+          "duration": 5000,
+          ...
+        ' for object of type 'str'
+2025-03-26 18:31:51,155 - llm.routes - INFO - Mensaje recibido: None
+2025-03-26 18:31:51,155 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 18:31:51,155 - llm.routes - ERROR - Error en chat: Invalid format specifier ' [...],
+          "scale": "...",
+          "instrument": "...",
+          "duration": 5000,
+          ...
+        ' for object of type 'str'
+2025-03-26 18:31:55,135 - llm.routes - INFO - Mensaje recibido: hola
+2025-03-26 18:31:55,138 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 18:31:55,139 - llm.routes - ERROR - Error en chat: Invalid format specifier ' [...],
+          "scale": "...",
+          "instrument": "...",
+          "duration": 5000,
+          ...
+        ' for object of type 'str'
+2025-03-26 18:31:55,141 - llm.routes - INFO - Mensaje recibido: None
+2025-03-26 18:31:55,141 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 18:31:55,141 - llm.routes - ERROR - Error en chat: Invalid format specifier ' [...],
+          "scale": "...",
+          "instrument": "...",
+          "duration": 5000,
+          ...
+        ' for object of type 'str'
+2025-03-26 18:33:05,005 - llm.routes - INFO - Mensaje recibido: 
+2025-03-26 18:33:05,007 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 18:33:05,008 - llm.routes - INFO - Mensaje recibido: None
+2025-03-26 18:33:05,008 - llm.routes - ERROR - Error en chat: Invalid format specifier ' [...],
+          "scale": "...",
+          "instrument": "...",
+          "duration": 5000,
+          ...
+        ' for object of type 'str'
+2025-03-26 18:33:05,009 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 18:33:05,011 - llm.routes - ERROR - Error en chat: Invalid format specifier ' [...],
+          "scale": "...",
+          "instrument": "...",
+          "duration": 5000,
+          ...
+        ' for object of type 'str'
+2025-03-26 18:55:39,094 - llm.routes - INFO - Mensaje recibido: hola
+2025-03-26 18:55:39,095 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 18:55:39,096 - llm.routes - INFO - Mensaje recibido: None
+2025-03-26 18:55:39,097 - llm.routes - ERROR - Error en chat: Invalid format specifier ' [...],
+          "scale": "...",
+          "instrument": "...",
+          "duration": 5000,
+          ...
+        ' for object of type 'str'
+2025-03-26 18:55:39,097 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 18:55:39,099 - llm.routes - ERROR - Error en chat: Invalid format specifier ' [...],
+          "scale": "...",
+          "instrument": "...",
+          "duration": 5000,
+          ...
+        ' for object of type 'str'
+2025-03-26 18:55:57,161 - llm.routes - INFO - Mensaje recibido: hola
+2025-03-26 18:55:57,164 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 18:55:57,165 - llm.routes - ERROR - Error en chat: Invalid format specifier ' [...],
+          "scale": "...",
+          "instrument": "...",
+          "duration": 5000,
+          ...
+        ' for object of type 'str'
+2025-03-26 18:55:57,166 - llm.routes - INFO - Mensaje recibido: None
+2025-03-26 18:55:57,168 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 18:55:57,168 - llm.routes - ERROR - Error en chat: Invalid format specifier ' [...],
+          "scale": "...",
+          "instrument": "...",
+          "duration": 5000,
+          ...
+        ' for object of type 'str'
+2025-03-26 19:10:03,034 - llm.routes - INFO - Mensaje recibido: hola
+2025-03-26 19:10:03,036 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 19:10:03,139 - llm.routes - INFO - Loaded 4 documents
+2025-03-26 19:10:07,292 - llm.routes - INFO - Model loaded successfully
+2025-03-26 19:10:07,781 - llm.routes - INFO - Índice creado con éxito
+2025-03-26 19:10:19,895 - llm.routes - INFO - Mensaje recibido: estas ahi?
+2025-03-26 19:10:19,896 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 19:10:39,973 - llm.routes - INFO - Mensaje recibido: ayudame asonificar?
+2025-03-26 19:10:39,974 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "frequency"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "frequency": {"min": 65.41, "max": 1046.5}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 19:11:22,365 - llm.routes - INFO - Mensaje recibido: erto puedes sonificar?
+2025-03-26 19:11:22,365 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "frequency"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "frequency": {"min": 65.41, "max": 1046.5}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 19:11:41,370 - llm.routes - INFO - Mensaje recibido: hola?
+2025-03-26 19:11:41,394 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "frequency"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "frequency": {"min": 65.41, "max": 1046.5}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 19:16:22,488 - llm.routes - ERROR - Error en chat: timed out
+2025-03-26 19:16:42,475 - llm.routes - ERROR - Error en chat: timed out
+2025-03-26 19:17:45,626 - llm.routes - ERROR - Error en chat: timed out
+2025-03-26 19:46:26,135 - llm.routes - INFO - Mensaje recibido: hola estas ahi?
+2025-03-26 19:46:26,135 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "frequency"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "frequency": {"min": 65.41, "max": 1046.5}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 20:10:03,158 - llm.routes - INFO - Mensaje recibido: puedes subir activar el tremolo?
+2025-03-26 20:10:03,159 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "frequency"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "frequency": {"min": 65.41, "max": 1046.5}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 20:26:24,387 - llm.routes - INFO - Mensaje recibido:  hola me ayudas a sonificar estos datos en una escala menor para dar tristesa?
+2025-03-26 20:26:24,389 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "frequency"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "frequency": {"min": 65.41, "max": 1046.5}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 20:26:24,663 - llm.routes - INFO - Loaded 4 documents
+2025-03-26 20:26:33,526 - llm.routes - INFO - Model loaded successfully
+2025-03-26 20:26:35,065 - llm.routes - INFO - Índice creado con éxito
+2025-03-26 20:29:36,375 - llm.routes - ERROR - Error al extraer sugerencias de configuración: cannot access local variable 'config_data' where it is not associated with a value
+2025-03-26 20:41:25,779 - llm.routes - INFO - Mensaje recibido:  hola me ayudas a sonificar estos datos en una escala menor para dar tristesa?
+2025-03-26 20:41:25,780 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "frequency"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "frequency": {"min": 65.41, "max": 1046.5}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 20:43:29,885 - llm.routes - ERROR - Error al extraer sugerencias de configuración: cannot access local variable 'config_data' where it is not associated with a value
+2025-03-26 20:56:09,385 - llm.routes - INFO - Mensaje recibido: quie realiza la incorporacion del chatbot?
+2025-03-26 20:56:09,386 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 20:56:09,516 - llm.routes - INFO - Loaded 4 documents
+2025-03-26 20:56:14,466 - llm.routes - INFO - Model loaded successfully
+2025-03-26 20:56:15,050 - llm.routes - INFO - Índice creado con éxito
+2025-03-26 20:56:17,537 - llm.routes - ERROR - Error en chat: model requires more system memory (11.1 GiB) than is available (3.6 GiB)
+2025-03-26 20:59:45,924 - llm.routes - INFO - Mensaje recibido: puedes activar tremolo para la sonificacion y explicame para que sirve?
+2025-03-26 20:59:45,924 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 20:59:46,043 - llm.routes - INFO - Loaded 4 documents
+2025-03-26 20:59:50,598 - llm.routes - INFO - Model loaded successfully
+2025-03-26 20:59:51,092 - llm.routes - INFO - Índice creado con éxito
+2025-03-26 21:00:48,970 - llm.routes - INFO - Mensaje recibido: puedes activar tremolo para la sonificacion y explicame para que sirve?
+2025-03-26 21:00:49,018 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-03-26 21:01:07,173 - llm.routes - INFO - Mensaje recibido: puedes activar tremolo para la sonificacion y explicame para que sirve?
+2025-03-26 21:01:07,174 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}

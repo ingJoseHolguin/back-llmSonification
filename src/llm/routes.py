@@ -36,6 +36,7 @@ index = None
 # Ruta principal para el chatbot
 @llm.route('/', methods=['GET'])  
 def home():
+    print("llM en linea")
     return jsonify(message="llM en linea")
 
 @llm.route('/loadDocuments')
@@ -62,7 +63,7 @@ def loadModel():
     try:
         embed_model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
         Settings.embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/all-MiniLM-L6-v2")
-        Settings.llm = Ollama(model="llama3.2:1b", request_timeout=360.0) #llama3.2:1b #deepseek-r1:7b
+        Settings.llm = Ollama(model="deepseek-r1:1.5b", request_timeout=360.0) #llama3.2:1b #deepseek-r1:7b #deepseek-r1:1.5b #deepseek-coder:6.7b
         logger.info("Model loaded successfully")
         return jsonify({'message': 'OK'}), 201
     except Exception as e:
@@ -71,9 +72,10 @@ def loadModel():
 
 @llm.route('/promtUser', methods=['POST'])
 def promtUser():
+    print("prontUSer <<<<<<" + request + ">>>>>>")
     # Comprueba si se están enviando datos en formato JSON
     if request.is_json:
-        data = request.get_json()
+        print("prontUSer <<<<<<" + str(request) + ">>>>>>")
         user_prompt = data.get('userPrompt')
         speed = data.get('speed')
         detail = data.get('detail')
@@ -147,8 +149,10 @@ def promtUser():
 @llm.route('/chat', methods=['POST'])
 def chat():
     try:
+        print("chat <<<<<<" + str(request) + ">>>>>>")
         # Obtener datos del request
         data = request.get_json()
+        
         
         if not data:
             return jsonify({
@@ -194,29 +198,28 @@ def chat():
         # Crear el prompt para el LLM con la información de configuración
         formatted_prompt = f"""
         Eres un experto en sonificación de datos usando Highcharts. Responde de manera clara y conversacional.
-        
+
         El usuario está utilizando un componente de sonificación con la siguiente configuración:
         ```json
         {json.dumps(current_config, indent=2, ensure_ascii=False)}
         ```
-        
+
         Para cada mensaje del usuario, debes:
         1. Responder su pregunta o solicitud de manera informativa y útil
         2. Si es apropiado, sugerir ajustes a la configuración actual de sonificación
-        
+
         Si sugieres cambios en la configuración, explica por qué consideras que esos cambios mejorarían la experiencia auditiva 
         e incluye un bloque JSON con la configuración sugerida, usando el siguiente formato:
-        
+
         ```json
-        {
-          "activeParams": [...],
-          "scale": "...",
-          "instrument": "...",
-          "duration": 5000,
-          ...
-        }
+        {{
+        "activeParams": [...],
+        "scale": "...",
+        "instrument": "...",
+        "duration": 5000
+        }}
         ```
-        
+
         La pregunta o solicitud del usuario es: {user_message}
         """
         
@@ -254,6 +257,7 @@ def extract_config_suggestions(response_text, current_config):
             for json_str in json_matches:
                 try:
                     # Intentar parsear el JSON encontrado
+                    print("config Data <<<<<"+ config_data + ">>>>>>>")
                     config_data = json.loads(json_str)
                     # Si parece una configuración válida, devolver
                     if isinstance(config_data, dict) and any(key in config_data for key in ['activeParams', 'scale', 'instrument', 'duration']):

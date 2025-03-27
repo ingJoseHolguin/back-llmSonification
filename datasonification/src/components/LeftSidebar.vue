@@ -93,15 +93,15 @@ export default {
     },
     
     async processPendingMessage() {
-  if (!this.pendingMessage || !this.currentConfig) return;
+  if (!this.currentConfig) return;
   
-  const messageText = this.pendingMessage;
+  const messageText = this.pendingMessage || "";
   this.pendingMessage = null;
   
   try {
     // Primero verificar la conexión con el servidor
     try {
-      const testResponse = await axios.get('http://127.0.0.1:5000/llm/', { timeout: 5000 });
+      const testResponse = await axios.get('http://127.0.0.1:5000/llm/', { timeout: 10000 });
       console.log('Estado del servidor LLM:', testResponse.data);
       
       if (testResponse.data.message !== 'llM en linea') {
@@ -114,11 +114,22 @@ export default {
       return;
     }
     
+    // Verificar que messageText no sea nulo o indefinido
+    if (!messageText) {
+      console.error('No hay mensaje para enviar');
+      this.isLoading = false;
+      return;
+    }
+    
     // Enviar mensaje y configuración actual al backend
     const response = await axios.post('http://127.0.0.1:5000/llm/chat', {
       message: messageText,
       config: this.currentConfig
     });
+
+    console.log('Respuesta recibida:', response.data);
+
+
 
     // Procesar la respuesta
     const { botResponse, suggestedConfig } = response.data;
@@ -135,7 +146,7 @@ export default {
         emitter.emit('update-config', suggestedConfig);
         
         // También actualizar nuestra copia local
-        this.currentConfig = suggestedConfig;
+        this.currentConfig = suggestedConfig;1
         
         // Notificar al usuario que la configuración ha sido actualizada
         this.messages.push(this.createMessage('Bot', 'He actualizado la configuración del gráfico según tu solicitud.'));
