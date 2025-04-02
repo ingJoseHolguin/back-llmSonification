@@ -318,3 +318,54 @@ def extract_config_suggestions(response_text, current_config):
     except Exception as e:
         logger.error(f"Error al extraer sugerencias de configuración: {str(e)}")
         return None
+    
+llm.route('/chatBot', methods=['POST'])
+def chatbot():
+    if request.is_json:
+        data = request.get_json()
+
+    global documents, index
+
+    if not documents:
+        try:
+            loadDocuments()
+        except Exception as e:
+            logger.error(f"Error al cargar documentos: {str(e)}")
+            return jsonify({
+                'botResponse': 'Error al cargar RAG. Por favor contacta al administrador.',
+                'suggestedConfig': None
+            }), 500
+    
+    if index is None:
+        index = VectorStoreIndex.from_documents(documents)
+
+    user_message = data.get('message', '')
+    current_config = data.get('config', {})
+        
+    logger.info(f"Mensaje recibido: {user_message}")
+    logger.info(f"Configuración actual: {json.dumps(current_config, ensure_ascii=False)}")
+    
+
+    # Crear el prompt para el LLM
+    formatted_prompt = f"""
+    Eres un experto en **Sonification Studio** y en **Sonificación de datos**. Responde de manera clara y natural, como si estuvieras conversando con alguien que busca asistencia sobre estos temas. No utilices subtítulos, títulos ni formatos adicionales. La respuesta debe ser fluida, directa y sin divisiones.
+    Considera lo siguiente:
+
+    ```json
+    {json.dumps(current_config, indent=2, ensure_ascii=False)}
+    ```
+
+    La respuesta es forzado a formato JSON con el siguiente formato
+
+    ```json
+        {{
+        "activeParams": [...],
+        "scale": "...",
+        "instrument": "...",
+        "duration": 5000
+    }}
+    ```
+
+
+       
+    ```
