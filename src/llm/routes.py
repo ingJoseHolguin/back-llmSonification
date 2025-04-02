@@ -355,7 +355,7 @@ def chatbot():
     {json.dumps(current_config, indent=2, ensure_ascii=False)}
     ```
 
-    La respuesta es forzado a formato JSON con el siguiente formato
+    
 
     ```json
         {{
@@ -369,3 +369,16 @@ def chatbot():
 
        
     ```
+
+    """
+
+    query_engine = index.as_query_engine()
+    response = query_engine.query(formatted_prompt)
+
+    suggested_config = extract_config_suggestions(str(response), current_config)
+
+    return jsonify({
+        'botResponse': str(response),
+        'suggestedConfig': suggested_config
+    })
+
