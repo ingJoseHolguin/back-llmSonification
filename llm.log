@@ -256,3 +256,39 @@
 2025-03-31 10:09:39,576 - llm.routes - INFO - Model loaded successfully
 2025-03-31 10:09:42,206 - llm.routes - INFO - Índice creado con éxito
 2025-03-31 10:09:45,397 - llm.routes - ERROR - Error en chat: model "llama3.1:8b" not found, try pulling it first
+2025-04-02 17:01:39,585 - llm.routes - INFO - Mensaje recibido: hola
+2025-04-02 17:01:39,591 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "frequency", "volume", "noteDuration", "highpass", "lowpass", "pan", "tremolo", "gapBetweenNotes"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "frequency": {"min": 65.41, "max": 1046.5}, "volume": {"min": 0.1, "max": 1.2}, "noteDuration": {"min": 30, "max": 1000}, "highpass": {"min": 1, "max": 4000}, "lowpass": {"min": 100, "max": 4000}, "pan": {"min": -1, "max": 1}, "tremolo": {"min": 0.2, "max": 0.8}, "gapBetweenNotes": {"min": 40, "max": 250}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-04-02 17:01:39,771 - llm.routes - INFO - Loaded 4 documents
+2025-04-02 17:01:45,926 - llm.routes - INFO - Model loaded successfully
+2025-04-02 17:01:46,968 - llm.routes - INFO - Índice creado con éxito
+2025-04-02 17:01:49,486 - llm.routes - ERROR - Error en chat: model "llama3.1:8b" not found, try pulling it first
+2025-04-02 17:01:57,538 - llm.routes - INFO - Mensaje recibido: hola?
+2025-04-02 17:01:57,538 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "frequency", "volume", "noteDuration", "highpass", "lowpass", "pan", "tremolo", "gapBetweenNotes"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "frequency": {"min": 65.41, "max": 1046.5}, "volume": {"min": 0.1, "max": 1.2}, "noteDuration": {"min": 30, "max": 1000}, "highpass": {"min": 1, "max": 4000}, "lowpass": {"min": 100, "max": 4000}, "pan": {"min": -1, "max": 1}, "tremolo": {"min": 0.2, "max": 0.8}, "gapBetweenNotes": {"min": 40, "max": 250}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-04-02 17:01:59,677 - llm.routes - ERROR - Error en chat: model "llama3.1:8b" not found, try pulling it first
+2025-04-02 17:02:17,134 - llm.routes - INFO - Mensaje recibido: ola?
+2025-04-02 17:02:17,134 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "frequency", "volume", "noteDuration", "highpass", "lowpass", "pan", "tremolo", "gapBetweenNotes"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "frequency": {"min": 65.41, "max": 1046.5}, "volume": {"min": 0.1, "max": 1.2}, "noteDuration": {"min": 30, "max": 1000}, "highpass": {"min": 1, "max": 4000}, "lowpass": {"min": 100, "max": 4000}, "pan": {"min": -1, "max": 1}, "tremolo": {"min": 0.2, "max": 0.8}, "gapBetweenNotes": {"min": 40, "max": 250}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-04-02 17:02:19,259 - llm.routes - ERROR - Error en chat: model "llama3.1:8b" not found, try pulling it first
+2025-04-02 17:02:25,177 - llm.routes - INFO - Mensaje recibido: hola?
+2025-04-02 17:02:25,177 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "frequency", "volume", "noteDuration", "highpass", "lowpass", "pan", "tremolo", "gapBetweenNotes"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "frequency": {"min": 65.41, "max": 1046.5}, "volume": {"min": 0.1, "max": 1.2}, "noteDuration": {"min": 30, "max": 1000}, "highpass": {"min": 1, "max": 4000}, "lowpass": {"min": 100, "max": 4000}, "pan": {"min": -1, "max": 1}, "tremolo": {"min": 0.2, "max": 0.8}, "gapBetweenNotes": {"min": 40, "max": 250}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-04-02 17:02:27,310 - llm.routes - ERROR - Error en chat: model "llama3.1:8b" not found, try pulling it first
+2025-04-02 17:36:58,647 - llm.routes - INFO - Mensaje recibido: hola?
+2025-04-02 17:36:58,650 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "frequency", "volume", "noteDuration", "highpass", "lowpass", "pan", "tremolo", "gapBetweenNotes"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "frequency": {"min": 65.41, "max": 1046.5}, "volume": {"min": 0.1, "max": 1.2}, "noteDuration": {"min": 30, "max": 1000}, "highpass": {"min": 1, "max": 4000}, "lowpass": {"min": 100, "max": 4000}, "pan": {"min": -1, "max": 1}, "tremolo": {"min": 0.2, "max": 0.8}, "gapBetweenNotes": {"min": 40, "max": 250}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-04-02 17:37:00,884 - llm.routes - ERROR - Error en chat: model "llama3.1:8b" not found, try pulling it first
+2025-04-02 17:38:13,101 - llm.routes - INFO - Mensaje recibido: hola me ayudas a sonificar?
+2025-04-02 17:38:13,101 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-04-02 17:38:13,216 - llm.routes - INFO - Loaded 4 documents
+2025-04-02 17:38:18,870 - llm.routes - INFO - Model loaded successfully
+2025-04-02 17:38:19,442 - llm.routes - INFO - Índice creado con éxito
+2025-04-02 17:38:21,920 - llm.routes - ERROR - Error en chat: model "llama3.1:8b" not found, try pulling it first
+2025-04-02 17:38:29,884 - llm.routes - INFO - Mensaje recibido: hola
+2025-04-02 17:38:29,886 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-04-02 17:38:32,100 - llm.routes - ERROR - Error en chat: model "llama3.1:8b" not found, try pulling it first
+2025-04-02 17:52:41,484 - llm.routes - INFO - Mensaje recibido: hola me ayudas  a sonificar?
+2025-04-02 17:52:41,489 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-04-02 17:52:41,611 - llm.routes - INFO - Loaded 4 documents
+2025-04-02 17:52:46,141 - llm.routes - INFO - Model loaded successfully
+2025-04-02 17:52:46,693 - llm.routes - INFO - Índice creado con éxito
+2025-04-02 17:54:10,834 - llm.routes - ERROR - Error al extraer sugerencias de configuración: cannot access local variable 'config_data' where it is not associated with a value
+2025-04-02 18:01:13,348 - llm.routes - INFO - Mensaje recibido: hola
+2025-04-02 18:01:13,348 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-04-02 18:02:10,292 - llm.routes - ERROR - Error al extraer sugerencias de configuración: cannot access local variable 'config_data' where it is not associated with a value

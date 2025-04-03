@@ -63,7 +63,7 @@ def loadModel():
     try:
         embed_model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
         Settings.embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/all-MiniLM-L6-v2")
-        Settings.llm = Ollama(model="llama3.1:8b", request_timeout=360.0) #llama3.2:1b #deepseek-r1:7b #deepseek-r1:1.5b #deepseek-coder:6.7b
+        Settings.llm = Ollama(model="llama3.2:1b", request_timeout=360.0) #llama3.2:1b #deepseek-r1:7b #deepseek-r1:1.5b #deepseek-coder:6.7b
         logger.info("Model loaded successfully")
         return jsonify({'message': 'OK'}), 201
     except Exception as e:
@@ -348,37 +348,32 @@ def chatbot():
 
     # Crear el prompt para el LLM
     formatted_prompt = f"""
-    Eres un experto en **Sonification Studio** y en **Sonificación de datos**. Responde de manera clara y natural, como si estuvieras conversando con alguien que busca asistencia sobre estos temas. No utilices subtítulos, títulos ni formatos adicionales. La respuesta debe ser fluida, directa y sin divisiones.
-    Considera lo siguiente:
-
-    ```json
-    {json.dumps(current_config, indent=2, ensure_ascii=False)}
-    ```
-
+    Eres un experto en sonificacion de datos, se te proporciona la configuracion actual en formato JSON de la aplicacion de sonificacion de datos, conforme esta
+    informacion debes de responder lo que se te indica, si es una consulta de informacion sobre la sonificacion o que cambies la configuracion para ayudar a un usuario que no es experto en el tema a realizar su tarea de sonificacion
+    solo debes responder acerca de sonificacion de lo contrario debes de negar el servicio.
     
+    La siguiente informacion es la configuracion en general de la aplicacacion que puedes controlar conforme a los requisitos del usuario
+    
+    La solicitud que se debe atender del usuario es: {user_message}
 
-    ```json
-        {{
-        "activeParams": [...],
-        "scale": "...",
-        "instrument": "...",
-        "duration": 5000
-    }}
-    ```
+    la configuracion actual de la aplicacion es: {json.dumps(current_config, indent=2, ensure_ascii=False)}
 
+    El formato obligatorio de respuesta es un JSON con las siguientes variables.
 
-       
-    ```
+    botResponse: "Aqui va la respuesta donde argumentas la informacion y cada cambio sugerido"
+    siggestedConfig: aqui ingresas el JSON con los cambios de las variables sugericas.
 
     """
 
     query_engine = index.as_query_engine()
     response = query_engine.query(formatted_prompt)
 
-    suggested_config = extract_config_suggestions(str(response), current_config)
+    print(response)
+
+    #suggested_config = extract_config_suggestions(str(response), current_config)
 
     return jsonify({
         'botResponse': str(response),
-        'suggestedConfig': suggested_config
+        'suggestedConfig': current_config
     })
 
