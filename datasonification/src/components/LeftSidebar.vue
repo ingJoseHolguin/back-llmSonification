@@ -132,7 +132,7 @@ export default {
 
 
     // Procesar la respuesta
-    const { botResponse, suggestedConfig } = response.data;
+    const { botResponse, suggestedConfig } = responsse.data;
     
     // Mostrar la respuesta del bot
     this.messages.push(this.createMessage('Bot', botResponse));
