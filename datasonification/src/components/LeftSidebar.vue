@@ -122,7 +122,7 @@ export default {
     }
     
     // Enviar mensaje y configuración actual al backend
-    const response = await axios.post('http://127.0.0.1:5000/llm/chat', {
+    const response = await axios.post('http://127.0.0.1:5000/llm/chatbot', {
       message: messageText,
       config: this.currentConfig
     });

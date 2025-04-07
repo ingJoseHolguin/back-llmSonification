@@ -354,14 +354,16 @@ def chatbot():
     
     La siguiente informacion es la configuracion en general de la aplicacacion que puedes controlar conforme a los requisitos del usuario
     
-    La solicitud que se debe atender del usuario es: {user_message}
+    La solicitud que se debe atender es: {user_message}
 
     la configuracion actual de la aplicacion es: {json.dumps(current_config, indent=2, ensure_ascii=False)}
 
     El formato obligatorio de respuesta es un JSON con las siguientes variables.
 
     botResponse: "Aqui va la respuesta donde argumentas la informacion y cada cambio sugerido"
-    siggestedConfig: aqui ingresas el JSON con los cambios de las variables sugericas.
+    siggestedConfig: aqui ingresas el JSON con los cambios de las variables sugericas. ejemplo del json estes es un ejemplo: {{"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}}
+
+
 
     """
 
