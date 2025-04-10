@@ -1,5 +1,4 @@
-from flask import Flask
-from flask import request, jsonify, Blueprint
+from flask import Flask, request, jsonify, Blueprint
 from transformers import LlamaForCausalLM, LlamaTokenizer
 from llama_index.core import Document, SimpleDirectoryReader, VectorStoreIndex, Settings
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
@@ -15,7 +14,9 @@ if src_dir not in sys.path:
 
 def create_app():
     app = Flask(__name__)
-    CORS(app)
+    
+    # Configurar CORS para manejar preflight correctamente
+    CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
     
     # Importar blueprint de manera dinámica para evitar problemas de importación
     import importlib.util
@@ -35,12 +36,28 @@ def create_app():
     # Obtener el blueprint del módulo cargado
     llm_blueprint = routes_module.llm
     
+    # Agregar manejo de OPTIONS para todas las rutas del blueprint
+    @llm_blueprint.after_request
+    def after_request(response):
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+        response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+        return response
+    
     # Registrar blueprint
     app.register_blueprint(llm_blueprint)
     
     # Ruta principal para manejar las solicitudes del chatbot
-    @app.route('/', methods=['POST'])
+    @app.route('/', methods=['POST', 'OPTIONS'])
     def process_chat():
+        # Manejar peticiones OPTIONS para CORS
+        if request.method == 'OPTIONS':
+            response = jsonify({})
+            response.headers.add('Access-Control-Allow-Origin', '*')
+            response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+            response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+            return response
+            
         try:
             # Redirigir la solicitud al endpoint de chat
             from llm.routes import chat
