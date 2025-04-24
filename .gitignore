@@ -6,3 +6,4 @@ sonification-studio/vendor/
 venv/
 src/llm/__pycache__/routes.cpython-312.pyc
 src/llm/__pycache__/routes.cpython-312.pyc
+llm.log

@@ -1,7 +1,7 @@
 En términos científicos, la sonificación es un término colectivo que se utiliza para transmitir información o percibir datos mediante audio no verbal. Se utiliza en todas partes; por ejemplo, imaginemos un reloj de pie que suena cada segundo y suena cada hora.
 En la visualización de datos, la sonificación permite explorar los datos sin ayuda visual. Ayuda a las personas a comprender los datos mediante el uso del sentido del oído en lugar del de la vista. Esto puede ser especialmente útil para personas con discapacidades visuales o para situaciones en las que la interpretación visual de los datos es difícil, pero también se puede utilizar para crear experiencias de visualización de datos más atractivas en general o para notificar a los usuarios que se requiere su atención.
 La sonificación con grandes conjuntos de datos puede tener importantes beneficios en términos de accesibilidad, ya que muchos usuarios ciegos o con baja visión consideran que la sonificación es útil para obtener una descripción general de los datos, así como para identificar tendencias, patrones, valores atípicos y puntos de interés.
-En Highcharts, ofrecemos un módulo de sonificación que le permite tener un control total de la reproducción de sus datos mediante sonido. El módulo de sonificación admite una amplia gama de casos de uso diferentes y está diseñado teniendo en cuenta la flexibilidad.
+, ofrecemos un módulo de sonificación que le permite tener un control total de la reproducción de sus datos mediante sonido. El módulo de sonificación admite una amplia gama de casos de uso diferentes y está diseñado teniendo en cuenta la flexibilidad.
 La siguiente tabla muestra algunos de los diferentes parámetros de audio que puedes asignar con el módulo de sonificación y lo que hacen:
 Pitch: With this pitch mapping, higher notes will be played when the Y-value goes higher. You can picture a piano, where the Y-axis is laid out across the keys. For low Y-values, the low piano keys are played, and for high Y-values, the higher keys are played.
 Stereo pan:Stereo panning refers to where in a stereo field a sound is placed. If you are wearing headphones, you will hear low Y-values in the left ear, and high ones in the right ear. Normally we map this to the X-value instead, so that we get a feeling of playing the chart from left to right.
@@ -36,7 +36,7 @@ En general, cambiar más de tres parámetros a la vez puede ser un caos. La mayo
 Dicho esto, la sonificación también se utiliza a veces para dar sentido a conjuntos de datos grandes y complejos, donde el objetivo no es tanto comunicar todos los datos, sino escuchar patrones o anomalías. En estos casos, los paisajes sonoros suelen ser más complejos y ocurren muchas cosas a la vez.
 
 Instrumentos
-Hay dos tipos de pistas disponibles en el módulo de sonificación de Highcharts: pistas de instrumentos y pistas de voz. Una pista de instrumentos es una pista que reproduce una secuencia de notas utilizando el sintetizador integrado de Highcharts.
+Hay dos tipos de pistas disponibles en el módulo de sonificación: pistas de instrumentos y pistas de voz. Una pista de instrumentos es una pista que reproduce una secuencia de notas utilizando el sintetizador integrado de sonificaicon.
 
 Todas las opciones de configuración para las pistas de instrumentos se pueden encontrar en defaultInstrumentOptions en la documentación de la API.
 

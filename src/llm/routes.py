@@ -63,7 +63,7 @@ def loadModel():
     try:
         embed_model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
         Settings.embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/all-MiniLM-L6-v2")
-        Settings.llm = Ollama(model="llama3.2:1b", request_timeout=360.0) #llama3.2:1b #deepseek-r1:7b #deepseek-r1:1.5b #deepseek-coder:6.7b
+        Settings.llm = Ollama(model="llama3.2:1b", request_timeout=360.0) #llama3.2:1b #deepseek-r1:7b #deepseek-r1:1.5b #deepseek-coder:6.7b llama3.2:1b
         logger.info("Model loaded successfully")
         return jsonify({'message': 'OK'}), 201
     except Exception as e:
@@ -288,34 +288,33 @@ def chat():
         
         # Crear el prompt para el LLM con la información de configuración utilizando literales de string
         # para evitar problemas con las llaves en formato JSON
-        formatted_prompt = (
-            "Eres un experto en sonificacion de datos y en la aplicacion de sonificacion de datos, resuelve las solicitudes del usuario de la siguiente manera:\n"
-            "Analisa la peticion del usuario y resuelve lo que solicita, si habla algo fuera de la sonificacion de datos niega el servicio y recuerdale que solo estas diseñado para la sonificacion de datos.\n\n"
-            f"La pregunta o solicitud del usuario es: {user_message}\n\n"
-            "El usuario esta utilizando la aplicacion de sonificacion de datos aqui se te proporciona la configuracion actual si es necesario cambiar la configuracion realiza cambios:\n"  
-            "Esta es la configuracion predeterminada: '{\"activeParams\": [\"pitch\", \"frequency\", \"lowpass\", \"highpass\", \"volume\", \"noteDuration\", \"pan\", \"gapBetweenNotes\", \"tremolo\"], \"scale\": \"major\", \"instrument\": \"piano\", \"duration\": 5000, \"paramRanges\": {\"pitch\": {\"min\": \"c2\", \"max\": \"c6\"}, \"frequency\": {\"min\": 65.41, \"max\": 1046.5}, \"lowpass\": {\"min\": 100, \"max\": 4000}, \"highpass\": {\"min\": 1, \"max\": 4000}, \"volume\": {\"min\": 0.1, \"max\": 1.2}, \"noteDuration\": {\"min\": 30, \"max\": 1000}, \"pan\": {\"min\": -1, \"max\": 1}, \"gapBetweenNotes\": {\"min\": 40, \"max\": 250}, \"tremolo\": {\"min\": 0, \"max\": 1}}, \"data\": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}'\n\n"
-            "Esta es la confuracion actual\n"
-            "```json\n"
-            f"{json.dumps(current_config, indent=2, ensure_ascii=False)}\n"
-            "```\n\n"
-            "Para cada mensaje del usuario, debes:\n"
-            "1. Responder su pregunta o solicitud de manera informativa y útil\n"
-            "2. Si es apropiado, sugerir ajustes a la configuración actual de sonificación\n\n"
-            "Si sugieres cambios en la configuración, explica por qué consideras que esos cambios mejorarían la experiencia auditiva\n" 
-            "e incluye un bloque JSON con la configuración sugerida, usando el siguiente formato:\n\n"
-            "```json\n"
-            "{\n"
-            "\"activeParams\": [\"pitch\", \"tremolo\"],\n"
-            "\"scale\": \"major\",\n"
-            "\"instrument\": \"piano\",\n"
-            "\"duration\": 5000\n"
-            "}\n"
-            "```\n\n"
-            "Tu respuesta debe ser clara y útil para alguien que está aprendiendo sobre sonificación de datos.\n"
-        )
+        formatted_prompt = f"""
+        Eres un asistente experto en sonificación de datos. Recibirás dos variables:
+        - "user_message": la petición actual del usuario esta es: {user_message}
+        - "current_config": un objeto JSON con la configuración actual de la sonificación. Esta es la configuracion predeterminada: '{{\"activeParams\": [\"pitch\", \"frequency\", \"lowpass\", \"highpass\", \"volume\", \"noteDuration\", \"pan\", \"gapBetweenNotes\", \"tremolo\"], \"scale\": \"major\", \"instrument\": \"piano\", \"duration\": 5000, \"paramRanges\": {{\"pitch\": {{\"min\": \"c2\", \"max\": \"c6\"}}, \"frequency\": {{\"min\": 65.41, \"max\": 1046.5}}, \"lowpass\": {{\"min\": 100, \"max\": 4000}}, \"highpass\": {{\"min\": 1, \"max\": 4000}}, \"volume\": {{\"min\": 0.1, \"max\": 1.2}}, \"noteDuration\": {{\"min\": 30, \"max\": 1000}}, \"pan\": {{\"min\": -1, \"max\": 1}}, \"gapBetweenNotes\": {{\"min\": 40, \"max\": 250}}, \"tremolo\": {{\"min\": 0, \"max\": 1}}}}, \"data\": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}}' esta es {current_config}
+
+        Tu tarea es interpretar lo que el usuario quiere lograr, evaluar la configuración actual y sugerir una nueva configuración que se ajuste mejor a los objetivos del usuario, respetando los principios de sonificación efectiva.
+
+        Reglas que debes seguir:
+        1. si pide una explicacion de definicion de sonificacion o de un concepto relacionado, debes de responder con la definicion y no hacer cambios en la configuracion actual.
+        2. Si la solicitud es una consulta de información sobre sonificación de datos, responde de manera informativa y no hagas cambios en la configuración actual.
+        3. Solo puedes resolver problemas relacionados con la sonificación de datos.
+        4. Puedes modificar o proponer nuevos valores para los parámetros en "current_config" si mejora la calidad de la sonificación.
+        5. Si necesitas más información para dar una recomendación adecuada, formula una pregunta clara y específica al usuario.
+        6. si hiciste cambios en la sugerencias explica por que las hiciste
+        7. La respuesta debe estar en el siguiente formato JSON, sin ninguna explicación adicional:
+
+        {{
+            "botResponse": "Texto explicativo para el usuario en lenguaje natural, breve y directo puedes mensionar los cambios pero no puedes incluir el json de las configuracion",
+            "suggestedConfig": configuración_sugerida (puede ser igual a current_config si no hay cambios)
+        }}
+
+        """
+        
         
         # Utilizar el índice para hacer la consulta
         query_engine = index.as_query_engine()
+        print('query_engine_' + str(query_engine) )
         response = query_engine.query(formatted_prompt)
         
         # Convertir la respuesta a string

@@ -1,0 +1,82 @@
+Mapeo a datos
+Al sonificar datos, el caso de uso más común es especificar los instrumentos que desea tocar y luego asignar las propiedades de los datos a varios parámetros del instrumento.
+
+Por ejemplo, puede asignar valores Y al tono del instrumento, para generar un sonido que aumenta de tono para valores de datos más altos.
+
+La siguiente tabla muestra algunos de los diferentes parámetros de audio que puedes asignar con el módulo de sonificación y lo que hacen:
+
+
+Configuración
+Hay varias maneras de definir la asignación de pistas en Highcharts. La más sencilla es la asignación fija, donde un parámetro de audio recibe un valor fijo:
+
+sonificación : { 
+    duración : 4000 , 
+    Opciones de instrumento predeterminadas : { 
+        instrumento : 'saxofón' , 
+        mapeo : { 
+            volumen : 0.4 , 
+            sartén : 0 , 
+            notaDuración : 300 , 
+            tono : 'a3' 
+        }
+    }
+}
+Con la configuración anterior, los valores de audio se mantienen fijos y no cambian. Para cada punto de datos, reproduciremos la nota "A3" durante 300 milisegundos, a un volumen de 0,4, en el centro del campo estéreo. Obviamente, esto no transmite mucha información, por lo que preferimos asignar algo a una propiedad de datos:
+
+mapeo : { 
+    volumen : 0.4 , 
+    sartén : 0 , 
+    notaDuración : 300 , 
+    tono : 'y' 
+}
+Al cambiar la asignación de tono a "y", el tono del instrumento cambiará a medida que cambien los valores de Y. Valores de Y más bajos provocarán un tono más bajo, y valores más altos, uno más alto. Podemos asignar cualquiera de los parámetros a cualquier propiedad de punto de datos. Utilice la notación de puntos para acceder a las propiedades anidadas.
+
+A menudo queremos definir el rango de tono del instrumento. Esto se puede hacer pasando un objeto de configuración al parámetro de mapeo:
+
+mapeo : { 
+    volumen : 0.4 , 
+    sartén : 0 , 
+    notaDuración : 300 , 
+    paso : { 
+        mapTo : 'y' , 
+        mín : 'c3' , 
+        máximo : 'g6' 
+    }
+}
+Ahora estamos mapeando este rango de instrumentos, de modo que el valor Y más bajo reproducirá una nota "c3" y el más alto una nota "g6".
+
+Para obtener una descripción completa de las propiedades de mapeo disponibles, con todas las opciones de configuración detalladas para cada una, consulte defaultInstrumentOptions.mapping para pistas de instrumentos y defaultSpeechOptions.mapping para pistas de voz.
+
+Mapeo efectivo
+La sonificación es tanto una ciencia como un arte, y si bien no existe una forma "correcta" definitiva de hacerlo, aquí hay 7 consejos científicos que pueden ser útiles si el objetivo es que la experiencia sonora sea intuitiva:
+
+El mapeo de tonos suele ser intuitivo al comunicar cantidad o tamaño. En cuanto al tamaño, un tono más bajo suele asumirse como mayor.
+De G4 a F6 es el rango de tono más preciso para la mayoría de los humanos, si un rango estrecho es aceptable.
+Se pueden utilizar diferentes instrumentos/timbres para categorizar sonidos y crear separación, pero las comparaciones entre diferentes instrumentos a veces pueden ser más difíciles.
+La duración puede utilizarse para transmitir importancia. Úsela con precaución, ya que puede solaparse con otros sonidos e interrumpir la interacción del usuario si es demasiado larga.
+El volumen se puede usar para transmitir intensidad, pero puede ser difícil escuchar pequeñas diferencias en el volumen y puede escucharse de manera diferente en distintos dispositivos.
+El tempo, como el del trémolo o la variación del intervalo entre notas, es útil para transmitir la intensidad o la velocidad de algo. Para la mayoría de las personas, es relativamente fácil percibir pequeñas diferencias de tempo.
+La panorámica estéreo suele ser útil, pero requiere que el usuario tenga auriculares o altavoces estéreo, por lo que no suele ser recomendable confiar únicamente en ella.
+Codificación dual:
+
+Es perfectamente posible asignar la misma propiedad de datos a múltiples parámetros de audio, lo cual suele ser una buena idea. Por ejemplo, se podrían asignar valores Y tanto al volumen, la duración como al tono para enfatizar la importancia de un cambio en el valor Y para un conjunto de datos específico.
+
+sonificación : { 
+    duración : 4000 , 
+    Opciones de instrumento predeterminadas : { 
+        instrumento : 'saxofón' , 
+        mapeo : { 
+            sartén : 0 , 
+            volumen : 'y' , 
+            notaDuración : 'y' , 
+            tono : 'y' 
+        }
+    }
+}
+Sobrecarga de información:
+
+Es fácil saturar al usuario con información sonora si la sonificación implica demasiadas funciones simultáneamente. Esto aplica especialmente a varias series que se reproducen simultáneamente.
+
+En general, cambiar más de tres parámetros a la vez puede ser un caos. La mayoría de las personas pueden registrar dos cambios a la vez si son lo suficientemente distintos.
+
+Dicho esto, la sonificación también se utiliza a veces para interpretar conjuntos de datos grandes y complejos, donde el objetivo no es tanto comunicar todos los datos como detectar patrones o anomalías. En estos casos, los paisajes sonoros suelen ser más complejos, con muchos elementos ocurriendo simultáneamente.

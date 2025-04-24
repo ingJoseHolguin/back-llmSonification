@@ -129,13 +129,27 @@ export default {
 
     console.log('Respuesta recibida:', response.data);
 
+    // Revisar si botResponse es un string que contiene JSON
+    let botResponseText = response.data.botResponse;
+    let suggestedConfig = null;
+    try {
+      // Intentar parsear por si es un string JSON
+      const parsedResponse = JSON.parse(botResponseText);
+      if (parsedResponse && typeof parsedResponse.botResponse === 'string') {
+        botResponseText = parsedResponse.botResponse;
+        suggestedConfig = parsedResponse.suggestedConfig || null;
+      }
+    } catch (e) {
+      // Si falla el parsing, usar el string original
+      console.log('botResponse no es JSON o no se pudo parsear:', e);
+    }
 
 
-    // Procesar la respuesta
-    const { botResponse, suggestedConfig } = response.data;
+
+    
     
     // Mostrar la respuesta del bot
-    this.messages.push(this.createMessage('Bot', botResponse));
+    this.messages.push(this.createMessage('Bot', botResponseText));
     
     // Si hay una configuración sugerida y es diferente de la actual, aplicarla
     if (suggestedConfig) {
@@ -149,7 +163,7 @@ export default {
         this.currentConfig = suggestedConfig;1
         
         // Notificar al usuario que la configuración ha sido actualizada
-        this.messages.push(this.createMessage('Bot', 'He actualizado la configuración del gráfico según tu solicitud.'));
+        //this.messages.push(this.createMessage('Bot', 'He actualizado la configuración del gráfico según tu solicitud.'));
       }
     }
   } catch (error) {
