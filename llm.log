@@ -750,3 +750,20 @@
 2025-04-24 04:04:48,604 - llm.routes - INFO - Loaded 22 documents
 2025-04-24 04:04:53,147 - llm.routes - INFO - Model loaded successfully
 2025-04-24 04:04:54,879 - llm.routes - INFO - Índice creado con éxito
+2025-04-24 11:08:58,531 - llm.routes - INFO - Mensaje recibido: .
+2025-04-24 11:08:58,532 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-04-24 11:08:59,418 - llm.routes - INFO - Loaded 22 documents
+2025-04-24 11:09:03,575 - llm.routes - INFO - Model loaded successfully
+2025-04-24 11:09:05,106 - llm.routes - INFO - Índice creado con éxito
+2025-04-24 11:09:33,955 - llm.routes - INFO - Mensaje recibido: hola, que es la sonificacion?
+2025-04-24 11:09:33,955 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-04-24 11:10:01,756 - llm.routes - INFO - Mensaje recibido: como puedo mejorar la experiencia de sonido?
+2025-04-24 11:10:01,757 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "minor", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-04-24 11:12:19,920 - llm.routes - INFO - Mensaje recibido: que es la sonificacion?
+2025-04-24 11:12:19,920 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-04-24 11:34:00,652 - llm.routes - INFO - Mensaje recibido: que es la sonificacion?
+2025-04-24 11:34:00,652 - llm.routes - INFO - Configuración actual: {"activeParams": ["pan", "volume", "lowpass", "highpass"], "scale": "minor", "instrument": "piano", "duration": 5000, "paramRanges": {"pan": {"min": -1, "max": 1}, "volume": {"min": 0.3, "max": 1.1}, "lowpass": {"min": 100, "max": 4000}, "highpass": {"min": 1, "max": 4000}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-04-24 11:35:20,827 - llm.routes - INFO - Mensaje recibido: quiero sonificar estos datos para niños de primaria 
+2025-04-24 11:35:20,828 - llm.routes - INFO - Configuración actual: {"activeParams": ["pan", "volume", "lowpass", "highpass"], "scale": "minor", "instrument": "piano", "duration": 5000, "paramRanges": {"pan": {"min": -1, "max": 1}, "volume": {"min": 0.3, "max": 1.1}, "lowpass": {"min": 100, "max": 4000}, "highpass": {"min": 1, "max": 4000}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-04-24 11:36:37,960 - llm.routes - INFO - Mensaje recibido: me puedes activar el tremolo?
+2025-04-24 11:36:37,960 - llm.routes - INFO - Configuración actual: {"activeParams": ["pan", "volume", "lowpass", "highpass"], "scale": "minor", "instrument": "piano", "duration": 5000, "paramRanges": {"pan": {"min": -1, "max": 1}, "volume": {"min": 0.3, "max": 1.1}, "lowpass": {"min": 100, "max": 4000}, "highpass": {"min": 1, "max": 4000}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
