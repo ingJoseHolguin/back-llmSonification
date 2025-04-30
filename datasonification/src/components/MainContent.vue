@@ -17,6 +17,9 @@
         <!-- Área del gráfico ampliada -->
         <div id="container" ref="chartContainer" class="chart-container"></div>
         
+        <!-- MOVIDO: Botón de reproducción colocado aquí, justo después del gráfico -->
+        <button id="sonify" @click="toggleSonify">{{ isPlaying ? 'Detener' : 'Reproducir gráfico' }}</button>
+        
         <div id="controls">
           <!-- Panel de configuración organizado en pestañas -->
           <div class="tabs-container">
@@ -145,7 +148,7 @@
             </div>
           </div>
           
-          <button id="sonify" @click="toggleSonify">{{ isPlaying ? 'Detener' : 'Reproducir gráfico' }}</button>
+          <!-- ELIMINADO: El botón ya no está aquí -->
         </div>
         
         <div class="help-container" v-if="activeParams.length > 0">
@@ -867,43 +870,64 @@ export default {
 
 <style scoped>
 * {
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Helvetica,
-    Arial,
-    "Apple Color Emoji",
-    "Segoe UI Emoji",
-    "Segoe UI Symbol",
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+h4, h5 {
+  color: #25386f;
+}
+
+.highcharts-description {
+  margin: 20px 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #555;
+  background-color: #f8f9fa;
+  padding: 16px;
+  border-radius: 6px;
+  border: 1px solid #eaeaea;
+}
+
+.main-content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.chart-wrapper {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 24px;
 }
 
 .highcharts-figure {
-  max-width: 900px; /* Increased max-width */
+  max-width: 1000px;
   margin: 0 auto;
-  position: relative;
+  padding: 0;
 }
 
 /* Chart container with increased height */
 .chart-container {
-  min-height: 400px; /* Increased height */
+  min-height: 450px;
   width: 100%;
-  margin: 0;
-  border: 1px solid #eee;
-  border-radius: 5px;
+  margin: 0 0 20px 0;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
   overflow: hidden;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.03);
 }
 
 #controls {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  padding: 15px;
-  background-color: #f5f5f5;
+  gap: 20px;
+  margin: 24px 0;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #eaeaea;
   border-radius: 5px;
 }
 
@@ -914,31 +938,42 @@ export default {
 
 .tabs {
   display: flex;
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+  gap: 4px;
 }
 
 .tabs button {
-  padding: 10px 15px;
+  padding: 12px 18px;
   background: none;
   border: none;
   cursor: pointer;
   font-weight: 500;
-  color: #666;
+  color: #555;
   position: relative;
+  transition: all 0.2s ease;
+  border-radius: 6px 6px 0 0;
 }
 
 .tabs button:hover {
-  background-color: #f9f9f9;
+  background-color: rgba(48, 112, 208, 0.05);
+  color: #3070d0;
 }
 
 .active-tab {
   color: #3070d0 !important;
-  border-bottom: 2px solid #3070d0 !important;
+  background-color: #fff !important;
+  border: 1px solid #e0e0e0 !important;
+  border-bottom: 2px solid #fff !important;
+  margin-bottom: -1px;
 }
 
 .tab-content {
-  width: 100%;
+  background-color: #fff;
+  border-radius: 0 0 8px 8px;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-top: none;
 }
 
 /* JSON section */
@@ -952,27 +987,57 @@ export default {
 
 .json-textarea {
   width: 100%;
-  min-height: 150px;
+  min-height: 200px;
   font-family: monospace;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 14px;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
   resize: vertical;
-  margin-bottom: 5px;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  background-color: #f8f9fa;
+}
+
+.json-textarea:focus {
+  border-color: #3070d0;
+  box-shadow: 0 0 0 3px rgba(48, 112, 208, 0.2);
+  outline: none;
 }
 
 .json-status {
-  font-size: 0.8rem;
-  margin-bottom: 10px;
-  min-height: 20px;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  padding: 8px;
+  border-radius: 4px;
 }
 
 .json-valid {
-  color: #2e7d32;
+  background-color: #e6f4ea;
+  color: #137333;
+  border-left: 3px solid #137333;
+  padding-left: 12px;
 }
 
 .json-invalid {
-  color: #d32f2f;
+  background-color: #fce8e6;
+  color: #c5221f;
+  border-left: 3px solid #c5221f;
+  padding-left: 12px;
+}
+
+#apply-config {
+  background-color: #25386f;
+  color: white;
+  border: none;
+  font-size: 0.95rem;
+  min-height: 42px;
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  max-width: 250px;
 }
 
 .parameters-container {
@@ -985,26 +1050,75 @@ export default {
 
 .checkbox-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+  margin-bottom: 20px;
 }
 
 .parameter-checkbox {
   display: flex;
   align-items: center;
-  gap: 5px;
+  padding: 10px 10px 10px 15px; /* Padding izquierdo consistente */
+  background-color: #f5f7fa;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+  position: relative; /* Para posicionamiento preciso */
 }
 
-.parameter-checkbox input {
+.parameter-checkbox:hover {
+  background-color: #edf2f7;
+}
+
+.parameter-checkbox input[type="checkbox"] {
+  position: absolute;
+  left: 15px; /* Distancia fija desde el borde izquierdo */
   margin: 0;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  accent-color: #3070d0;
+}
+
+.parameter-checkbox label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  flex-grow: 1;
+  margin: 0;
+  padding-left: 30px; /* Espacio para el checkbox */
+  text-align: left;
 }
 
 .control-group {
   display: flex;
   align-items: center;
-  gap: 10px;
-  flex-grow: 1;
+  gap: 12px;
+  flex-basis: 50%;
 }
+
+.control-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  min-width: 40px;
+  color: #555;
+}
+
+.control-group input, .control-group select {
+  flex-grow: 1;
+  min-height: 36px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #d0d7de;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.control-group input:focus, .control-group select:focus {
+  border-color: #3070d0;
+  box-shadow: 0 0 0 3px rgba(48, 112, 208, 0.2);
+  outline: none;
+}
+
 
 .control-row {
   display: flex;
@@ -1026,36 +1140,72 @@ label {
   font-weight: 500;
 }
 
-#apply-config, #sonify {
-  background-color: #fff;
-  border: 1px solid #25386f;
-  color: #25386f;
-  font-size: 0.9rem;
-  min-height: 40px;
-  font-weight: 500;
-  border-radius: 4px;
-  padding: 0.375rem 0;
-  width: 100%;
-  text-align: center;
+#sonify {
+  background-color: #3070d0;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  min-height: 46px;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 12px 20px;
   cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  max-width: 250px;
+  margin: 20px auto 0;
 }
 
 #apply-config:hover, #sonify:hover {
-  background-color: #25386f;
-  color: #fff;
+  background-color: #2560b8;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+#sonify:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .button-disabled {
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: not-allowed;
-  pointer-events: none;
+  box-shadow: none !important;
+}
+
+.json-example {
+  margin-top: 20px;
+  padding: 16px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid #eaeaea;
+}
+
+.json-example h5 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.json-example pre {
+  margin: 0;
+  font-family: monospace;
+  font-size: 0.8rem;
+  white-space: pre-wrap;
+  color: #444;
 }
 
 .min-max-container {
-  width: 100%;
-  border-top: 1px solid #ddd;
-  padding-top: 15px;
+  background-color: #f9fafc;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  border: 1px solid #eaeaea;
 }
 
 .min-max-container h4 {
@@ -1063,9 +1213,14 @@ label {
 }
 
 .param-range-controls {
-  margin-bottom: 15px;
-  border-bottom: 1px dashed #ddd;
-  padding-bottom: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #e0e0e0;
+}
+
+.param-range-controls:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
 }
 
 .param-range-controls h5 {
@@ -1075,26 +1230,34 @@ label {
 
 .min-max-controls {
   display: flex;
-  gap: 15px;
+  gap: 20px;
 }
 
+/* Mejora del contenedor de ayuda */
 .help-container {
-  margin: 15px 0;
-  padding: 15px;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-  border-left: 4px solid #3070d0;
+  margin: 24px 0;
+  padding: 18px;
+  background-color: #f0f7ff;
+  border-radius: 8px;
+  border-left: 5px solid #3070d0;
 }
 
 .help-container h4 {
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  color: #25386f;
 }
 
 .active-param {
-  margin-bottom: 8px;
-  font-size: 0.9rem;
-  line-height: 1.4;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  padding-left: 12px;
+  border-left: 2px solid rgba(48, 112, 208, 0.3);
+}
+
+.active-param:last-child {
+  margin-bottom: 0;
 }
 
 .helptext {
@@ -1127,35 +1290,81 @@ label {
   
   .control-row {
     flex-direction: column;
-  }
-  
-  .control-group {
-    width: 100%;
+    gap: 16px;
   }
   
   .min-max-controls {
     flex-direction: column;
+    gap: 16px;
+  }
+  
+  .tabs button {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+  
+  .tab-content {
+    padding: 16px;
+  }
+  
+  #sonify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .chart-wrapper {
+    padding: 16px;
+  }
+  
+  .control-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .control-group label {
+    min-width: auto;
   }
 }
 
 .import-controls {
-margin: 10px 0;
-  text-align: left; /* O donde prefieras ubicar el botón */
+  margin: 0 0 16px 0;
+  text-align: left;
 }
 
 
 .import-button {
-  padding: 5px 10px;
+  padding: 8px 16px;
   border: none;
-  border-radius: 4px;
-  background-color: #007bff;
+  border-radius: 6px;
+  background-color: #25386f;
   color: white;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .import-button:hover {
   background-color: #0056b3;
+}
+
+.import-button:hover {
+  background-color: #1a2a57;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.import-button:active {
+  transform: translateY(1px);
 }
 
 
