@@ -1,10 +1,10 @@
 <template>
-  <div class="sidebar-container">
-    <div class="chat-section" :class="{ 'minimized': isMinimized }">
+  <div class="sidebar-container" :class="{ 'minimized': isMinimized }">
+    <div class="chat-section">
       <div class="chat-header">
-        <h3>Chatbot</h3>
-        <button @click="toggleVisibility">
-          {{ isMinimized ? 'Expandir' : 'Minimizar' }}
+        <h3>Expert Assistante Bot</h3>
+        <button class="toggle-button" @click="toggleVisibility" v-if="!isMinimized">
+          «
         </button>
       </div>
 
@@ -35,12 +35,23 @@
         </button>
       </div>
     </div>
+
+    <button 
+      class="toggle-button expand-button" 
+      @click="toggleVisibility" 
+      v-if="isMinimized"
+    >
+      »
+    </button>
+    
+    <!-- Manejador para redimensionar el chat -->
+    <div class="resize-handle" @mousedown="startResize" v-if="!isMinimized"></div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-import { emitter } from '../eventBus'; // Importar el emisor de eventos
+import { emitter } from '../eventBus';
+import axios from 'axios'; // Mantener esta importación ya que se usa en processPendingMessage
 
 export default {
   name: 'LeftSidebar',
@@ -50,20 +61,29 @@ export default {
       messages: [],
       isMinimized: false,
       isLoading: false,
-      currentConfig: null
+      currentConfig: null,
+      pendingMessage: null,
+      sidebarWidth: 250, // Ancho inicial
+      isResizing: false
     };
   },
   created() {
-    // Escuchar el evento que proporciona la configuración
     emitter.on('provide-config', (config) => {
       this.currentConfig = config;
       console.log('Configuración recibida en LeftSidebar:', config);
       this.processPendingMessage();
     });
   },
+  mounted() {
+    // Agregar eventos para manejar el redimensionamiento
+    document.addEventListener('mousemove', this.handleResize);
+    document.addEventListener('mouseup', this.stopResize);
+  },
   beforeUnmount() {
-    // Limpiar el listener al desmontar
     emitter.off('provide-config');
+    // Eliminar eventos al desmontar
+    document.removeEventListener('mousemove', this.handleResize);
+    document.removeEventListener('mouseup', this.stopResize);
   },
   methods: {
     toggleVisibility() {
@@ -75,121 +95,108 @@ export default {
     async sendMessage() {
       if (this.newMessage.trim() === '' || this.isLoading) return;
 
-      // Guardar el mensaje del usuario y limpiar el input
       const userMessage = this.createMessage('Usuario', this.newMessage);
       this.messages.push(userMessage);
       const messageText = this.newMessage;
       this.newMessage = '';
       this.scrollToBottom();
 
-      // Activar indicador de carga
       this.isLoading = true;
-      
-      // Solicitar la configuración actual al componente principal
       emitter.emit('request-config');
-      
-      // Esta función será llamada cuando se reciba la configuración
       this.pendingMessage = messageText;
     },
     
     async processPendingMessage() {
-  if (!this.currentConfig) return;
-  
-  const messageText = this.pendingMessage || "";
-  this.pendingMessage = null;
-  
-  try {
-    // Primero verificar la conexión con el servidor
-    try {
-      const testResponse = await axios.get('http://127.0.0.1:5000/llm/', { timeout: 10000 });
-      console.log('Estado del servidor LLM:', testResponse.data);
+      if (!this.currentConfig) return;
       
-      if (testResponse.data.message !== 'llM en linea') {
-        throw new Error('El servidor LLM no está disponible');
-      }
-    } catch (connectionError) {
-      console.error('Error al conectar con el servidor:', connectionError);
-      this.messages.push(this.createMessage('Bot', 'No se pudo establecer conexión con el servidor. Por favor, verifica que el backend esté en ejecución.'));
-      this.isLoading = false;
-      return;
-    }
-    
-    // Verificar que messageText no sea nulo o indefinido
-    if (!messageText) {
-      console.error('No hay mensaje para enviar');
-      this.isLoading = false;
-      return;
-    }
-    
-    // Enviar mensaje y configuración actual al backend
-    const response = await axios.post('http://127.0.0.1:5000/llm/chat', {
-      message: messageText,
-      config: this.currentConfig
-    });
-
-    console.log('Respuesta recibida:', response.data);
-
-    // Revisar si botResponse es un string que contiene JSON
-    let botResponseText = response.data.botResponse;
-    let suggestedConfig = null;
-    try {
-      // Intentar parsear por si es un string JSON
-      const parsedResponse = JSON.parse(botResponseText);
-      if (parsedResponse && typeof parsedResponse.botResponse === 'string') {
-        botResponseText = parsedResponse.botResponse;
-        suggestedConfig = parsedResponse.suggestedConfig || null;
-      }
-    } catch (e) {
-      // Si falla el parsing, usar el string original
-      console.log('botResponse no es JSON o no se pudo parsear:', e);
-    }
-
-
-
-    
-    
-    // Mostrar la respuesta del bot
-    this.messages.push(this.createMessage('Bot', botResponseText));
-    
-    // Si hay una configuración sugerida y es diferente de la actual, aplicarla
-    if (suggestedConfig) {
-      console.log('Configuración sugerida recibida:', suggestedConfig);
+      const messageText = this.pendingMessage || "";
+      this.pendingMessage = null;
       
-      if (!this.isConfigEqual(this.currentConfig, suggestedConfig)) {
-        // Informar al componente principal que hay una nueva configuración
-        emitter.emit('update-config', suggestedConfig);
+      try {
+        // Primero verificar la conexión con el servidor
+        try {
+          const testResponse = await axios.get('http://127.0.0.1:5000/llm/', { timeout: 10000 });
+          console.log('Estado del servidor LLM:', testResponse.data);
+          
+          if (testResponse.data.message !== 'llM en linea') {
+            throw new Error('El servidor LLM no está disponible');
+          }
+        } catch (connectionError) {
+          console.error('Error al conectar con el servidor:', connectionError);
+          this.messages.push(this.createMessage('Bot', 'No se pudo establecer conexión con el servidor. Por favor, verifica que el backend esté en ejecución.'));
+          this.isLoading = false;
+          return;
+        }
         
-        // También actualizar nuestra copia local
-        this.currentConfig = suggestedConfig;1
+        // Verificar que messageText no sea nulo o indefinido
+        if (!messageText) {
+          console.error('No hay mensaje para enviar');
+          this.isLoading = false;
+          return;
+        }
         
-        // Notificar al usuario que la configuración ha sido actualizada
-        //this.messages.push(this.createMessage('Bot', 'He actualizado la configuración del gráfico según tu solicitud.'));
+        // Enviar mensaje y configuración actual al backend
+        const response = await axios.post('http://127.0.0.1:5000/llm/chat', {
+          message: messageText,
+          config: this.currentConfig
+        });
+
+        console.log('Respuesta recibida:', response.data);
+
+        // Revisar si botResponse es un string que contiene JSON
+        let botResponseText = response.data.botResponse;
+        let suggestedConfig = null;
+        try {
+          // Intentar parsear por si es un string JSON
+          const parsedResponse = JSON.parse(botResponseText);
+          if (parsedResponse && typeof parsedResponse.botResponse === 'string') {
+            botResponseText = parsedResponse.botResponse;
+            suggestedConfig = parsedResponse.suggestedConfig || null;
+          }
+        } catch (e) {
+          // Si falla el parsing, usar el string original
+          console.log('botResponse no es JSON o no se pudo parsear:', e);
+        }
+        
+        // Mostrar la respuesta del bot
+        this.messages.push(this.createMessage('Bot', botResponseText));
+        
+        // Si hay una configuración sugerida y es diferente de la actual, aplicarla
+        if (suggestedConfig) {
+          console.log('Configuración sugerida recibida:', suggestedConfig);
+          
+          if (!this.isConfigEqual(this.currentConfig, suggestedConfig)) {
+            // Informar al componente principal que hay una nueva configuración
+            emitter.emit('update-config', suggestedConfig);
+            
+            // También actualizar nuestra copia local
+            this.currentConfig = suggestedConfig;
+          }
+        }
+      } catch (error) {
+        console.error('Error al comunicarse con el backend:', error);
+        
+        // Mensaje de error más detallado para ayudar en la depuración
+        let errorMessage = 'Error al procesar tu solicitud.';
+        
+        if (error.response) {
+          // Error de respuesta del servidor
+          errorMessage += ` El servidor respondió con código ${error.response.status}.`;
+        } else if (error.request) {
+          // No se recibió respuesta
+          errorMessage += ' No se recibió respuesta del servidor.';
+        } else {
+          // Error al configurar la solicitud
+          errorMessage += ` Error: ${error.message}`;
+        }
+        
+        this.messages.push(this.createMessage('Bot', errorMessage));
+      } finally {
+        // Desactivar indicador de carga
+        this.isLoading = false;
+        this.scrollToBottom();
       }
-    }
-  } catch (error) {
-    console.error('Error al comunicarse con el backend:', error);
-    
-    // Mensaje de error más detallado para ayudar en la depuración
-    let errorMessage = 'Error al procesar tu solicitud.';
-    
-    if (error.response) {
-      // Error de respuesta del servidor
-      errorMessage += ` El servidor respondió con código ${error.response.status}.`;
-    } else if (error.request) {
-      // No se recibió respuesta
-      errorMessage += ' No se recibió respuesta del servidor.';
-    } else {
-      // Error al configurar la solicitud
-      errorMessage += ` Error: ${error.message}`;
-    }
-    
-    this.messages.push(this.createMessage('Bot', errorMessage));
-  } finally {
-    // Desactivar indicador de carga
-    this.isLoading = false;
-    this.scrollToBottom();
-  }
-},
+    },
     
     scrollToBottom() {
       this.$nextTick(() => {
@@ -203,58 +210,136 @@ export default {
     isConfigEqual(config1, config2) {
       if (!config1 || !config2) return false;
       return JSON.stringify(config1) === JSON.stringify(config2);
+    },
+    
+    // Métodos para manejar el redimensionamiento
+    startResize(e) {
+      this.isResizing = true;
+      e.preventDefault();
+    },
+    
+    handleResize(e) {
+      if (!this.isResizing) return;
+      
+      // Calcular el nuevo ancho basado en la posición del cursor
+      const newWidth = e.clientX;
+      
+      // Establecer límites mínimo y máximo
+      if (newWidth >= 200 && newWidth <= window.innerWidth / 2) {
+        this.sidebarWidth = newWidth;
+        document.documentElement.style.setProperty('--sidebar-width', `${newWidth}px`);
+      }
+    },
+    
+    stopResize() {
+      this.isResizing = false;
     }
   }
 };
 </script>
 
+<style>
+/* Variable CSS para el ancho del sidebar */
+:root {
+  --sidebar-width: 250px;
+  --sidebar-min-width: 40px;
+  --header-height: 50px;
+}
+</style>
+
 <style scoped>
 .sidebar-container {
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  width: var(--sidebar-width);
   height: 100%;
+  transition: width 0.3s ease;
+  background-color: #f5f5f5;
+  border-right: 1px solid #ddd;
+  z-index: 100;
+}
+
+.sidebar-container.minimized {
+  width: var(--sidebar-min-width);
+  overflow: visible; /* Cambiado a visible para que el botón sea accesible */
 }
 
 .chat-section {
   display: flex;
   flex-direction: column;
-  max-width: calc(100vw / 3);
+  height: 100%;
   width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
   background-color: #f9f9f9;
   overflow: hidden;
-}
-
-.chat-section.minimized {
-  height: 40px;
 }
 
 .chat-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 10px 15px;
   background-color: #2c3e50;
   color: white;
+  height: var(--header-height);
+  position: relative;
+  z-index: 15;
+}
+
+.chat-header h3 {
+  margin: 0;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.toggle-button {
+  background-color: #3070d0; /* Color distintivo */
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 5px 8px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.toggle-button:hover {
+  background-color: #0056b3;
+}
+
+/* Modificamos el estilo cuando está minimizado */
+.sidebar-container.minimized .toggle-button {
+  position: absolute;
+  right: -30px; /* Ajustar para que salga del contenedor minimizado */
+  top: 10px;
+  z-index: 20;
+}
+
+.sidebar-container.minimized .chat-header {
+  visibility: hidden;
+  height: 0;
+  padding: 0;
+}
+.sidebar-container.minimized .chat-header h3 {
+  display: none; /* Ocultamos el título cuando está minimizado */
 }
 
 .messages {
   flex: 1;
   overflow-y: auto;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-  max-height: 400px; /* Altura máxima para evitar que ocupe toda la pantalla */
+  padding: 15px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
 }
 
 .message {
-  margin-bottom: 10px;
-  padding: 8px 12px;
+  margin-bottom: 12px;
+  padding: 10px 14px;
   border-radius: 8px;
+  max-width: 85%;
   word-wrap: break-word;
-  max-width: 100%;
-  background-color: #fff;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .message-sender {
@@ -271,28 +356,34 @@ export default {
 
 .input-group {
   display: flex;
-  padding: 10px;
+  padding: 12px;
   background-color: #fff;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #eaeaea;
 }
 
 .chat-input {
   flex: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
   font-size: 14px;
+  outline: none;
+}
+
+.chat-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
 .send-button {
-  margin-left: 10px;
-  padding: 10px 15px;
+  margin-left: 8px;
+  padding: 8px 16px;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   background-color: #007bff;
   color: white;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 500;
   transition: background-color 0.2s;
 }
 
@@ -326,8 +417,65 @@ export default {
   margin-right: 10px;
 }
 
+/* Manejador de redimensionamiento */
+.resize-handle {
+  position: absolute;
+  top: 0;
+  right: -5px;
+  width: 10px;
+  height: 100%;
+  cursor: ew-resize;
+  z-index: 10;
+}
+
+.resize-handle:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+}
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .sidebar-container {
+    width: 100%;
+    max-width: none;
+  }
+  
+  .message {
+    max-width: 90%;
+  }
+  
+  .sidebar-container.minimized {
+  width: 10px; /* Reducir el ancho a una pequeña solapa visible */
+  overflow: visible; /* Importante para que el botón sea visible fuera del contenedor */
+  background-color: #2c3e50; /* Color oscuro para la solapa, igual que el header */
+}
+
+.sidebar-container.minimized .chat-section {
+  visibility: hidden; /* Oculta el contenido pero mantiene el espacio */
+  width: 0;
+}
+  
+.sidebar-container.minimized .toggle-button {
+  position: absolute;
+  right: -30px; 
+  top: 10px;
+  visibility: visible; /* Asegura que el botón sea visible */
+  z-index: 1000; /* Asegura que esté por encima de todo */
+  background-color: #2c3e50; /* Color que coincide con el tema */
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 4px 4px 0; /* Redondea solo los bordes derechos */
+  border: 1px solid #3070d0; /* Borde para mejor visibilidad */
+  border-left: none; /* Sin borde a la izquierda para que se conecte con la solapa */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Sombra para destacarlo */
+}
+
 }
 </style>

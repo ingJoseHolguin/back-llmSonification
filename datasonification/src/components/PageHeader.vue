@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <div class="header-content">
-      <span class="header-text">Sonificación Estudio</span>
+      <span class="header-text">Harmony Data Sonification assitent</span>
       
     </div>
   </header>
