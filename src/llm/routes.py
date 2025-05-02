@@ -33,14 +33,8 @@ documents = []
 embed_model = None
 index = None
 
-# Ruta principal para el chatbot
-@llm.route('/', methods=['GET'])  
-def home():
-    print("llM en linea")
-    return jsonify(message="llM en linea")
-
-@llm.route('/loadDocuments')
-def loadDocuments():
+# Función para cargar documentos
+def load_documents():
     global documents
     try:
         # Ajustar la ruta a la ubicación correcta de tus documentos
@@ -51,24 +45,86 @@ def loadDocuments():
         
         documents = SimpleDirectoryReader(doc_path).load_data()
         logger.info(f"Loaded {len(documents)} documents")
-        return jsonify({'Documents': f'Documents loaded: {len(documents)}',
-                       'message': 'OK'}), 201
+        return True
     except Exception as e:
         logger.error(f"Error loading documents: {str(e)}")
-        return jsonify({'message': f'Error: {str(e)}'}), 500
+        return False
 
-@llm.route('/loadModel')
-def loadModel():
-    global embed_model, index
+# Función para cargar modelo
+def load_model():
+    global embed_model
     try:
         embed_model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
         Settings.embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/all-MiniLM-L6-v2")
-        Settings.llm = Ollama(model="qwen2.5:14b", request_timeout=360.0) #llama3.2:1b #deepseek-r1:7b #deepseek-r1:1.5b #deepseek-coder:6.7b llama3.2:1b
+        Settings.llm = Ollama(model="qwen2.5:14b", request_timeout=360.0)
         logger.info("Model loaded successfully")
-        return jsonify({'message': 'OK'}), 201
+        return True
     except Exception as e:
         logger.error(f"Error loading model: {str(e)}")
-        return jsonify({'message': f'Error: {str(e)}'}), 500
+        return False
+
+# Función para crear índice
+def create_index():
+    global index, documents
+    try:
+        if documents and len(documents) > 0:
+            index = VectorStoreIndex.from_documents(documents)
+            logger.info("Index created successfully")
+            return True
+        else:
+            logger.warning("No documents loaded, cannot create index")
+            return False
+    except Exception as e:
+        logger.error(f"Error creating index: {str(e)}")
+        return False
+
+# Función de inicialización para cargar todo al inicio
+def init_app():
+    logger.info("Starting initialization...")
+    doc_loaded = load_documents()
+    model_loaded = load_model()
+    index_created = False
+    
+    if doc_loaded and model_loaded:
+        index_created = create_index()
+    
+    status = {
+        "documents_loaded": doc_loaded,
+        "model_loaded": model_loaded,
+        "index_created": index_created
+    }
+    
+    logger.info(f"Initialization status: {status}")
+    return status
+
+# Inicializar al importar el blueprint
+init_status = init_app()
+
+# Ruta principal para el chatbot
+@llm.route('/', methods=['GET'])  
+def home():
+    global init_status
+    print("llM en linea")
+    return jsonify(message="llM en linea", initialization_status=init_status)
+
+# Mantenemos las rutas por separado para permitir recargas manuales si es necesario
+@llm.route('/loadDocuments')
+def loadDocuments():
+    success = load_documents()
+    if success:
+        create_index()  # Recrear el índice si los documentos cambian
+        return jsonify({'Documents': f'Documents loaded: {len(documents)}',
+                       'message': 'OK'}), 201
+    else:
+        return jsonify({'message': 'Error loading documents'}), 500
+
+@llm.route('/loadModel')
+def loadModel():
+    success = load_model()
+    if success:
+        return jsonify({'message': 'OK'}), 201
+    else:
+        return jsonify({'message': 'Error loading model'}), 500
 
 def extract_config_suggestions(response_text, current_config):
     """
@@ -180,30 +236,13 @@ def chat():
         
         # Verificar si se han cargado los documentos y el modelo
         global documents, index, embed_model
-        if not documents:
-            try:
-                # Llamar a loadDocuments para cargar los documentos
-                loadDocuments()
-            except Exception as e:
-                logger.error(f"Error al cargar documentos: {str(e)}")
+        if not documents or index is None or embed_model is None:
+            logger.warning("Resources not loaded, trying to initialize again...")
+            init_status = init_app()
+            
+            if not init_status["documents_loaded"] or not init_status["model_loaded"] or not init_status["index_created"]:
                 return jsonify({
-                    'botResponse': 'Error al cargar documentos. Por favor contacta al administrador.',
-                    'suggestedConfig': None
-                }), 500
-        
-        if index is None:
-            try:
-                # Llamar a loadModel para inicializar el modelo
-                if embed_model is None:
-                    loadModel()
-                
-                # Crear el índice
-                index = VectorStoreIndex.from_documents(documents)
-                logger.info("Índice creado con éxito")
-            except Exception as e:
-                logger.error(f"Error al inicializar el modelo o crear el índice: {str(e)}")
-                return jsonify({
-                    'botResponse': 'Error al inicializar el modelo de IA. Por favor contacta al administrador.',
+                    'botResponse': 'Error al inicializar recursos. Por favor contacta al administrador.',
                     'suggestedConfig': None
                 }), 500
         
@@ -222,7 +261,7 @@ def chat():
         3. Solo puedes resolver problemas relacionados con la sonificación de datos.
         4. Puedes modificar o proponer nuevos valores para los parámetros en "current_config" si mejora la calidad de la sonificación.
         5. Si necesitas más información para dar una recomendación adecuada, formula una pregunta clara y específica al usuario.
-        6. si hiciste cambios en la sugerencias explica por que las hiciste
+        6. si hiciste cambios en la sugerencias explica que configuraciones cambiaste y desglosa que hace cada cambio. 
         7. La respuesta debe estar en el siguiente formato JSON, sin ninguna explicación adicional:
 
         {{
@@ -232,22 +271,19 @@ def chat():
 
         """
         
-        
         # Utilizar el índice para hacer la consulta
         query_engine = index.as_query_engine()
-        print('query_engine_' + str(query_engine) )
+        print('query_engine_' + str(query_engine))
         response = query_engine.query(formatted_prompt)
         
         # Convertir la respuesta a string
         response_str = str(response)
 
-        print("Resouesta del LLM: >>>>>>>>>>>>>>>>>>>>>>>", response_str)
+        print("Respuesta del LLM: >>>>>>>>>>>>>>>>>>>>>>>", response_str)
         
         # Intentar extraer sugerencias de configuración de la respuesta
         suggested_config = extract_config_suggestions(response_str, current_config)
         
-        
-
         # Preparar la respuesta para el frontend
         return jsonify({
             'botResponse': response_str,
@@ -260,4 +296,3 @@ def chat():
             'botResponse': f'Ha ocurrido un error: {str(e)}',
             'suggestedConfig': None
         }), 500
-    

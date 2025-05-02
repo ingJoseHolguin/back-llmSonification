@@ -19,8 +19,17 @@
         >
           <strong>{{ message.sender }}:</strong> {{ message.text }}
         </div>
-        <div v-if="isLoading" class="loading-indicator">
-          <span>Cargando...</span>
+        
+        <!-- Improved Loading Animation -->
+        <div v-if="isLoading" class="loading-message">
+          <div class="bot-avatar">
+            <div class="bot-icon">🤖</div>
+          </div>
+          <div class="typing-indicator">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
       </div>
 
@@ -156,7 +165,7 @@ export default {
       return { id: Date.now(), sender, text };
     },
     async sendMessage() {
-      if (this.newMessage.trim() === '' || this.isLoading || !this.serverOnline) return;
+      if (this.newMessage.trim() === '' || !this.serverOnline) return;
 
       const userMessage = this.createMessage('Usuario', this.newMessage);
       this.messages.push(userMessage);
@@ -164,101 +173,123 @@ export default {
       this.newMessage = '';
       this.scrollToBottom();
 
+      // Activar animación de carga justo antes de iniciar la comunicación
       this.isLoading = true;
-      emitter.emit('request-config');
+      this.scrollToBottom(); // Asegurar que la animación sea visible
       this.pendingMessage = messageText;
+      
+      // Solicitar la configuración para procesar el mensaje
+      emitter.emit('request-config');
     },
     
     async processPendingMessage() {
-      if (!this.currentConfig) return;
-      
-      const messageText = this.pendingMessage || "";
-      this.pendingMessage = null;
-      
-      try {
-        // Verificar la conexión con el servidor antes de enviar el mensaje
-        await this.checkServerStatus();
-        
-        if (!this.serverOnline) {
-          throw new Error('El servidor LLM no está disponible');
-        }
-        
-        // Verificar que messageText no sea nulo o indefinido
-        if (!messageText) {
-          console.error('No hay mensaje para enviar');
-          this.isLoading = false;
-          return;
-        }
-        
-        // Enviar mensaje y configuración actual al backend
-        const response = await axios.post('http://127.0.0.1:5000/llm/chat', {
-          message: messageText,
-          config: this.currentConfig
-        });
+  if (!this.currentConfig) return;
+  
+  const messageText = this.pendingMessage || "";
+  this.pendingMessage = null;
+  
+  try {
+    // Verificar la conexión con el servidor antes de enviar el mensaje
+    await this.checkServerStatus();
+    
+    if (!this.serverOnline) {
+      throw new Error('El servidor LLM no está disponible');
+    }
+    
+    // Verificar que messageText no sea nulo o indefinido
+    if (!messageText) {
+      console.error('No hay mensaje para enviar');
+      return;
+    }
+    
+    // IMPORTANTE: Asegurarse de que isLoading sigue siendo true
+    this.isLoading = true;
+    
+    console.log('Enviando mensaje al servidor...');
+    // Enviar mensaje y configuración actual al backend
+    const response = await axios.post('http://127.0.0.1:5000/llm/chat', {
+      message: messageText,
+      config: this.currentConfig
+    });
 
-        console.log('Respuesta recibida:', response.data);
+    console.log('Respuesta recibida:', response.data);
 
-        // Revisar si botResponse es un string que contiene JSON
-        let botResponseText = response.data.botResponse;
-        let suggestedConfig = null;
-        try {
-          // Intentar parsear por si es un string JSON
-          const parsedResponse = JSON.parse(botResponseText);
-          if (parsedResponse && typeof parsedResponse.botResponse === 'string') {
-            botResponseText = parsedResponse.botResponse;
-            suggestedConfig = parsedResponse.suggestedConfig || null;
-          }
-        } catch (e) {
-          // Si falla el parsing, usar el string original
-          console.log('botResponse no es JSON o no se pudo parsear:', e);
-        }
-        
-        // Mostrar la respuesta del bot
-        this.messages.push(this.createMessage('Bot', botResponseText));
-        
-        // Si hay una configuración sugerida y es diferente de la actual, aplicarla
-        if (suggestedConfig) {
-          console.log('Configuración sugerida recibida:', suggestedConfig);
-          
-          if (!this.isConfigEqual(this.currentConfig, suggestedConfig)) {
-            // Informar al componente principal que hay una nueva configuración
-            emitter.emit('update-config', suggestedConfig);
-            
-            // También actualizar nuestra copia local
-            this.currentConfig = suggestedConfig;
-          }
-        }
-      } catch (error) {
-        console.error('Error al comunicarse con el backend:', error);
-        
-        // Mensaje de error más detallado para ayudar en la depuración
-        let errorMessage = 'Error al procesar tu solicitud.';
-        
-        if (error.response) {
-          // Error de respuesta del servidor
-          errorMessage += ` El servidor respondió con código ${error.response.status}.`;
-          
-          // Si el servidor responde con código 400, actualizar el estado a offline
-          if (error.response.status === 400) {
-            this.serverOnline = false;
-            errorMessage += ' El servidor está offline.';
-          }
-        } else if (error.request) {
-          // No se recibió respuesta
-          errorMessage += ' No se recibió respuesta del servidor.';
-          this.serverOnline = false;
-        } else {
-          // Error al configurar la solicitud
-          errorMessage += ` Error: ${error.message}`;
-        }
-        
-        this.messages.push(this.createMessage('Bot', errorMessage));
-      } finally {
-        // Desactivar indicador de carga
-        this.isLoading = false;
-        this.scrollToBottom();
+    // Revisar si botResponse es un string que contiene JSON
+    let botResponseText = response.data.botResponse;
+    let suggestedConfig = null;
+    try {
+      // Intentar parsear por si es un string JSON
+      const parsedResponse = JSON.parse(botResponseText);
+      if (parsedResponse && typeof parsedResponse.botResponse === 'string') {
+        botResponseText = parsedResponse.botResponse;
+        suggestedConfig = parsedResponse.suggestedConfig || null;
       }
-    },
+    } catch (e) {
+      // Si falla el parsing, usar el string original
+      console.log('botResponse no es JSON o no se pudo parsear:', e);
+    }
+    
+    // CRÍTICO: Crear el mensaje pero NO desactivar la animación todavía
+    // Mantendremos isLoading = true hasta DESPUÉS de renderizar la respuesta
+    this.messages.push(this.createMessage('Bot', botResponseText));
+    
+    // Si hay una configuración sugerida y es diferente de la actual, aplicarla
+    if (suggestedConfig) {
+      console.log('Configuración sugerida recibida:', suggestedConfig);
+      
+      if (!this.isConfigEqual(this.currentConfig, suggestedConfig)) {
+        // Informar al componente principal que hay una nueva configuración
+        emitter.emit('update-config', suggestedConfig);
+        
+        // También actualizar nuestra copia local
+        this.currentConfig = suggestedConfig;
+      }
+    }
+    
+    // Esperar a que Vue actualice el DOM con el nuevo mensaje
+    await this.$nextTick();
+    this.isLoading = false;
+    
+    // Hacer scroll para mostrar el nuevo mensaje ANTES de quitar la animación
+    this.scrollToBottom();
+    
+    // Esperar un tiempo adicional para asegurar que el mensaje sea visible
+    // Este delay es importante para que el usuario pueda ver la transición
+    
+    
+    
+  } catch (error) {
+    console.error('Error al comunicarse con el backend:', error);
+    
+    // Mensaje de error más detallado para ayudar en la depuración
+    let errorMessage = 'Error al procesar tu solicitud.';
+    
+    if (error.response) {
+      // Error de respuesta del servidor
+      errorMessage += ` El servidor respondió con código ${error.response.status}.`;
+      
+      // Si el servidor responde con código 400, actualizar el estado a offline
+      if (error.response.status === 400) {
+        this.serverOnline = false;
+        errorMessage += ' El servidor está offline.';
+      }
+    } else if (error.request) {
+      // No se recibió respuesta
+      errorMessage += ' No se recibió respuesta del servidor.';
+      this.serverOnline = false;
+    } else {
+      // Error al configurar la solicitud
+      errorMessage += ` Error: ${error.message}`;
+    }
+    
+    this.messages.push(this.createMessage('Bot', errorMessage));
+    await this.$nextTick(); // Esperar a que Vue actualice el DOM con el mensaje de error
+    this.scrollToBottom();
+    
+    // Esperar un tiempo adicional para asegurar que el mensaje de error sea visible
+    await new Promise(resolve => setTimeout(resolve, 1000));
+  }
+},
     
     scrollToBottom() {
       this.$nextTick(() => {
@@ -435,6 +466,79 @@ export default {
   align-self: flex-start;
 }
 
+/* Estilos para la animación de carga mejorada */
+.loading-message {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  max-width: 85%;
+  align-self: flex-start;
+  background-color: #f0f9eb;
+  border-left: 3px solid #28a745;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.bot-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #28a745;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.bot-icon {
+  font-size: 16px;
+  color: white;
+}
+
+.typing-indicator {
+  display: flex;
+  align-items: center;
+}
+
+.typing-indicator span {
+  height: 8px;
+  width: 8px;
+  margin: 0 2px;
+  background-color: #28a745;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.4;
+}
+
+.typing-indicator span:nth-child(1) {
+  animation: pulse 1s infinite 0s;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation: pulse 1s infinite 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation: pulse 1s infinite 0.4s;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+}
+
 .input-group {
   display: flex;
   padding: 12px;
@@ -482,7 +586,8 @@ export default {
   cursor: not-allowed;
 }
 
-.loading-indicator {
+/* Eliminamos el antiguo estilo del loading indicator ya que ahora usamos uno nuevo */
+/* .loading-indicator {
   text-align: center;
   color: #666;
   padding: 15px 0;
@@ -501,7 +606,7 @@ export default {
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin-right: 10px;
-}
+} */
 
 /* Manejador de redimensionamiento */
 .resize-handle {
@@ -535,33 +640,32 @@ export default {
   }
   
   .sidebar-container.minimized {
-  width: 10px; /* Reducir el ancho a una pequeña solapa visible */
-  overflow: visible; /* Importante para que el botón sea visible fuera del contenedor */
-  background-color: #2c3e50; /* Color oscuro para la solapa, igual que el header */
-}
+    width: 10px; /* Reducir el ancho a una pequeña solapa visible */
+    overflow: visible; /* Importante para que el botón sea visible fuera del contenedor */
+    background-color: #2c3e50; /* Color oscuro para la solapa, igual que el header */
+  }
 
-.sidebar-container.minimized .chat-section {
-  visibility: hidden; /* Oculta el contenido pero mantiene el espacio */
-  width: 0;
-}
-  
-.sidebar-container.minimized .toggle-button {
-  position: absolute;
-  right: -30px; 
-  top: 10px;
-  visibility: visible; /* Asegura que el botón sea visible */
-  z-index: 1000; /* Asegura que esté por encima de todo */
-  background-color: #2c3e50; /* Color que coincide con el tema */
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0 4px 4px 0; /* Redondea solo los bordes derechos */
-  border: 1px solid #3070d0; /* Borde para mejor visibilidad */
-  border-left: none; /* Sin borde a la izquierda para que se conecte con la solapa */
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Sombra para destacarlo */
-}
-
+  .sidebar-container.minimized .chat-section {
+    visibility: hidden; /* Oculta el contenido pero mantiene el espacio */
+    width: 0;
+  }
+    
+  .sidebar-container.minimized .toggle-button {
+    position: absolute;
+    right: -30px; 
+    top: 10px;
+    visibility: visible; /* Asegura que el botón sea visible */
+    z-index: 1000; /* Asegura que esté por encima de todo */
+    background-color: #2c3e50; /* Color que coincide con el tema */
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 4px 4px 0; /* Redondea solo los bordes derechos */
+    border: 1px solid #3070d0; /* Borde para mejor visibilidad */
+    border-left: none; /* Sin borde a la izquierda para que se conecte con la solapa */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Sombra para destacarlo */
+  }
 }
 </style>

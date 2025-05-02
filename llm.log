@@ -891,3 +891,125 @@
 2025-05-02 03:47:55,013 - llm.routes - INFO - Loaded 22 documents
 2025-05-02 03:50:28,449 - llm.routes - INFO - Loaded 22 documents
 2025-05-02 03:52:50,860 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 03:56:53,786 - llm.routes - INFO - Mensaje recibido: hola me puedes ayuidar a sonifacar estos datos de suicicios de xalapa quiero que sean claros, explicame como lo hiciste?
+2025-05-02 03:56:53,786 - llm.routes - INFO - Configuración actual: {"activeParams": [], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 03:56:58,232 - llm.routes - INFO - Model loaded successfully
+2025-05-02 03:56:59,676 - llm.routes - INFO - Índice creado con éxito
+2025-05-02 03:57:51,008 - llm.routes - INFO - Mensaje recibido: hola me puedes ayuidar a sonifacar estos datos de suicicios de xalapa quiero que sean claros, explicame como lo hiciste?
+2025-05-02 03:57:51,008 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.1, "max": 1}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 03:58:33,098 - llm.routes - INFO - Mensaje recibido: puedes activar el tremolo?
+2025-05-02 03:58:33,099 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume"], "scale": "major", "instrument": "saxophone", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.3, "max": 0.9}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 04:05:59,557 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 04:09:05,083 - llm.routes - INFO - Mensaje recibido: hola
+2025-05-02 04:09:05,084 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 04:16:21,403 - llm.routes - INFO - Starting initialization...
+2025-05-02 04:16:22,488 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 04:16:27,554 - llm.routes - INFO - Model loaded successfully
+2025-05-02 04:16:28,934 - llm.routes - INFO - Index created successfully
+2025-05-02 04:16:28,934 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-02 04:16:39,933 - llm.routes - INFO - Starting initialization...
+2025-05-02 04:16:41,025 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 04:16:45,762 - llm.routes - INFO - Model loaded successfully
+2025-05-02 04:16:47,167 - llm.routes - INFO - Index created successfully
+2025-05-02 04:16:47,167 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-02 04:17:19,855 - llm.routes - INFO - Mensaje recibido: hola
+2025-05-02 04:17:19,855 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 04:18:04,929 - llm.routes - INFO - Mensaje recibido: me ayudas poder soniifcarlo siguientes datos para niños de primaria 
+2025-05-02 04:18:04,929 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 04:18:42,732 - llm.routes - INFO - Mensaje recibido: me ayudas a sonificar esto para niños de primaria
+2025-05-02 04:18:42,732 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c3", "max": "c6"}, "volume": {"min": 0.7, "max": 1}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 04:22:47,627 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 04:22:49,106 - llm.routes - INFO - Index created successfully
+2025-05-02 04:23:30,532 - llm.routes - INFO - Mensaje recibido: me puedes ayudar a sonificar los datos, para niños de primaria?
+2025-05-02 04:23:30,532 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 04:24:25,289 - llm.routes - INFO - Starting initialization...
+2025-05-02 04:24:26,385 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 04:24:31,833 - llm.routes - INFO - Model loaded successfully
+2025-05-02 04:24:33,333 - llm.routes - INFO - Index created successfully
+2025-05-02 04:24:33,333 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-02 04:24:45,189 - llm.routes - INFO - Starting initialization...
+2025-05-02 04:24:46,329 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 04:24:51,712 - llm.routes - INFO - Model loaded successfully
+2025-05-02 04:24:53,085 - llm.routes - INFO - Index created successfully
+2025-05-02 04:24:53,085 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-02 04:25:36,227 - llm.routes - INFO - Mensaje recibido: vale
+2025-05-02 04:25:36,227 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "noteDuration"], "scale": "major", "instrument": "flute", "duration": 4500, "paramRanges": {"pitch": {"min": "c3", "max": "f6"}, "noteDuration": {"min": 100, "max": 800}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 04:26:37,053 - llm.routes - INFO - Mensaje recibido: quiero sonificar los datos para niños de primaria
+2025-05-02 04:26:37,053 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "noteDuration", "volume"], "scale": "major", "instrument": "flute", "duration": 4500, "paramRanges": {"pitch": {"min": "c3", "max": "f6"}, "noteDuration": {"min": 100, "max": 800}, "volume": {"min": 0.2, "max": 1}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 04:27:03,456 - llm.routes - INFO - Mensaje recibido: el vector de datos lo puedes hacer para que para que sea un valor x en forma de exponencial, el vector data modificalo para que lo cambies a los valores en x de una funcion exponencial
+2025-05-02 04:27:03,456 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "noteDuration"], "scale": "major", "instrument": "flute", "duration": 4500, "paramRanges": {"pitch": {"min": "c3", "max": "f6"}, "noteDuration": {"min": 100, "max": 800}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 04:27:51,063 - llm.routes - INFO - Mensaje recibido: creo que no me entiendes
+2025-05-02 04:27:51,064 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "noteDuration"], "scale": "major", "instrument": "flute", "duration": 4500, "paramRanges": {"pitch": {"min": "c3", "max": "f6"}, "noteDuration": {"min": 100, "max": 800}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 04:33:02,885 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 04:33:04,432 - llm.routes - INFO - Index created successfully
+2025-05-02 04:33:48,445 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 04:33:49,967 - llm.routes - INFO - Index created successfully
+2025-05-02 04:34:49,726 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 04:34:51,271 - llm.routes - INFO - Index created successfully
+2025-05-02 04:35:41,952 - llm.routes - INFO - Mensaje recibido: hola
+2025-05-02 04:35:41,953 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 04:35:51,213 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 04:35:52,776 - llm.routes - INFO - Index created successfully
+2025-05-02 04:36:22,623 - llm.routes - INFO - Mensaje recibido: me ayudas a sonificar porfavor?
+2025-05-02 04:36:22,623 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 04:37:05,970 - llm.routes - INFO - Mensaje recibido: me ayudas a sonficar datos de calemntamiento global 
+2025-05-02 04:37:05,971 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "noteDuration"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "noteDuration": {"min": 30, "max": 1000}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 04:40:54,494 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 04:40:56,032 - llm.routes - INFO - Index created successfully
+2025-05-02 04:41:01,601 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 04:41:03,329 - llm.routes - INFO - Index created successfully
+2025-05-02 04:41:07,851 - llm.routes - INFO - Mensaje recibido: me ayudas a sonificar?
+2025-05-02 04:41:07,851 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "noteDuration", "volume"], "scale": "major", "instrument": "piano", "duration": 5000, "paramRanges": {"pitch": {"min": "g4", "max": "f6"}, "noteDuration": {"min": 30, "max": 1000}, "volume": {"min": 0.2, "max": 1}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 04:41:36,612 - llm.routes - INFO - Mensaje recibido: que es la sonificacion?
+2025-05-02 04:41:36,612 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "noteDuration", "volume"], "scale": "major", "instrument": "piano", "duration": 5000, "paramRanges": {"pitch": {"min": "g4", "max": "f6"}, "noteDuration": {"min": 30, "max": 1000}, "volume": {"min": 0.2, "max": 1}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 04:42:02,366 - llm.routes - INFO - Mensaje recibido: para que sirve esta aplicacion?
+2025-05-02 04:42:02,366 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "noteDuration", "volume"], "scale": "major", "instrument": "piano", "duration": 5000, "paramRanges": {"pitch": {"min": "g4", "max": "f6"}, "noteDuration": {"min": 30, "max": 1000}, "volume": {"min": 0.2, "max": 1}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 04:43:42,649 - llm.routes - INFO - Mensaje recibido: me recomiendas uan escala en especial?
+2025-05-02 04:43:42,649 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "noteDuration", "volume"], "scale": "major", "instrument": "piano", "duration": 5000, "paramRanges": {"pitch": {"min": "g4", "max": "f6"}, "noteDuration": {"min": 100, "max": 800}, "volume": {"min": 0.2, "max": 1}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 04:44:36,119 - llm.routes - INFO - Mensaje recibido: por que una menor?
+2025-05-02 04:44:36,119 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "noteDuration", "volume"], "scale": "minor", "instrument": "piano", "duration": 5000, "paramRanges": {"pitch": {"min": "g4", "max": "f6"}, "noteDuration": {"min": 100, "max": 800}, "volume": {"min": 0.2, "max": 1}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 04:47:50,325 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 04:47:52,031 - llm.routes - INFO - Index created successfully
+2025-05-02 04:48:18,229 - llm.routes - INFO - Mensaje recibido: quiero sonificar estos datos para una udencia donde se sienta que se pasa de un lugar a otro y que sea para niños de primaria 
+2025-05-02 04:48:18,229 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "noteDuration", "volume"], "scale": "minor", "instrument": "piano", "duration": 5000, "paramRanges": {"pitch": {"min": "g4", "max": "f6"}, "noteDuration": {"min": 100, "max": 800}, "volume": {"min": 0.2, "max": 1}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 04:50:07,597 - llm.routes - INFO - Starting initialization...
+2025-05-02 04:50:08,660 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 04:50:14,280 - llm.routes - INFO - Model loaded successfully
+2025-05-02 04:50:15,940 - llm.routes - INFO - Index created successfully
+2025-05-02 04:50:15,940 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-02 04:51:30,109 - llm.routes - INFO - Mensaje recibido: quieor sonificar los datos climaticos, para niños de primaria pero de la sencacion de tristesa y que se balla a un lugar a otro
+2025-05-02 04:51:30,109 - llm.routes - INFO - Configuración actual: {"activeParams": [], "scale": "major", "instrument": "piano", "duration": 5000, "paramRanges": {}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 04:53:06,142 - llm.routes - INFO - Mensaje recibido: explicame que hiciste?
+2025-05-02 04:53:06,142 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "noteDuration"], "scale": "major", "instrument": "piano", "duration": 5000, "paramRanges": {"pitch": {"min": "c2", "max": "g3"}, "volume": {"min": 0.1, "max": 0.7}, "noteDuration": {"min": 500, "max": 1000}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 04:53:57,903 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 04:53:59,381 - llm.routes - INFO - Index created successfully
+2025-05-02 04:54:52,726 - llm.routes - INFO - Mensaje recibido: quiero sonificar los datos, para niños de primaria que sea en un tono triste qye qye valla de un lugar a otro
+2025-05-02 04:54:52,726 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 04:56:22,274 - llm.routes - INFO - Mensaje recibido: como le hago para que se sienta que va de izquierda a derecha y que vibre
+2025-05-02 04:56:22,274 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume"], "scale": "minor", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.3, "max": 1}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 05:00:06,646 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 05:00:08,259 - llm.routes - INFO - Index created successfully
+2025-05-02 05:00:14,835 - llm.routes - INFO - Mensaje recibido: puedes quitar todas las configuraciones?
+2025-05-02 05:00:14,836 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "pan", "tremolo"], "scale": "minor", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.3, "max": 1}, "pan": {"min": -1, "max": 1}, "tremolo": {"min": 0, "max": 1}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 05:00:47,856 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 05:00:49,408 - llm.routes - INFO - Index created successfully
+2025-05-02 05:00:54,119 - llm.routes - INFO - Mensaje recibido: me ayudas a sonificar los datos?
+2025-05-02 05:00:54,119 - llm.routes - INFO - Configuración actual: {"activeParams": [], "scale": "minor", "instrument": "piano", "duration": 4500, "paramRanges": {}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 05:01:41,330 - llm.routes - INFO - Mensaje recibido: hola soy un usuarino no experto, quiero sonificar para niños de primaria, que sean tonos claros y tristes, pero que no sean tan tristes
+2025-05-02 05:01:41,330 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume"], "scale": "minor", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.1, "max": 1.2}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 05:02:41,108 - llm.routes - INFO - Mensaje recibido: quiero ahora que pase de un lado a otro pero se escuchen sonidos mas extraños otro instrumento mas llamativo
+2025-05-02 05:02:41,108 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "frequency"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.3, "max": 1}, "frequency": {"min": 80, "max": 1500}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 05:03:53,966 - llm.routes - INFO - Mensaje recibido: puedes hacer que sea mas larga la duracion?
+2025-05-02 05:03:53,968 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "frequency", "pan", "gapBetweenNotes"], "scale": "major", "instrument": "saxophone", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.3, "max": 1}, "frequency": {"min": 80, "max": 1500}, "pan": {"min": -1, "max": 1}, "gapBetweenNotes": {"min": 20, "max": 200}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 05:04:43,030 - llm.routes - INFO - Mensaje recibido: puedes hacer que la sonificacon duere 10 segundos?
+2025-05-02 05:04:43,030 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "frequency", "pan", "gapBetweenNotes"], "scale": "major", "instrument": "saxophone", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.3, "max": 1}, "frequency": {"min": 80, "max": 1500}, "pan": {"min": -1, "max": 1}, "gapBetweenNotes": {"min": 20, "max": 200}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 05:05:20,728 - llm.routes - INFO - Mensaje recibido: tienes el instrumento de timbales?
+2025-05-02 05:05:20,729 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "frequency", "pan", "gapBetweenNotes"], "scale": "major", "instrument": "saxophone", "duration": 10000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.3, "max": 1}, "frequency": {"min": 80, "max": 1500}, "pan": {"min": -1, "max": 1}, "gapBetweenNotes": {"min": 20, "max": 200}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 05:05:52,361 - llm.routes - INFO - Mensaje recibido: que instrumentos tienes?
+2025-05-02 05:05:52,363 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "frequency", "pan", "gapBetweenNotes"], "scale": "major", "instrument": "piano", "duration": 10000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.3, "max": 1}, "frequency": {"min": 80, "max": 1500}, "pan": {"min": -1, "max": 1}, "gapBetweenNotes": {"min": 20, "max": 200}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 05:06:19,982 - llm.routes - INFO - Mensaje recibido: tienes una flauta?
+2025-05-02 05:06:19,984 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "frequency", "pan", "gapBetweenNotes"], "scale": "major", "instrument": "piano", "duration": 10000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.3, "max": 1}, "frequency": {"min": 80, "max": 1500}, "pan": {"min": -1, "max": 1}, "gapBetweenNotes": {"min": 20, "max": 200}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 05:07:06,461 - llm.routes - INFO - Mensaje recibido: que es el instrumento cho?
+2025-05-02 05:07:06,461 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "frequency", "gapBetweenNotes", "pan"], "scale": "major", "instrument": "flute", "duration": 10000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.3, "max": 1}, "frequency": {"min": 80, "max": 1500}, "gapBetweenNotes": {"min": 20, "max": 200}, "pan": {"min": -1, "max": 1}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 05:07:34,036 - llm.routes - INFO - Mensaje recibido: puedesponer le intrumento chop?
+2025-05-02 05:07:34,037 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "frequency", "gapBetweenNotes", "pan"], "scale": "major", "instrument": "flute", "duration": 10000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.3, "max": 1}, "frequency": {"min": 80, "max": 1500}, "gapBetweenNotes": {"min": 20, "max": 200}, "pan": {"min": -1, "max": 1}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
