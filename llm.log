@@ -1013,3 +1013,21 @@
 2025-05-02 05:07:06,461 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "frequency", "gapBetweenNotes", "pan"], "scale": "major", "instrument": "flute", "duration": 10000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.3, "max": 1}, "frequency": {"min": 80, "max": 1500}, "gapBetweenNotes": {"min": 20, "max": 200}, "pan": {"min": -1, "max": 1}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
 2025-05-02 05:07:34,036 - llm.routes - INFO - Mensaje recibido: puedesponer le intrumento chop?
 2025-05-02 05:07:34,037 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "frequency", "gapBetweenNotes", "pan"], "scale": "major", "instrument": "flute", "duration": 10000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.3, "max": 1}, "frequency": {"min": 80, "max": 1500}, "gapBetweenNotes": {"min": 20, "max": 200}, "pan": {"min": -1, "max": 1}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 05:32:55,431 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 05:32:57,106 - llm.routes - INFO - Index created successfully
+2025-05-02 05:36:41,521 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 05:36:42,944 - llm.routes - INFO - Index created successfully
+2025-05-02 05:36:44,813 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 05:36:46,279 - llm.routes - INFO - Index created successfully
+2025-05-02 05:53:27,051 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 05:53:28,737 - llm.routes - INFO - Index created successfully
+2025-05-02 06:09:52,987 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 06:09:54,537 - llm.routes - INFO - Index created successfully
+2025-05-02 06:20:24,901 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 06:20:26,437 - llm.routes - INFO - Index created successfully
+2025-05-02 06:41:44,795 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 06:41:47,032 - llm.routes - INFO - Index created successfully
+2025-05-02 06:42:28,051 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 06:42:29,595 - llm.routes - INFO - Index created successfully
+2025-05-02 06:44:06,693 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 06:44:08,229 - llm.routes - INFO - Index created successfully

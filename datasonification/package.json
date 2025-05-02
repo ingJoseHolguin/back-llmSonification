@@ -16,6 +16,8 @@
     "core-js": "^3.8.3",
     "highcharts": "^12.1.2",
     "highcharts-vue": "^2.0.1",
+    "lamejs": "^1.2.1",
+    "midi-writer-js": "^3.1.1",
     "mitt": "^3.0.1",
     "papaparse": "^5.5.2",
     "speech-to-text": "^2.9.1",

@@ -18,7 +18,10 @@
         <div id="container" ref="chartContainer" class="chart-container"></div>
         
         <!-- MOVIDO: Botón de reproducción colocado aquí, justo después del gráfico -->
-        <button id="sonify" @click="toggleSonify">{{ isPlaying ? 'Detener' : 'Reproducir gráfico' }}</button>
+        <div class="playback-controls">
+          <button id="sonify" @click="toggleSonify">{{ isPlaying ? 'Detener' : 'Reproducir gráfico' }}</button>
+          <button id="export-midi" @click="exportMIDI">Exportar MIDI</button>
+        </div>
         
         <div id="controls">
           <!-- Panel de configuración organizado en pestañas -->
@@ -365,6 +368,47 @@ export default {
     }
   },
   methods: {
+    exportMIDI() {
+  if (!this.chart) {
+    console.error('El gráfico no está inicializado');
+    return;
+  }
+  
+  try {
+    // Verifica si podemos obtener acceso al objeto timeline directamente
+    const timeline = this.chart.sonification && this.chart.sonification.timeline;
+    
+    if (timeline) {
+      console.log('Timeline encontrado, intentando exportar');
+      // Intentar acceder al método de descarga MIDI con distintos nombres posibles
+      if (typeof timeline.downloadMIDI === 'function') {
+        timeline.downloadMIDI();
+      } else if (typeof timeline.exportMIDI === 'function') {
+        timeline.exportMIDI();
+      } else {
+        console.error('Método de exportación MIDI no disponible en el objeto timeline');
+        this.usarMetodoAlternativo();
+      }
+    } else {
+      console.log('No se encontró el objeto timeline, usando método alternativo');
+      this.usarMetodoAlternativo();
+    }
+  } catch (error) {
+    console.error('Error al exportar MIDI:', error);
+    this.usarMetodoAlternativo();
+  }
+},
+
+// Método alternativo cuando la exportación directa falla
+usarMetodoAlternativo() {
+  // Implementar la grabación de audio como alternativa
+  alert('La exportación MIDI directa no está disponible en esta versión de Highcharts. ¿Deseas exportar como audio WAV en su lugar?');
+  
+  // Si el usuario confirma, exportar audio
+  if (confirm('Presiona OK para exportar como audio WAV')) {
+    this.exportAudio();
+  }
+},
     // Método que expone la configuración actual para el chatbot
     getCurrentConfig() {
     // Asegúrate de que chart esté inicializado
@@ -1366,7 +1410,38 @@ label {
 .import-button:active {
   transform: translateY(1px);
 }
+#export-midi {
+  background-color: #25386f;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  min-height: 46px;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 12px 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  max-width: 250px;
+  margin: 20px auto 0;
+}
 
+#export-midi:hover {
+  background-color: #1a2a57;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.playback-controls {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+}
 
 </style>
 
