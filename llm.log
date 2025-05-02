@@ -767,3 +767,102 @@
 2025-04-24 11:35:20,828 - llm.routes - INFO - Configuración actual: {"activeParams": ["pan", "volume", "lowpass", "highpass"], "scale": "minor", "instrument": "piano", "duration": 5000, "paramRanges": {"pan": {"min": -1, "max": 1}, "volume": {"min": 0.3, "max": 1.1}, "lowpass": {"min": 100, "max": 4000}, "highpass": {"min": 1, "max": 4000}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
 2025-04-24 11:36:37,960 - llm.routes - INFO - Mensaje recibido: me puedes activar el tremolo?
 2025-04-24 11:36:37,960 - llm.routes - INFO - Configuración actual: {"activeParams": ["pan", "volume", "lowpass", "highpass"], "scale": "minor", "instrument": "piano", "duration": 5000, "paramRanges": {"pan": {"min": -1, "max": 1}, "volume": {"min": 0.3, "max": 1.1}, "lowpass": {"min": 100, "max": 4000}, "highpass": {"min": 1, "max": 4000}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-01 22:07:06,755 - llm.routes - INFO - Mensaje recibido: hola
+2025-05-01 22:07:06,776 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-01 22:07:08,073 - llm.routes - INFO - Loaded 22 documents
+2025-05-01 22:07:16,566 - llm.routes - INFO - Model loaded successfully
+2025-05-01 22:07:18,494 - llm.routes - INFO - Índice creado con éxito
+2025-05-01 22:07:23,065 - llm.routes - ERROR - Error en chat: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2025-05-01 22:07:30,768 - llm.routes - INFO - Mensaje recibido: que es esto?
+2025-05-01 22:07:30,768 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-01 22:07:34,859 - llm.routes - ERROR - Error en chat: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2025-05-01 22:07:52,435 - llm.routes - INFO - Mensaje recibido: que es esto?
+2025-05-01 22:07:52,436 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-01 22:29:13,796 - llm.routes - INFO - Mensaje recibido: que es esto?
+2025-05-01 22:29:13,798 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-01 22:29:47,098 - llm.routes - INFO - Mensaje recibido: me ayudas a sonificar los datos, 
+2025-05-01 22:29:47,098 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "frequency"], "scale": "minor", "instrument": "piano", "duration": 4200, "paramRanges": {"pitch": {"min": "c2", "max": "c5"}, "frequency": {"min": 64.3, "max": 1066.5}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]}
+2025-05-01 22:30:41,966 - llm.routes - INFO - Mensaje recibido: puedes desactivar la frecuencia?
+2025-05-01 22:30:41,966 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 5000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 3, 5, 8, 6, 4, 2]}
+2025-05-01 23:08:27,759 - llm.routes - INFO - Mensaje recibido: que hiciste?
+2025-05-01 23:08:27,760 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 5000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 3, 5, 8, 6, 4, 2]}
+2025-05-01 23:08:28,691 - llm.routes - INFO - Loaded 22 documents
+2025-05-01 23:08:33,532 - llm.routes - INFO - Model loaded successfully
+2025-05-01 23:08:35,182 - llm.routes - INFO - Índice creado con éxito
+2025-05-01 23:08:51,945 - llm.routes - WARNING - Error decodificando JSON: Invalid control character at: line 2 column 708 (char 709) - JSON: {
+    "botResponse": "En la secuencia de instrucciones propuesta, se ha modificado el rango de escala para centered con G4-F6 y se incluyó el parámetro 'pitch' en activeParams para mejorar la interpolación suave entre notas. También se ajustó el escala al 'major', lo que centra los tonos dentro del rango predictivo. Los cambios incluyen 'pan', 'gapBetweenNotes' y 'tremolo' para mejorar la visualización de las interpolateas.\n\nSuggestedConfig: {'activeParams': ['pitch', 'frequency', 'lowpass', 'highpass', 'volume', 'noteDuration', 'sartén', 'notaDuración', 'tomo', 'gapBetweenNotes', 'pan', 'panIntervalo', 'tempo', 'tremolo'], 'scale': 'major', 'instrument': 'piano', 'duration': 5000, 'paramRanges': {
+    'pitch': {'min': 'c2', 'max': 'c6'},
+    'frequency': {'min': 65.41, 'max': 1046.5},
+    'lowpass': {'min': 100, 'max': 4000},
+    'highpass': {'min': 1, 'max': 4000},
+    'noteDuration': {'min': 30, 'max': 1000},
+    'sartén': {'min': -1, 'max': 1},
+    'notaDuración': {'min': 40, 'max': 250},
+    'tomo': {'min': 40, 'max': 250},
+    'gapBetweenNotes': {'min': 40, 'max': 250},
+    'pan': {'min': -1, 'max': 1},
+    'panIntervalo': {'min': 1, 'max': 5},
+    'tempo': {'min': 60, 'max': 300},
+    'tremolo': {'min': 0, 'max': 1}
+  },
+  'data': [7, 5, 8, 4, 9, 2, 6, 3, 7, 5, 10, 1, 6, 2, 8, 4, 7, 3, 9, 5, 10, 2, 8, 3, 7, 4, 6, 5, 7]
+}}}
+2025-05-01 23:09:47,390 - llm.routes - INFO - Mensaje recibido: me ayudas a sonificar?
+2025-05-01 23:09:47,392 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 5000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 3, 5, 8, 6, 4, 2]}
+2025-05-01 23:10:52,870 - werkzeug - WARNING -  * Debugger is active!
+2025-05-01 23:10:52,893 - werkzeug - INFO -  * Debugger PIN: 897-902-129
+2025-05-01 23:11:33,594 - llm.routes - INFO - LLM en línea
+2025-05-01 23:11:33,595 - werkzeug - INFO - 127.0.0.1 - - [01/May/2025 23:11:33] "GET /llm/ HTTP/1.1" 200 -
+2025-05-01 23:11:33,598 - llm.routes - INFO - LLM en línea
+2025-05-01 23:11:33,599 - werkzeug - INFO - 127.0.0.1 - - [01/May/2025 23:11:33] "GET /llm/ HTTP/1.1" 200 -
+2025-05-01 23:11:43,641 - llm.routes - INFO - LLM en línea
+2025-05-01 23:11:43,642 - werkzeug - INFO - 127.0.0.1 - - [01/May/2025 23:11:43] "GET /llm/ HTTP/1.1" 200 -
+2025-05-01 23:11:43,646 - llm.routes - INFO - LLM en línea
+2025-05-01 23:11:43,649 - werkzeug - INFO - 127.0.0.1 - - [01/May/2025 23:11:43] "GET /llm/ HTTP/1.1" 200 -
+2025-05-01 23:12:03,082 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-01 23:12:03,083 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-01 23:12:03,084 - werkzeug - INFO -  * Restarting with stat
+2025-05-01 23:12:12,144 - werkzeug - WARNING -  * Debugger is active!
+2025-05-01 23:12:12,167 - werkzeug - INFO -  * Debugger PIN: 897-902-129
+2025-05-01 23:13:05,714 - llm.routes - INFO - LLM en línea
+2025-05-01 23:13:05,715 - werkzeug - INFO - 127.0.0.1 - - [01/May/2025 23:13:05] "GET /llm/ HTTP/1.1" 200 -
+2025-05-01 23:13:05,716 - llm.routes - INFO - LLM en línea
+2025-05-01 23:13:05,719 - werkzeug - INFO - 127.0.0.1 - - [01/May/2025 23:13:05] "GET /llm/ HTTP/1.1" 200 -
+2025-05-01 23:13:20,518 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Pepe\\Documents\\00000 Maestria\\tecnologia-Interactiva\\back-llmSonification\\src\\llm\\routes.py', reloading
+2025-05-01 23:13:21,107 - werkzeug - INFO -  * Restarting with stat
+2025-05-01 23:17:53,605 - llm.routes - INFO - Mensaje recibido: que es el tremolo?
+2025-05-01 23:17:53,605 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 5000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 3, 5, 8, 6, 4, 2]}
+2025-05-01 23:17:54,459 - llm.routes - INFO - Loaded 22 documents
+2025-05-01 23:17:58,634 - llm.routes - INFO - Model loaded successfully
+2025-05-01 23:18:00,500 - llm.routes - INFO - Índice creado con éxito
+2025-05-01 23:18:09,072 - llm.routes - WARNING - Error decodificando JSON: Expecting ',' delimiter: line 3 column 5 (char 283) - JSON: {
+    "botResponse": "En el caso de un tremolo, la secuencia se modifica para incluir el efecto del vibrato o swaying del pitch. Para implementarlo, necesitamos modificar las configuraciones para incluir parámetros como minTremolo y maxTremolo para definir cómo varía el pitch."
+    "suggestedConfig": {
+        "activeParams": ["pitch", "frequency"],
+        "scale": "major",
+        "instrument": "piano",
+        "duration": 5000,
+        "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "frequency": {"min": 65.41, "max": 1046.5}},
+        "data": [1, 3, 5, 8, 6, 4, 2]
+    }
+}
+2025-05-02 02:21:40,028 - werkzeug - INFO -  * Restarting with stat
+2025-05-02 02:21:52,793 - llm.routes - INFO - Mensaje recibido: pueds activar el tremolo?
+2025-05-02 02:21:52,793 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 5000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 3, 5, 8, 6, 4, 2]}
+2025-05-02 02:21:53,767 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 02:22:00,024 - llm.routes - INFO - Model loaded successfully
+2025-05-02 02:22:01,494 - llm.routes - INFO - Índice creado con éxito
+2025-05-02 02:22:12,149 - llm.routes - INFO - Mensaje recibido: hola
+2025-05-02 02:22:12,149 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 5000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 3, 5, 8, 6, 4, 2]}
+2025-05-02 02:22:46,202 - llm.routes - INFO - Mensaje recibido: que es las sonificacion?
+2025-05-02 02:22:46,202 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 5000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 3, 5, 8, 6, 4, 2]}
+2025-05-02 02:23:18,120 - llm.routes - INFO - Mensaje recibido: que es la sonificacion?
+2025-05-02 02:23:18,120 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 5000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 3, 5, 8, 6, 4, 2]}
+2025-05-02 02:24:01,546 - llm.routes - INFO - Mensaje recibido: puedes activar el tremolo?
+2025-05-02 02:24:01,546 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 5000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 3, 5, 8, 6, 4, 2]}
+2025-05-02 02:39:48,795 - llm.routes - INFO - Mensaje recibido: hola
+2025-05-02 02:39:48,796 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 02:39:49,765 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 02:39:56,866 - llm.routes - INFO - Model loaded successfully
+2025-05-02 02:39:58,657 - llm.routes - INFO - Índice creado con éxito

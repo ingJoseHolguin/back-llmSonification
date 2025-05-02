@@ -63,90 +63,11 @@ def loadModel():
     try:
         embed_model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
         Settings.embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/all-MiniLM-L6-v2")
-        Settings.llm = Ollama(model="llama3.2:1b", request_timeout=360.0) #llama3.2:1b #deepseek-r1:7b #deepseek-r1:1.5b #deepseek-coder:6.7b llama3.2:1b
+        Settings.llm = Ollama(model="qwen3:14b", request_timeout=360.0) #llama3.2:1b #deepseek-r1:7b #deepseek-r1:1.5b #deepseek-coder:6.7b llama3.2:1b
         logger.info("Model loaded successfully")
         return jsonify({'message': 'OK'}), 201
     except Exception as e:
         logger.error(f"Error loading model: {str(e)}")
-        return jsonify({'message': f'Error: {str(e)}'}), 500
-
-@llm.route('/promtUser', methods=['POST'])
-def promtUser():
-    try:
-        # Comprueba si se están enviando datos en formato JSON
-        if request.is_json:
-            data = request.get_json()
-            user_prompt = data.get('userPrompt')
-            speed = data.get('speed')
-            detail = data.get('detail')
-            play_marker_enabled = data.get('playMarkerEnabled')
-            tooltip_marker_enabled = data.get('tooltipMarkerEnabled')
-        else:
-            # Si no es JSON, intenta obtener los datos del formulario
-            user_prompt = request.form.get('userPrompt')
-            speed = request.form.get('speed')
-            detail = request.form.get('detail')
-            play_marker_enabled = request.form.get('playMarkerEnabled')
-            tooltip_marker_enabled = request.form.get('tooltipMarkerEnabled')
-
-        global index, documents
-
-        logger.info(f'userPrompt: {user_prompt}')
-        logger.info(f'Speed: {speed}')
-        logger.info(f'Detail: {detail}')
-        logger.info(f'Play Marker Enabled: {play_marker_enabled}')
-        logger.info(f'Tooltip Marker Enabled: {tooltip_marker_enabled}')
-
-        if not documents:  # Verifica si los documentos están cargados
-            return jsonify({'message': 'No documents loaded. Please load documents first.'}), 400
-
-        if index is None:  # Verifica si el índice ha sido inicializado
-            index = VectorStoreIndex.from_documents(documents)
-
-        formatted_prompt = f"""
-        Analiza la siguiente informacion, responde lo que se pide en los formatos indicados.
-        Eres un experto en **sonificación de datos**. Debes de asister al usuario en su proceso de sonificacion, No utilices subtítulos, títulos ni formatos adicionales. La respuesta debe ser fluida, directa y sin divisiones.
-        Se te proporciona la configuracion actual del programa y dependiendo de las necesidades del usuario podrias regresar la configuracion con los cambios pertinentes, responde por que hiciste esos cambios si es necesario.
-
-        Considera lo siguiente:
-
-        - Si la solicitud es una **consulta de información** sobre sonificación de datos, responde de manera informativa y no hagas cambios en la configuración actual.
-        - Si la solicitud implica **ajustar parámetros** (como modificar configuraciones), responde indicando que es un **ajuste de parámetros**.
-        - Si la solicitud está fuera del contexto de sonificación de datos , indica que solo puedes ayudar con esos temas y responde que solo puedes hacer cosas dentro de la sonificacion de datos.
-
-        Solo puedes responder con el siguiente formato JSON: de respuesta
-        {{
-        "type of request": Este campo solo puedes responder las siguietnes opciones dependiendo la naturaleza de la solicitud del usuario, **consulta de información**, **ajuste de parámetros**, **acción** o **fuera de contexto**.",
-        "guide": "aqui es la respuesta a la consulta del usuario, debe ser en formato natural y no en formato JSON",
-        "suggestions": {{
-            "type_of_request": "Identifica el tipo de solicitud del usuario",
-            "speed": "valor sugerido basado en la configuración actual",
-            "detail": "valor sugerido basado en la configuración actual",
-            "play_marker_enabled": "valor sugerido basado en la configuración actual",
-            "tooltip_marker_enabled": "valor sugerido basado en la configuración actual"
-        }}
-        }}
-
-        Prompt del usuario: {user_prompt}
-        Configuración actual:
-        - Speed: {speed}
-        - Detail: {detail}
-        - Play Marker Enabled: {play_marker_enabled}
-        - Tooltip Marker Enabled: {tooltip_marker_enabled}
-        """
-
-        # Utiliza el índice para hacer la consulta
-        query_engine = index.as_query_engine()
-        response = query_engine.query(str(formatted_prompt))
-        return jsonify({
-            'message': str(response),
-            'speed': str(speed),
-            'detail': str(detail),
-            'play_marker_enabled': str(play_marker_enabled),
-            'tooltip_marker_enabled': str(tooltip_marker_enabled)
-        }), 201
-    except Exception as e:
-        logger.error(f"Error en promtUser: {str(e)}")
         return jsonify({'message': f'Error: {str(e)}'}), 500
 
 def extract_config_suggestions(response_text, current_config):
@@ -340,63 +261,3 @@ def chat():
             'suggestedConfig': None
         }), 500
     
-@llm.route('/chatBot', methods=['POST', 'OPTIONS'])
-def chatbot():
-    if request.is_json:
-        data = request.get_json()
-
-    global documents, index
-
-    if not documents:
-        try:
-            loadDocuments()
-        except Exception as e:
-            logger.error(f"Error al cargar documentos: {str(e)}")
-            return jsonify({
-                'botResponse': 'Error al cargar RAG. Por favor contacta al administrador.',
-                'suggestedConfig': None
-            }), 500
-    
-    if index is None:
-        index = VectorStoreIndex.from_documents(documents)
-
-    user_message = data.get('message', '')
-    current_config = data.get('config', {})
-        
-    logger.info(f"Mensaje recibido: {user_message}")
-    logger.info(f"Configuración actual: {json.dumps(current_config, ensure_ascii=False)}")
-    
-
-    # Crear el prompt para el LLM
-    formatted_prompt = f"""
-    Eres un experto en sonificacion de datos, se te proporciona la configuracion actual en formato JSON de la aplicacion de sonificacion de datos, conforme esta
-    informacion debes de responder lo que se te indica, si es una consulta de informacion sobre la sonificacion o que cambies la configuracion para ayudar a un usuario que no es experto en el tema a realizar su tarea de sonificacion
-    solo debes responder acerca de sonificacion de lo contrario debes de negar el servicio.
-    
-    La siguiente informacion es la configuracion en general de la aplicacacion que puedes controlar conforme a los requisitos del usuario
-    
-    La solicitud que se debe atender es: {user_message}
-
-    la configuracion actual de la aplicacion es: {json.dumps(current_config, indent=2, ensure_ascii=False)}
-
-    El formato obligatorio de respuesta es un JSON con las siguientes variables.
-
-    botResponse: "Aqui va la respuesta donde argumentas la informacion y cada cambio sugerido"
-    siggestedConfig: aqui ingresas el JSON con los cambios de las variables sugericas. ejemplo del json estes es un ejemplo: '''{"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}}'''
-
-
-
-    """
-
-    query_engine = index.as_query_engine()
-    response = query_engine.query(formatted_prompt)
-
-    print(response)
-
-    #suggested_config = extract_config_suggestions(str(response), current_config)
-
-    return jsonify({
-        'botResponse': str(response),
-        'suggestedConfig': current_config
-    })
-
