@@ -1,17 +1,11 @@
 <template>
   <header class="header">
     <div class="header-content">
-      <span class="header-text">Harmony Data Sonification assitent</span>
-      
+      <img src="@/assets/sonify-logo.svg" alt="Sonify Harmony Logo" class="header-logo">
+      <span class="header-text">Sonify Harmony Data Bot</span>
     </div>
   </header>
 </template>
-
-<script>
-export default {
-  name: 'PageHeaderComponent'
-};
-</script>
 
 <style scoped>
   @import '../styles/global.css';
@@ -26,13 +20,20 @@ export default {
   
   .header-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
   }
   
+  .header-logo {
+    height: 55px;
+    width: auto;
+    margin-right: 22px;
+    filter: brightness(0) invert(1) saturate(0) contrast(100);  
+  }
+  
   .header-text {
-    font-size: 18px;
+    font-size: 25px;
     font-weight: bold;
     color: white;
   }

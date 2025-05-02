@@ -2,7 +2,10 @@
   <div class="sidebar-container" :class="{ 'minimized': isMinimized }">
     <div class="chat-section">
       <div class="chat-header">
-        <h3>Expert Assistante Bot</h3>
+        <h3>Expert Assistant Bot</h3>
+        <div class="server-status" :class="{ 'online': serverOnline, 'offline': !serverOnline }">
+          {{ serverOnline ? 'Online' : 'Offline' }}
+        </div>
         <button class="toggle-button" @click="toggleVisibility" v-if="!isMinimized">
           «
         </button>
@@ -28,9 +31,9 @@
           placeholder="Escribe tu mensaje..."
           class="chat-input"
           @keyup.enter="sendMessage"
-          :disabled="isLoading"
+          :disabled="isLoading || !serverOnline"
         />
-        <button class="send-button" @click="sendMessage" :disabled="isLoading">
+        <button class="send-button" @click="sendMessage" :disabled="isLoading || !serverOnline">
           Enviar
         </button>
       </div>
@@ -51,7 +54,7 @@
 
 <script>
 import { emitter } from '../eventBus';
-import axios from 'axios'; // Mantener esta importación ya que se usa en processPendingMessage
+import axios from 'axios';
 
 export default {
   name: 'LeftSidebar',
@@ -64,7 +67,9 @@ export default {
       currentConfig: null,
       pendingMessage: null,
       sidebarWidth: 250, // Ancho inicial
-      isResizing: false
+      isResizing: false,
+      serverOnline: false, // Estado del servidor
+      serverCheckInterval: null // Para el intervalo de verificación
     };
   },
   created() {
@@ -74,18 +79,76 @@ export default {
       this.processPendingMessage();
     });
   },
-  mounted() {
+  async mounted() {
+    // Verificar estado del servidor al iniciar
+    await this.checkServerStatus();
+    
+    // Si el servidor está online, cargar documentos
+    if (this.serverOnline) {
+      await this.loadDocuments();
+    }
+    
+    // Configurar verificación periódica del estado del servidor
+    this.serverCheckInterval = setInterval(this.checkServerStatus, 60000); // Verificar cada minuto
+    
     // Agregar eventos para manejar el redimensionamiento
     document.addEventListener('mousemove', this.handleResize);
     document.addEventListener('mouseup', this.stopResize);
   },
   beforeUnmount() {
     emitter.off('provide-config');
+    
+    // Limpiar el intervalo de verificación
+    if (this.serverCheckInterval) {
+      clearInterval(this.serverCheckInterval);
+    }
+    
     // Eliminar eventos al desmontar
     document.removeEventListener('mousemove', this.handleResize);
     document.removeEventListener('mouseup', this.stopResize);
   },
   methods: {
+    async checkServerStatus() {
+      try {
+        const testResponse = await axios.get('http://127.0.0.1:5000/llm/', { timeout: 10000 });
+        console.log('Estado del servidor LLM:', testResponse.data);
+        
+        // Verificar si el servidor estaba offline antes
+        const wasOffline = !this.serverOnline;
+        
+        // Actualizar estado según la respuesta
+        if (testResponse.data.message === 'llM en linea') {
+          this.serverOnline = true;
+          
+          // Si el servidor estaba offline y ahora está online, o si es la primera verificación (mounted)
+          if (wasOffline || this.messages.length === 0) {
+            this.messages.push(this.createMessage('Bot', 'Hola, ¿En qué puedo ayudarte hoy?'));
+            this.scrollToBottom();
+          }
+        } else {
+          this.serverOnline = false;
+        }
+      } catch (error) {
+        console.error('Error al verificar el estado del servidor:', error);
+        this.serverOnline = false;
+      }
+    },
+    
+    async loadDocuments() {
+      try {
+        const response = await axios.get('http://127.0.0.1:5000/llm/loadDocuments', { timeout: 15000 });
+        console.log('Documentos cargados:', response.data);
+        
+        // Agregar mensaje informativo si la carga fue exitosa
+        if (response.status === 200) {
+          this.messages.push(this.createMessage('Bot', 'Documentos cargados correctamente.'));
+        }
+      } catch (error) {
+        console.error('Error al cargar documentos:', error);
+        this.messages.push(this.createMessage('Bot', 'Error al cargar documentos. Por favor, verifica la conexión con el servidor.'));
+      }
+    },
+    
     toggleVisibility() {
       this.isMinimized = !this.isMinimized;
     },
@@ -93,7 +156,7 @@ export default {
       return { id: Date.now(), sender, text };
     },
     async sendMessage() {
-      if (this.newMessage.trim() === '' || this.isLoading) return;
+      if (this.newMessage.trim() === '' || this.isLoading || !this.serverOnline) return;
 
       const userMessage = this.createMessage('Usuario', this.newMessage);
       this.messages.push(userMessage);
@@ -113,19 +176,11 @@ export default {
       this.pendingMessage = null;
       
       try {
-        // Primero verificar la conexión con el servidor
-        try {
-          const testResponse = await axios.get('http://127.0.0.1:5000/llm/', { timeout: 10000 });
-          console.log('Estado del servidor LLM:', testResponse.data);
-          
-          if (testResponse.data.message !== 'llM en linea') {
-            throw new Error('El servidor LLM no está disponible');
-          }
-        } catch (connectionError) {
-          console.error('Error al conectar con el servidor:', connectionError);
-          this.messages.push(this.createMessage('Bot', 'No se pudo establecer conexión con el servidor. Por favor, verifica que el backend esté en ejecución.'));
-          this.isLoading = false;
-          return;
+        // Verificar la conexión con el servidor antes de enviar el mensaje
+        await this.checkServerStatus();
+        
+        if (!this.serverOnline) {
+          throw new Error('El servidor LLM no está disponible');
         }
         
         // Verificar que messageText no sea nulo o indefinido
@@ -182,9 +237,16 @@ export default {
         if (error.response) {
           // Error de respuesta del servidor
           errorMessage += ` El servidor respondió con código ${error.response.status}.`;
+          
+          // Si el servidor responde con código 400, actualizar el estado a offline
+          if (error.response.status === 400) {
+            this.serverOnline = false;
+            errorMessage += ' El servidor está offline.';
+          }
         } else if (error.request) {
           // No se recibió respuesta
           errorMessage += ' No se recibió respuesta del servidor.';
+          this.serverOnline = false;
         } else {
           // Error al configurar la solicitud
           errorMessage += ` Error: ${error.message}`;
@@ -277,7 +339,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 10px 15px;
-  background-color: #2c3e50;
+  background-color: #2c3e50ec;
   color: white;
   height: var(--header-height);
   position: relative;
@@ -290,6 +352,25 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* Nuevo estilo para el indicador de estado del servidor */
+.server-status {
+  font-size: 12px;
+  padding: 3px 6px;
+  border-radius: 4px;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.server-status.online {
+  background-color: #28a745;
+  color: white;
+}
+
+.server-status.offline {
+  background-color: #dc3545;
+  color: white;
 }
 
 .toggle-button {
@@ -373,6 +454,11 @@ export default {
 .chat-input:focus {
   border-color: #007bff;
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.chat-input:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
 }
 
 .send-button {
