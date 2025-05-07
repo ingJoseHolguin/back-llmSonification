@@ -198,13 +198,13 @@ export default {
       activeTab: 'params', // Default active tab
       availableParams: [
         { value: 'pitch', label: 'Tono (Pitch)' },
-        { value: 'frequency', label: 'Frecuencia' },
-        { value: 'volume', label: 'Volumen' },
-        { value: 'pan', label: 'Balance estéreo' },
+        { value: 'frequency', label: 'Frequency' },
+        { value: 'volume', label: 'Volume' },
+        { value: 'pan', label: 'Panning' },
         { value: 'tremolo', label: 'Trémolo' },
-        { value: 'lowpass', label: 'Filtro paso bajo' },
-        { value: 'highpass', label: 'Filtro paso alto' },
-        { value: 'noteDuration', label: 'Duración de nota' },
+        { value: 'lowpass', label: 'Low-pass filter' },
+        { value: 'highpass', label: 'High-pass filter' },
+        { value: 'noteDuration', label: 'Note length' },
         { value: 'gapBetweenNotes', label: 'Espacio entre notas' }
       ],
       availableScales: [],
