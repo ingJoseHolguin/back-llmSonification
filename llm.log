@@ -1031,3 +1031,122 @@
 2025-05-02 06:42:29,595 - llm.routes - INFO - Index created successfully
 2025-05-02 06:44:06,693 - llm.routes - INFO - Loaded 22 documents
 2025-05-02 06:44:08,229 - llm.routes - INFO - Index created successfully
+2025-05-02 07:01:44,175 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 07:01:45,704 - llm.routes - INFO - Index created successfully
+2025-05-02 07:03:03,794 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 07:03:05,487 - llm.routes - INFO - Index created successfully
+2025-05-02 07:16:55,602 - llm.routes - INFO - Starting initialization...
+2025-05-02 07:16:56,763 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 07:17:02,465 - llm.routes - INFO - Model loaded successfully
+2025-05-02 07:17:03,962 - llm.routes - INFO - Index created successfully
+2025-05-02 07:17:03,962 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-02 07:17:15,944 - llm.routes - INFO - Starting initialization...
+2025-05-02 07:17:17,034 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 07:17:21,942 - llm.routes - INFO - Model loaded successfully
+2025-05-02 07:17:23,435 - llm.routes - INFO - Index created successfully
+2025-05-02 07:17:23,435 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-02 07:17:59,828 - llm.routes - INFO - Mensaje recibido: hola me ayudas a sonificar estos datos, que sean tristes para unos niños de primaria pero que valla de un lugara otro?
+2025-05-02 07:17:59,829 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 07:19:41,122 - llm.routes - INFO - Mensaje recibido: puedes hacer que se siente que valla de un lugar a otro?
+2025-05-02 07:19:41,122 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "pan"], "scale": "minor", "instrument": "step", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c3"}, "volume": {"min": 0.3, "max": 1}, "pan": {"min": -0.8, "max": 0.8}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 07:21:35,108 - llm.routes - INFO - Starting initialization...
+2025-05-02 07:21:36,262 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 07:21:41,125 - llm.routes - INFO - Model loaded successfully
+2025-05-02 07:21:42,733 - llm.routes - INFO - Index created successfully
+2025-05-02 07:21:42,733 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-02 07:21:54,465 - llm.routes - INFO - Starting initialization...
+2025-05-02 07:21:55,570 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 07:22:02,559 - llm.routes - INFO - Model loaded successfully
+2025-05-02 07:22:04,072 - llm.routes - INFO - Index created successfully
+2025-05-02 07:22:04,072 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-02 15:11:07,824 - llm.routes - INFO - Starting initialization...
+2025-05-02 15:11:08,791 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 15:11:14,093 - llm.routes - INFO - Model loaded successfully
+2025-05-02 15:11:15,452 - llm.routes - INFO - Index created successfully
+2025-05-02 15:11:15,452 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-02 15:11:24,881 - llm.routes - INFO - Starting initialization...
+2025-05-02 15:11:25,769 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 15:11:31,002 - llm.routes - INFO - Model loaded successfully
+2025-05-02 15:11:32,423 - llm.routes - INFO - Index created successfully
+2025-05-02 15:11:32,424 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-02 18:05:01,382 - llm.routes - INFO - Starting initialization...
+2025-05-02 18:05:02,300 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 18:05:07,548 - llm.routes - INFO - Model loaded successfully
+2025-05-02 18:05:09,142 - llm.routes - INFO - Index created successfully
+2025-05-02 18:05:09,142 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-02 18:05:20,317 - llm.routes - INFO - Starting initialization...
+2025-05-02 18:05:21,303 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 18:05:26,962 - llm.routes - INFO - Model loaded successfully
+2025-05-02 18:05:28,533 - llm.routes - INFO - Index created successfully
+2025-05-02 18:05:28,533 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-02 18:24:30,057 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 18:24:31,842 - llm.routes - INFO - Index created successfully
+2025-05-02 18:31:13,681 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 18:31:14,896 - llm.routes - INFO - Index created successfully
+2025-05-02 18:49:05,115 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 18:49:06,507 - llm.routes - INFO - Index created successfully
+2025-05-02 18:50:14,794 - llm.routes - INFO - Mensaje recibido: deceo realizar una sonificacion de datos para presentar a niños de primaria la importancia del cambio climatico, quiero que se escuche claro lento para que entiendan y menter un poco de tristesa
+2025-05-02 18:50:14,794 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 18:50:30,659 - llm.routes - ERROR - Error en chat: llama runner process has terminated: GGML_ASSERT(ctx->mem_buffer != NULL) failed
+2025-05-02 18:51:05,351 - llm.routes - INFO - Starting initialization...
+2025-05-02 18:51:06,263 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 18:51:11,136 - llm.routes - INFO - Model loaded successfully
+2025-05-02 18:51:13,003 - llm.routes - INFO - Index created successfully
+2025-05-02 18:51:13,004 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-02 18:51:22,691 - llm.routes - INFO - Starting initialization...
+2025-05-02 18:51:23,562 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 18:51:28,162 - llm.routes - INFO - Model loaded successfully
+2025-05-02 18:51:29,709 - llm.routes - INFO - Index created successfully
+2025-05-02 18:51:29,709 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-02 18:51:31,611 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 18:51:33,031 - llm.routes - INFO - Index created successfully
+2025-05-02 18:52:38,160 - llm.routes - INFO - Mensaje recibido: quiero hacer una sonificacion del cambio climatico para niños de primaria que comunique tristesa
+2025-05-02 18:52:38,160 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 18:53:58,572 - llm.routes - INFO - Mensaje recibido: quiero que el instrumento sea una flauta, y que dure 9 segundos
+2025-05-02 18:53:58,572 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume"], "scale": "minor", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "g3"}, "volume": {"min": 0.1, "max": 0.8}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 18:55:03,121 - llm.routes - INFO - Mensaje recibido: quiero que suene que se mueve de un punto a otro que me recomiendas configurar?
+2025-05-02 18:55:03,121 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume"], "scale": "minor", "instrument": "flute", "duration": 9000, "paramRanges": {"pitch": {"min": "c2", "max": "g3"}, "volume": {"min": 0.1, "max": 0.8}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 18:57:57,627 - llm.routes - INFO - Mensaje recibido: que es la sonificacion?
+2025-05-02 18:57:57,628 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "pan"], "scale": "minor", "instrument": "flute", "duration": 9000, "paramRanges": {"pitch": {"min": "c2", "max": "g3"}, "pan": {"min": -1, "max": 1}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 19:04:35,726 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 19:04:37,347 - llm.routes - INFO - Index created successfully
+2025-05-02 19:04:39,352 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 19:04:40,723 - llm.routes - INFO - Index created successfully
+2025-05-02 19:04:56,490 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 19:04:58,770 - llm.routes - INFO - Index created successfully
+2025-05-02 19:04:58,888 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 19:05:00,342 - llm.routes - INFO - Index created successfully
+2025-05-02 19:07:40,728 - llm.routes - INFO - Mensaje recibido: soy maestro de primaria y los datos mostrados son los del cambio cliamatico del ultimo año, quiero dar un mensaje de tristesa para niños de primaria que dure 5 segundos pero que se entienda lo que quiero decir con un instrumento de piano
+2025-05-02 19:07:40,728 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 19:09:09,963 - llm.routes - INFO - Mensaje recibido: hay alguna escala que amplififique este sentimiento a tristesa, ahora quiero que dure 9 segundos y toque una flauta
+2025-05-02 19:09:09,965 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume"], "scale": "major", "instrument": "piano", "duration": 5000, "paramRanges": {"pitch": {"min": "c2", "max": "c4"}, "volume": {"min": 0.3, "max": 0.7}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 19:10:51,883 - llm.routes - INFO - Mensaje recibido: quiero que se escuche como movimiento que se mueva de un lado a  otro y que se escuche vibraciones como una osilacion 
+2025-05-02 19:10:51,884 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume"], "scale": "minor", "instrument": "flute", "duration": 9000, "paramRanges": {"pitch": {"min": "c2", "max": "c4"}, "volume": {"min": 0.3, "max": 0.7}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 19:13:03,840 - llm.routes - INFO - Mensaje recibido: me lo puedes a justar a 4 segundos 
+2025-05-02 19:13:03,840 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "pan", "tremolo"], "scale": "minor", "instrument": "flute", "duration": 9000, "paramRanges": {"pitch": {"min": "c2", "max": "c4"}, "volume": {"min": 0.3, "max": 0.7}, "pan": {"min": -1, "max": 1}, "tremolo": {"min": 0.5, "max": 1}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 19:17:18,729 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 19:17:20,152 - llm.routes - INFO - Index created successfully
+2025-05-02 19:19:03,687 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 19:19:04,900 - llm.routes - INFO - Index created successfully
+2025-05-02 19:23:06,438 - llm.routes - INFO - Mensaje recibido: hola soy maestro de primaria, quiero sonificar estos datos del indice de poblacion, y quiero meter dramatismo de tal manera ver  como puedo amplificar el punto mas alto
+2025-05-02 19:23:06,438 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 5000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 19:25:00,833 - llm.routes - INFO - Mensaje recibido: me ayudas a cambiar de instrumento a una flauta, y que dure 9 segundos?
+2025-05-02 19:25:00,834 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "noteDuration", "tremolo"], "scale": "major", "instrument": "piano", "duration": 5000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.1, "max": 1.2}, "noteDuration": {"min": 30, "max": 1000}, "tremolo": {"min": 0, "max": 1}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 19:26:31,285 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 19:26:32,727 - llm.routes - INFO - Index created successfully
+2025-05-02 19:26:54,479 - llm.routes - INFO - Starting initialization...
+2025-05-02 19:26:55,368 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 19:27:00,779 - llm.routes - INFO - Model loaded successfully
+2025-05-02 19:27:02,556 - llm.routes - INFO - Index created successfully
+2025-05-02 19:27:02,557 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-02 19:27:12,003 - llm.routes - INFO - Starting initialization...
+2025-05-02 19:27:12,920 - llm.routes - INFO - Loaded 22 documents
+2025-05-02 19:27:20,247 - llm.routes - INFO - Model loaded successfully
+2025-05-02 19:27:21,589 - llm.routes - INFO - Index created successfully
+2025-05-02 19:27:21,589 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-02 19:30:36,056 - llm.routes - INFO - Mensaje recibido: hola, quiero sonificar estos datos para niños de primaria, los datos representan la taza de natalidad en mexico, y quiero darle un poco de dramatismo para el pico de nacimientos y darle importancia al datos en ese punto 
+2025-05-02 19:30:36,056 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 5000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 19:32:36,583 - llm.routes - INFO - Mensaje recibido: quiero que ahora se escuche una transiscion en los datos algo de vibracion para darle mas dramatismo aun
+2025-05-02 19:32:36,584 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume"], "scale": "major", "instrument": "flute", "duration": 5000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.1, "max": 1.8}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-02 19:33:37,936 - llm.routes - INFO - Mensaje recibido: que es la sonificacion?
+2025-05-02 19:33:37,936 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "tremolo"], "scale": "major", "instrument": "flute", "duration": 5000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.1, "max": 1.8}, "tremolo": {"min": 0.3, "max": 1}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}

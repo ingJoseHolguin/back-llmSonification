@@ -769,9 +769,7 @@ usarMetodoAlternativo() {
             height: 400 // Increased height for better visibility
           },
           title: {
-            text: 'Grafico',
-            align: 'center',
-            margin: 25
+            text: 'Sonificación de Datos con Mapeo Multi-Parámetro'
           },
           legend: {
             enabled: false
