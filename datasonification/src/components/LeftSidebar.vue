@@ -90,16 +90,18 @@ export default {
   name: "LeftSidebar",
   data() {
     return {
-      newMessage: "",
-      messages: [],
-      isMinimized: false,
-      isLoading: false,
-      currentConfig: null,
-      pendingMessage: null,
-      sidebarWidth: 250, // Ancho inicial
-      isResizing: false,
-      serverOnline: false, // Estado del servidor
-      serverCheckInterval: null, // Para el intervalo de verificación
+      newMessage: '',
+    messages: [],
+    isMinimized: false,
+    isLoading: false,
+    currentConfig: null,
+    pendingMessage: null,
+    sidebarWidth: 250, // Ancho inicial
+    isResizing: false,
+    serverOnline: false, // Estado del servidor
+    serverCheckInterval: null, // Para el intervalo de verificación
+    waitingForConfigConfirmation: false, // Para controlar si esperamos confirmación de cambios
+    suggestedConfig: null // Para almacenar la configuración sugerida
     };
   },
   created() {
@@ -200,131 +202,163 @@ export default {
       return { id: Date.now(), sender, text };
     },
     async sendMessage() {
-      if (this.newMessage.trim() === "" || !this.serverOnline) return;
+  if (this.newMessage.trim() === '' || !this.serverOnline) return;
 
-      const userMessage = this.createMessage("Usuario", this.newMessage);
-      this.messages.push(userMessage);
-      const messageText = this.newMessage;
-      this.newMessage = "";
-      this.scrollToBottom();
+  const messageText = this.newMessage.trim();
 
-      // Activar animación de carga justo antes de iniciar la comunicación
-      this.isLoading = true;
-      this.scrollToBottom(); // Asegurar que la animación sea visible
-      this.pendingMessage = messageText;
+  // Verificar si estamos esperando confirmación de cambios de configuración
+  if (this.waitingForConfigConfirmation) {
+    // Agregar el mensaje del usuario
+    const userMessage = this.createMessage('Usuario', messageText);
+    this.messages.push(userMessage);
+    this.newMessage = '';
+    this.scrollToBottom();
 
-      // Solicitar la configuración para procesar el mensaje
-      emitter.emit("request-config");
-    },
+    // Procesar la respuesta de confirmación
+    if (messageText.toLowerCase() === 'si' || messageText.toLowerCase() === 'sí') {
+      // Aplicar la configuración sugerida
+      this.messages.push(this.createMessage('Bot', 'Cambios de configuración aplicados.'));
 
-    async processPendingMessage() {
-      if (!this.currentConfig) return;
+      // Informar al componente principal que hay una nueva configuración
+      emitter.emit('update-config', this.suggestedConfig);
 
-      const messageText = this.pendingMessage || "";
-      this.pendingMessage = null;
+      // Actualizar nuestra copia local
+      this.currentConfig = this.suggestedConfig;
+    } else if (messageText.toLowerCase() === 'no') {
+      // No aplicar cambios
+      this.messages.push(this.createMessage('Bot', 'No se han aplicado cambios de configuración.'));
+    } else {
+      // Respuesta no reconocida
+      this.messages.push(this.createMessage('Bot', 'No entendí su respuesta. Por favor, responda "si" o "no".'));
+      // Seguir esperando confirmación
+      return;
+    }
 
-      try {
-        // Verificar la conexión con el servidor antes de enviar el mensaje
-        await this.checkServerStatus();
+    // Resetear estado de espera y sugerencia
+    this.waitingForConfigConfirmation = false;
+    this.suggestedConfig = null;
+    this.scrollToBottom();
+    return;
+  }
 
-        if (!this.serverOnline) {
-          throw new Error("El servidor LLM no está disponible");
-        }
+  // Comportamiento normal para mensajes que no son confirmaciones
+  const userMessage = this.createMessage('Usuario', messageText);
+  this.messages.push(userMessage);
+  this.newMessage = '';
+  this.scrollToBottom();
 
-        // Verificar que messageText no sea nulo o indefinido
-        if (!messageText) {
-          console.error("No hay mensaje para enviar");
-          return;
-        }
+  // Activar animación de carga justo antes de iniciar la comunicación
+  this.isLoading = true;
+  this.scrollToBottom(); // Asegurar que la animación sea visible
+  this.pendingMessage = messageText;
 
-        // IMPORTANTE: Asegurarse de que isLoading sigue siendo true
-        this.isLoading = true;
+  // Solicitar la configuración para procesar el mensaje
+  emitter.emit('request-config');
+},
 
-        console.log("Enviando mensaje al servidor...");
-        // Enviar mensaje y configuración actual al backend
-        const response = await axios.post("http://127.0.0.1:5000/llm/chat", {
-          message: messageText,
-          config: this.currentConfig,
-        });
+    sync processPendingMessage() {
+  if (!this.currentConfig) return;
 
-        console.log("Respuesta recibida:", response.data);
+  const messageText = this.pendingMessage || "";
+  this.pendingMessage = null;
 
-        // Revisar si botResponse es un string que contiene JSON
-        let botResponseText = response.data.botResponse;
-        let suggestedConfig = null;
-        try {
-          // Intentar parsear por si es un string JSON
-          const parsedResponse = JSON.parse(botResponseText);
-          if (
-            parsedResponse &&
-            typeof parsedResponse.botResponse === "string"
-          ) {
-            botResponseText = parsedResponse.botResponse;
-            suggestedConfig = parsedResponse.suggestedConfig || null;
-          }
-        } catch (e) {
-          // Si falla el parsing, usar el string original
-          console.log("botResponse no es JSON o no se pudo parsear:", e);
-        }
+  try {
+    // Verificar la conexión con el servidor antes de enviar el mensaje
+    await this.checkServerStatus();
 
-        // CRÍTICO: Crear el mensaje pero NO desactivar la animación todavía
-        // Mantendremos isLoading = true hasta DESPUÉS de renderizar la respuesta
-        this.messages.push(this.createMessage("Bot", botResponseText));
+    if (!this.serverOnline) {
+      throw new Error('El servidor LLM no está disponible');
+    }
 
-        // Si hay una configuración sugerida y es diferente de la actual, aplicarla
-        if (suggestedConfig) {
-          console.log("Configuración sugerida recibida:", suggestedConfig);
+    // Verificar que messageText no sea nulo o indefinido
+    if (!messageText) {
+      console.error('No hay mensaje para enviar');
+      return;
+    }
 
-          if (!this.isConfigEqual(this.currentConfig, suggestedConfig)) {
-            // Informar al componente principal que hay una nueva configuración
-            emitter.emit("update-config", suggestedConfig);
+    // IMPORTANTE: Asegurarse de que isLoading sigue siendo true
+    this.isLoading = true;
 
-            // También actualizar nuestra copia local
-            this.currentConfig = suggestedConfig;
-          }
-        }
+    console.log('Enviando mensaje al servidor...');
+    // Enviar mensaje y configuración actual al backend
+    const response = await axios.post('http://127.0.0.1:5000/llm/chat', {
+      message: messageText,
+      config: this.currentConfig
+    });
 
-        // Esperar a que Vue actualice el DOM con el nuevo mensaje
-        await this.$nextTick();
-        this.isLoading = false;
+    console.log('Respuesta recibida:', response.data);
 
-        // Hacer scroll para mostrar el nuevo mensaje ANTES de quitar la animación
-        this.scrollToBottom();
-
-        // Esperar un tiempo adicional para asegurar que el mensaje sea visible
-        // Este delay es importante para que el usuario pueda ver la transición
-      } catch (error) {
-        console.error("Error al comunicarse con el backend:", error);
-
-        // Mensaje de error más detallado para ayudar en la depuración
-        let errorMessage = "Error al procesar tu solicitud.";
-
-        if (error.response) {
-          // Error de respuesta del servidor
-          errorMessage += ` El servidor respondió con código ${error.response.status}.`;
-
-          // Si el servidor responde con código 400, actualizar el estado a offline
-          if (error.response.status === 400) {
-            this.serverOnline = false;
-            errorMessage += " El servidor está offline.";
-          }
-        } else if (error.request) {
-          // No se recibió respuesta
-          errorMessage += " No se recibió respuesta del servidor.";
-          this.serverOnline = false;
-        } else {
-          // Error al configurar la solicitud
-          errorMessage += ` Error: ${error.message}`;
-        }
-
-        this.messages.push(this.createMessage("Bot", errorMessage));
-        await this.$nextTick(); // Esperar a que Vue actualice el DOM con el mensaje de error
-        this.scrollToBottom();
-
-        // Esperar un tiempo adicional para asegurar que el mensaje de error sea visible
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+    // Revisar si botResponse es un string que contiene JSON
+    let botResponseText = response.data.botResponse;
+    let suggestedConfig = null;
+    try {
+      // Intentar parsear por si es un string JSON
+      const parsedResponse = JSON.parse(botResponseText);
+      if (parsedResponse && typeof parsedResponse.botResponse === 'string') {
+        botResponseText = parsedResponse.botResponse;
+        suggestedConfig = parsedResponse.suggestedConfig || null;
       }
-    },
+    } catch (e) {
+      // Si falla el parsing, usar el string original
+      console.log('botResponse no es JSON o no se pudo parsear:', e);
+    }
+
+    // Añadir el mensaje de respuesta del bot
+    this.messages.push(this.createMessage('Bot', botResponseText));
+
+    // Si hay una configuración sugerida y es diferente de la actual, preguntar al usuario
+    if (suggestedConfig && !this.isConfigEqual(this.currentConfig, suggestedConfig)) {
+      console.log('Configuración sugerida recibida:', suggestedConfig);
+
+      // Almacenar la configuración sugerida para usarla después
+      this.suggestedConfig = suggestedConfig;
+
+      // Añadir mensaje preguntando si desea aplicar los cambios
+      this.messages.push(this.createMessage('Bot', '¿Desea aplicar los cambios de configuración sugeridos? Responda "si" o "no".'));
+
+      // Marcar que estamos esperando confirmación
+      this.waitingForConfigConfirmation = true;
+    }
+
+    // Esperar a que Vue actualice el DOM con el nuevo mensaje
+    await this.$nextTick();
+    this.isLoading = false;
+
+    // Hacer scroll para mostrar el nuevo mensaje
+    this.scrollToBottom();
+
+  } catch (error) {
+    console.error('Error al comunicarse con el backend:', error);
+
+    // Mensaje de error más detallado para ayudar en la depuración
+    let errorMessage = 'Error al procesar tu solicitud.';
+
+    if (error.response) {
+      // Error de respuesta del servidor
+      errorMessage += ` El servidor respondió con código ${error.response.status}.`;
+
+      // Si el servidor responde con código 400, actualizar el estado a offline
+      if (error.response.status === 400) {
+        this.serverOnline = false;
+        errorMessage += ' El servidor está offline.';
+      }
+    } else if (error.request) {
+      // No se recibió respuesta
+      errorMessage += ' No se recibió respuesta del servidor.';
+      this.serverOnline = false;
+    } else {
+      // Error al configurar la solicitud
+      errorMessage += ` Error: ${error.message}`;
+    }
+
+    this.messages.push(this.createMessage('Bot', errorMessage));
+    await this.$nextTick(); // Esperar a que Vue actualice el DOM con el mensaje de error
+    this.scrollToBottom();
+
+    // Desactivar la animación de carga
+    this.isLoading = false;
+  }
+},
 
     scrollToBottom() {
       this.$nextTick(() => {
