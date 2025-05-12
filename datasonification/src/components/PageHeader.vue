@@ -2,7 +2,7 @@
   <header class="header">
     <div class="header-content">
       <img src="@/assets/sonify-logo.svg" alt="Sonify Harmony Logo" class="header-logo">
-      <span class="header-text">Sonify Harmony Data Bot</span>
+      <span class="header-text">SonifyData</span>
     </div>
   </header>
 </template>
