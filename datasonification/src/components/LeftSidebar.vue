@@ -1,12 +1,19 @@
 <template>
-  <div class="sidebar-container" :class="{ 'minimized': isMinimized }">
+  <div class="sidebar-container" :class="{ minimized: isMinimized }">
     <div class="chat-section">
       <div class="chat-header">
         <h3>Expert Assistant Bot</h3>
-        <div class="server-status" :class="{ 'online': serverOnline, 'offline': !serverOnline }">
-          {{ serverOnline ? 'Online' : 'Offline' }}
+        <div
+          class="server-status"
+          :class="{ online: serverOnline, offline: !serverOnline }"
+        >
+          {{ serverOnline ? "Online" : "Offline" }}
         </div>
-        <button class="toggle-button" @click="toggleVisibility" v-if="!isMinimized">
+        <button
+          class="toggle-button"
+          @click="toggleVisibility"
+          v-if="!isMinimized"
+        >
           «
         </button>
       </div>
@@ -15,11 +22,17 @@
         <div
           v-for="message in messages"
           :key="message.id"
-          :class="['message', { 'message-sender': message.sender === 'Usuario', 'message-emitter': message.sender === 'Bot' }]"
+          :class="[
+            'message',
+            {
+              'message-sender': message.sender === 'Usuario',
+              'message-emitter': message.sender === 'Bot',
+            },
+          ]"
         >
           <strong>{{ message.sender }}:</strong> {{ message.text }}
         </div>
-        
+
         <!-- Improved Loading Animation -->
         <div v-if="isLoading" class="loading-message">
           <div class="bot-avatar">
@@ -42,34 +55,42 @@
           @keyup.enter="sendMessage"
           :disabled="isLoading || !serverOnline"
         />
-        <button class="send-button" @click="sendMessage" :disabled="isLoading || !serverOnline">
+        <button
+          class="send-button"
+          @click="sendMessage"
+          :disabled="isLoading || !serverOnline"
+        >
           Enviar
         </button>
       </div>
     </div>
 
-    <button 
-      class="toggle-button expand-button" 
-      @click="toggleVisibility" 
+    <button
+      class="toggle-button expand-button"
+      @click="toggleVisibility"
       v-if="isMinimized"
     >
       »
     </button>
-    
+
     <!-- Manejador para redimensionar el chat -->
-    <div class="resize-handle" @mousedown="startResize" v-if="!isMinimized"></div>
+    <div
+      class="resize-handle"
+      @mousedown="startResize"
+      v-if="!isMinimized"
+    ></div>
   </div>
 </template>
 
 <script>
-import { emitter } from '../eventBus';
-import axios from 'axios';
+import { emitter } from "../eventBus";
+import axios from "axios";
 
 export default {
-  name: 'LeftSidebar',
+  name: "LeftSidebar",
   data() {
     return {
-      newMessage: '',
+      newMessage: "",
       messages: [],
       isMinimized: false,
       isLoading: false,
@@ -78,86 +99,100 @@ export default {
       sidebarWidth: 250, // Ancho inicial
       isResizing: false,
       serverOnline: false, // Estado del servidor
-      serverCheckInterval: null // Para el intervalo de verificación
+      serverCheckInterval: null, // Para el intervalo de verificación
     };
   },
   created() {
-    emitter.on('provide-config', (config) => {
+    emitter.on("provide-config", (config) => {
       this.currentConfig = config;
-      console.log('Configuración recibida en LeftSidebar:', config);
+      console.log("Configuración recibida en LeftSidebar:", config);
       this.processPendingMessage();
     });
   },
   async mounted() {
     // Verificar estado del servidor al iniciar
     await this.checkServerStatus();
-    
+
     // Si el servidor está online, cargar documentos
     if (this.serverOnline) {
       await this.loadDocuments();
     }
-    
+
     // Configurar verificación periódica del estado del servidor
     this.serverCheckInterval = setInterval(this.checkServerStatus, 60000); // Verificar cada minuto
-    
+
     // Agregar eventos para manejar el redimensionamiento
-    document.addEventListener('mousemove', this.handleResize);
-    document.addEventListener('mouseup', this.stopResize);
+    document.addEventListener("mousemove", this.handleResize);
+    document.addEventListener("mouseup", this.stopResize);
   },
   beforeUnmount() {
-    emitter.off('provide-config');
-    
+    emitter.off("provide-config");
+
     // Limpiar el intervalo de verificación
     if (this.serverCheckInterval) {
       clearInterval(this.serverCheckInterval);
     }
-    
+
     // Eliminar eventos al desmontar
-    document.removeEventListener('mousemove', this.handleResize);
-    document.removeEventListener('mouseup', this.stopResize);
+    document.removeEventListener("mousemove", this.handleResize);
+    document.removeEventListener("mouseup", this.stopResize);
   },
   methods: {
     async checkServerStatus() {
       try {
-        const testResponse = await axios.get('http://127.0.0.1:5000/llm/', { timeout: 10000 });
-        console.log('Estado del servidor LLM:', testResponse.data);
-        
+        const testResponse = await axios.get("http://127.0.0.1:5000/llm/", {
+          timeout: 10000,
+        });
+        console.log("Estado del servidor LLM:", testResponse.data);
+
         // Verificar si el servidor estaba offline antes
         const wasOffline = !this.serverOnline;
-        
+
         // Actualizar estado según la respuesta
-        if (testResponse.data.message === 'llM en linea') {
+        if (testResponse.data.message === "llM en linea") {
           this.serverOnline = true;
-          
+
           // Si el servidor estaba offline y ahora está online, o si es la primera verificación (mounted)
           if (wasOffline || this.messages.length === 0) {
-            this.messages.push(this.createMessage('Bot', 'Hola, ¿En qué puedo ayudarte hoy?'));
+            this.messages.push(
+              this.createMessage("Bot", "Hola, ¿En qué puedo ayudarte hoy?")
+            );
             this.scrollToBottom();
           }
         } else {
           this.serverOnline = false;
         }
       } catch (error) {
-        console.error('Error al verificar el estado del servidor:', error);
+        console.error("Error al verificar el estado del servidor:", error);
         this.serverOnline = false;
       }
     },
-    
+
     async loadDocuments() {
       try {
-        const response = await axios.get('http://127.0.0.1:5000/llm/loadDocuments', { timeout: 15000 });
-        console.log('Documentos cargados:', response.data);
-        
+        const response = await axios.get(
+          "http://127.0.0.1:5000/llm/loadDocuments",
+          { timeout: 15000 }
+        );
+        console.log("Documentos cargados:", response.data);
+
         // Agregar mensaje informativo si la carga fue exitosa
         if (response.status === 200) {
-          this.messages.push(this.createMessage('Bot', 'Documentos cargados correctamente.'));
+          this.messages.push(
+            this.createMessage("Bot", "Documentos cargados correctamente.")
+          );
         }
       } catch (error) {
-        console.error('Error al cargar documentos:', error);
-        this.messages.push(this.createMessage('Bot', 'Error al cargar documentos. Por favor, verifica la conexión con el servidor.'));
+        console.error("Error al cargar documentos:", error);
+        this.messages.push(
+          this.createMessage(
+            "Bot",
+            "Error al cargar documentos. Por favor, verifica la conexión con el servidor."
+          )
+        );
       }
     },
-    
+
     toggleVisibility() {
       this.isMinimized = !this.isMinimized;
     },
@@ -165,132 +200,132 @@ export default {
       return { id: Date.now(), sender, text };
     },
     async sendMessage() {
-      if (this.newMessage.trim() === '' || !this.serverOnline) return;
+      if (this.newMessage.trim() === "" || !this.serverOnline) return;
 
-      const userMessage = this.createMessage('Usuario', this.newMessage);
+      const userMessage = this.createMessage("Usuario", this.newMessage);
       this.messages.push(userMessage);
       const messageText = this.newMessage;
-      this.newMessage = '';
+      this.newMessage = "";
       this.scrollToBottom();
 
       // Activar animación de carga justo antes de iniciar la comunicación
       this.isLoading = true;
       this.scrollToBottom(); // Asegurar que la animación sea visible
       this.pendingMessage = messageText;
-      
+
       // Solicitar la configuración para procesar el mensaje
-      emitter.emit('request-config');
+      emitter.emit("request-config");
     },
-    
+
     async processPendingMessage() {
-  if (!this.currentConfig) return;
-  
-  const messageText = this.pendingMessage || "";
-  this.pendingMessage = null;
-  
-  try {
-    // Verificar la conexión con el servidor antes de enviar el mensaje
-    await this.checkServerStatus();
-    
-    if (!this.serverOnline) {
-      throw new Error('El servidor LLM no está disponible');
-    }
-    
-    // Verificar que messageText no sea nulo o indefinido
-    if (!messageText) {
-      console.error('No hay mensaje para enviar');
-      return;
-    }
-    
-    // IMPORTANTE: Asegurarse de que isLoading sigue siendo true
-    this.isLoading = true;
-    
-    console.log('Enviando mensaje al servidor...');
-    // Enviar mensaje y configuración actual al backend
-    const response = await axios.post('http://127.0.0.1:5000/llm/chat', {
-      message: messageText,
-      config: this.currentConfig
-    });
+      if (!this.currentConfig) return;
 
-    console.log('Respuesta recibida:', response.data);
+      const messageText = this.pendingMessage || "";
+      this.pendingMessage = null;
 
-    // Revisar si botResponse es un string que contiene JSON
-    let botResponseText = response.data.botResponse;
-    let suggestedConfig = null;
-    try {
-      // Intentar parsear por si es un string JSON
-      const parsedResponse = JSON.parse(botResponseText);
-      if (parsedResponse && typeof parsedResponse.botResponse === 'string') {
-        botResponseText = parsedResponse.botResponse;
-        suggestedConfig = parsedResponse.suggestedConfig || null;
+      try {
+        // Verificar la conexión con el servidor antes de enviar el mensaje
+        await this.checkServerStatus();
+
+        if (!this.serverOnline) {
+          throw new Error("El servidor LLM no está disponible");
+        }
+
+        // Verificar que messageText no sea nulo o indefinido
+        if (!messageText) {
+          console.error("No hay mensaje para enviar");
+          return;
+        }
+
+        // IMPORTANTE: Asegurarse de que isLoading sigue siendo true
+        this.isLoading = true;
+
+        console.log("Enviando mensaje al servidor...");
+        // Enviar mensaje y configuración actual al backend
+        const response = await axios.post("http://127.0.0.1:5000/llm/chat", {
+          message: messageText,
+          config: this.currentConfig,
+        });
+
+        console.log("Respuesta recibida:", response.data);
+
+        // Revisar si botResponse es un string que contiene JSON
+        let botResponseText = response.data.botResponse;
+        let suggestedConfig = null;
+        try {
+          // Intentar parsear por si es un string JSON
+          const parsedResponse = JSON.parse(botResponseText);
+          if (
+            parsedResponse &&
+            typeof parsedResponse.botResponse === "string"
+          ) {
+            botResponseText = parsedResponse.botResponse;
+            suggestedConfig = parsedResponse.suggestedConfig || null;
+          }
+        } catch (e) {
+          // Si falla el parsing, usar el string original
+          console.log("botResponse no es JSON o no se pudo parsear:", e);
+        }
+
+        // CRÍTICO: Crear el mensaje pero NO desactivar la animación todavía
+        // Mantendremos isLoading = true hasta DESPUÉS de renderizar la respuesta
+        this.messages.push(this.createMessage("Bot", botResponseText));
+
+        // Si hay una configuración sugerida y es diferente de la actual, aplicarla
+        if (suggestedConfig) {
+          console.log("Configuración sugerida recibida:", suggestedConfig);
+
+          if (!this.isConfigEqual(this.currentConfig, suggestedConfig)) {
+            // Informar al componente principal que hay una nueva configuración
+            emitter.emit("update-config", suggestedConfig);
+
+            // También actualizar nuestra copia local
+            this.currentConfig = suggestedConfig;
+          }
+        }
+
+        // Esperar a que Vue actualice el DOM con el nuevo mensaje
+        await this.$nextTick();
+        this.isLoading = false;
+
+        // Hacer scroll para mostrar el nuevo mensaje ANTES de quitar la animación
+        this.scrollToBottom();
+
+        // Esperar un tiempo adicional para asegurar que el mensaje sea visible
+        // Este delay es importante para que el usuario pueda ver la transición
+      } catch (error) {
+        console.error("Error al comunicarse con el backend:", error);
+
+        // Mensaje de error más detallado para ayudar en la depuración
+        let errorMessage = "Error al procesar tu solicitud.";
+
+        if (error.response) {
+          // Error de respuesta del servidor
+          errorMessage += ` El servidor respondió con código ${error.response.status}.`;
+
+          // Si el servidor responde con código 400, actualizar el estado a offline
+          if (error.response.status === 400) {
+            this.serverOnline = false;
+            errorMessage += " El servidor está offline.";
+          }
+        } else if (error.request) {
+          // No se recibió respuesta
+          errorMessage += " No se recibió respuesta del servidor.";
+          this.serverOnline = false;
+        } else {
+          // Error al configurar la solicitud
+          errorMessage += ` Error: ${error.message}`;
+        }
+
+        this.messages.push(this.createMessage("Bot", errorMessage));
+        await this.$nextTick(); // Esperar a que Vue actualice el DOM con el mensaje de error
+        this.scrollToBottom();
+
+        // Esperar un tiempo adicional para asegurar que el mensaje de error sea visible
+        await new Promise((resolve) => setTimeout(resolve, 1000));
       }
-    } catch (e) {
-      // Si falla el parsing, usar el string original
-      console.log('botResponse no es JSON o no se pudo parsear:', e);
-    }
-    
-    // CRÍTICO: Crear el mensaje pero NO desactivar la animación todavía
-    // Mantendremos isLoading = true hasta DESPUÉS de renderizar la respuesta
-    this.messages.push(this.createMessage('Bot', botResponseText));
-    
-    // Si hay una configuración sugerida y es diferente de la actual, aplicarla
-    if (suggestedConfig) {
-      console.log('Configuración sugerida recibida:', suggestedConfig);
-      
-      if (!this.isConfigEqual(this.currentConfig, suggestedConfig)) {
-        // Informar al componente principal que hay una nueva configuración
-        emitter.emit('update-config', suggestedConfig);
-        
-        // También actualizar nuestra copia local
-        this.currentConfig = suggestedConfig;
-      }
-    }
-    
-    // Esperar a que Vue actualice el DOM con el nuevo mensaje
-    await this.$nextTick();
-    this.isLoading = false;
-    
-    // Hacer scroll para mostrar el nuevo mensaje ANTES de quitar la animación
-    this.scrollToBottom();
-    
-    // Esperar un tiempo adicional para asegurar que el mensaje sea visible
-    // Este delay es importante para que el usuario pueda ver la transición
-    
-    
-    
-  } catch (error) {
-    console.error('Error al comunicarse con el backend:', error);
-    
-    // Mensaje de error más detallado para ayudar en la depuración
-    let errorMessage = 'Error al procesar tu solicitud.';
-    
-    if (error.response) {
-      // Error de respuesta del servidor
-      errorMessage += ` El servidor respondió con código ${error.response.status}.`;
-      
-      // Si el servidor responde con código 400, actualizar el estado a offline
-      if (error.response.status === 400) {
-        this.serverOnline = false;
-        errorMessage += ' El servidor está offline.';
-      }
-    } else if (error.request) {
-      // No se recibió respuesta
-      errorMessage += ' No se recibió respuesta del servidor.';
-      this.serverOnline = false;
-    } else {
-      // Error al configurar la solicitud
-      errorMessage += ` Error: ${error.message}`;
-    }
-    
-    this.messages.push(this.createMessage('Bot', errorMessage));
-    await this.$nextTick(); // Esperar a que Vue actualice el DOM con el mensaje de error
-    this.scrollToBottom();
-    
-    // Esperar un tiempo adicional para asegurar que el mensaje de error sea visible
-    await new Promise(resolve => setTimeout(resolve, 1000));
-  }
-},
-    
+    },
+
     scrollToBottom() {
       this.$nextTick(() => {
         const messageContainer = this.$refs.messageContainer;
@@ -299,35 +334,38 @@ export default {
         }
       });
     },
-    
+
     isConfigEqual(config1, config2) {
       if (!config1 || !config2) return false;
       return JSON.stringify(config1) === JSON.stringify(config2);
     },
-    
+
     // Métodos para manejar el redimensionamiento
     startResize(e) {
       this.isResizing = true;
       e.preventDefault();
     },
-    
+
     handleResize(e) {
       if (!this.isResizing) return;
-      
+
       // Calcular el nuevo ancho basado en la posición del cursor
       const newWidth = e.clientX;
-      
+
       // Establecer límites mínimo y máximo
       if (newWidth >= 200 && newWidth <= window.innerWidth / 2) {
         this.sidebarWidth = newWidth;
-        document.documentElement.style.setProperty('--sidebar-width', `${newWidth}px`);
+        document.documentElement.style.setProperty(
+          "--sidebar-width",
+          `${newWidth}px`
+        );
       }
     },
-    
+
     stopResize() {
       this.isResizing = false;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -451,7 +489,7 @@ export default {
   border-radius: 8px;
   max-width: 85%;
   word-wrap: break-word;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .message-sender {
@@ -477,7 +515,7 @@ export default {
   background-color: #f0f9eb;
   border-left: 3px solid #28a745;
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .bot-avatar {
@@ -624,8 +662,12 @@ export default {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Estilos responsivos */
@@ -634,11 +676,11 @@ export default {
     width: 100%;
     max-width: none;
   }
-  
+
   .message {
     max-width: 90%;
   }
-  
+
   .sidebar-container.minimized {
     width: 10px; /* Reducir el ancho a una pequeña solapa visible */
     overflow: visible; /* Importante para que el botón sea visible fuera del contenedor */
@@ -649,10 +691,10 @@ export default {
     visibility: hidden; /* Oculta el contenido pero mantiene el espacio */
     width: 0;
   }
-    
+
   .sidebar-container.minimized .toggle-button {
     position: absolute;
-    right: -30px; 
+    right: -30px;
     top: 10px;
     visibility: visible; /* Asegura que el botón sea visible */
     z-index: 1000; /* Asegura que esté por encima de todo */
