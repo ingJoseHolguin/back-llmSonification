@@ -86,6 +86,9 @@
 import { emitter } from "../eventBus";
 import axios from "axios";
 
+const URLBackend = "http://100.90.193.113:5000"
+// const URLBackend = "http://127.0.0.1:5000:8080"; // Cambia esto según tu entorno
+
 export default {
   name: "LeftSidebar",
   data() {
@@ -142,7 +145,7 @@ export default {
   methods: {
     async checkServerStatus() {
       try {
-        const testResponse = await axios.get("http://127.0.0.1:5000/llm/", {
+        const testResponse = await axios.get(URLBackend+"/llm/", {
           timeout: 10000,
         });
         console.log("Estado del servidor LLM:", testResponse.data);
@@ -173,7 +176,7 @@ export default {
     async loadDocuments() {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:5000/llm/loadDocuments",
+          URLBackend+"/llm/loadDocuments",
           { timeout: 15000 }
         );
         console.log("Documentos cargados:", response.data);
@@ -297,7 +300,7 @@ export default {
 
         console.log("Enviando mensaje al servidor...");
         // Enviar mensaje y configuración actual al backend
-        const response = await axios.post("http://127.0.0.1:5000/llm/chat", {
+        const response = await axios.post(URLBackend+"/llm/chat", {
           message: messageText,
           config: this.currentConfig,
         });

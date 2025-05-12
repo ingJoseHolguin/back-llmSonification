@@ -1150,3 +1150,38 @@
 2025-05-02 19:32:36,584 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume"], "scale": "major", "instrument": "flute", "duration": 5000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.1, "max": 1.8}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
 2025-05-02 19:33:37,936 - llm.routes - INFO - Mensaje recibido: que es la sonificacion?
 2025-05-02 19:33:37,936 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "tremolo"], "scale": "major", "instrument": "flute", "duration": 5000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.1, "max": 1.8}, "tremolo": {"min": 0.3, "max": 1}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-12 17:14:17,504 - llm.routes - INFO - Starting initialization...
+2025-05-12 17:14:18,430 - llm.routes - INFO - Loaded 22 documents
+2025-05-12 17:14:23,785 - llm.routes - INFO - Model loaded successfully
+2025-05-12 17:14:25,572 - llm.routes - INFO - Index created successfully
+2025-05-12 17:14:25,572 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-12 17:14:34,440 - llm.routes - INFO - Starting initialization...
+2025-05-12 17:14:35,261 - llm.routes - INFO - Loaded 22 documents
+2025-05-12 17:14:39,301 - llm.routes - INFO - Model loaded successfully
+2025-05-12 17:14:40,567 - llm.routes - INFO - Index created successfully
+2025-05-12 17:14:40,567 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-12 17:25:28,097 - llm.routes - INFO - Starting initialization...
+2025-05-12 17:25:28,936 - llm.routes - INFO - Loaded 22 documents
+2025-05-12 17:25:33,158 - llm.routes - INFO - Model loaded successfully
+2025-05-12 17:25:34,455 - llm.routes - INFO - Index created successfully
+2025-05-12 17:25:34,455 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-12 17:27:35,648 - llm.routes - INFO - Starting initialization...
+2025-05-12 17:27:36,489 - llm.routes - INFO - Loaded 22 documents
+2025-05-12 17:27:40,765 - llm.routes - INFO - Model loaded successfully
+2025-05-12 17:27:42,219 - llm.routes - INFO - Index created successfully
+2025-05-12 17:27:42,219 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-12 17:27:52,422 - llm.routes - INFO - Starting initialization...
+2025-05-12 17:27:53,258 - llm.routes - INFO - Loaded 22 documents
+2025-05-12 17:27:57,782 - llm.routes - INFO - Model loaded successfully
+2025-05-12 17:27:59,052 - llm.routes - INFO - Index created successfully
+2025-05-12 17:27:59,066 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-12 17:28:01,003 - llm.routes - INFO - Loaded 22 documents
+2025-05-12 17:28:02,243 - llm.routes - INFO - Index created successfully
+2025-05-12 17:28:17,677 - llm.routes - INFO - Mensaje recibido: hola me ayudas a sonificar este proceso, quiero que suene triste
+2025-05-12 17:28:17,678 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-12 17:29:34,629 - llm.routes - INFO - Mensaje recibido: puedes activar el tremolo para que se haga vibrante?
+2025-05-12 17:29:34,630 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume"], "scale": "minor", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "g3"}, "volume": {"min": 0.1, "max": 0.8}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-12 17:30:05,875 - llm.routes - INFO - Mensaje recibido: si
+2025-05-12 17:30:05,875 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume"], "scale": "minor", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "g3"}, "volume": {"min": 0.1, "max": 0.8}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-12 17:31:14,826 - llm.routes - INFO - Loaded 22 documents
+2025-05-12 17:31:16,119 - llm.routes - INFO - Index created successfully
