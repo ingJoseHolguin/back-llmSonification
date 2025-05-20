@@ -221,7 +221,10 @@ export default {
         // Procesar la respuesta de confirmación
         if (
           messageText.toLowerCase() === "si" ||
-          messageText.toLowerCase() === "sí"
+          messageText.toLowerCase() === "sí" ||
+          messageText.toLowerCase() === "Si" ||
+          messageText.toLowerCase() === "Sí" ||
+          messageText.toLowerCase() === "" 
         ) {
           // Aplicar la configuración sugerida
           this.messages.push(
@@ -350,7 +353,7 @@ export default {
           this.waitingForConfigConfirmation = true;
         }
 
-        // Esperar a que Vue actualice el DOM con el nuevo mensaje
+        // Esperar a que Vue actualice el DOM con el nuevo mensaj
         await this.$nextTick();
         this.isLoading = false;
 

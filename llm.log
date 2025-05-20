@@ -1185,3 +1185,94 @@
 2025-05-12 17:30:05,875 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume"], "scale": "minor", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "g3"}, "volume": {"min": 0.1, "max": 0.8}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
 2025-05-12 17:31:14,826 - llm.routes - INFO - Loaded 22 documents
 2025-05-12 17:31:16,119 - llm.routes - INFO - Index created successfully
+2025-05-12 17:54:39,174 - llm.routes - INFO - Loaded 22 documents
+2025-05-12 17:54:40,432 - llm.routes - INFO - Index created successfully
+2025-05-12 17:59:32,235 - llm.routes - INFO - Loaded 22 documents
+2025-05-12 17:59:33,506 - llm.routes - INFO - Index created successfully
+2025-05-12 18:06:56,604 - llm.routes - INFO - Loaded 22 documents
+2025-05-12 18:06:57,890 - llm.routes - INFO - Index created successfully
+2025-05-12 18:11:20,678 - llm.routes - INFO - Loaded 22 documents
+2025-05-12 18:11:22,033 - llm.routes - INFO - Index created successfully
+2025-05-12 18:15:27,021 - llm.routes - INFO - Loaded 22 documents
+2025-05-12 18:15:28,445 - llm.routes - INFO - Index created successfully
+2025-05-12 18:33:06,629 - llm.routes - INFO - Loaded 22 documents
+2025-05-12 18:33:07,922 - llm.routes - INFO - Index created successfully
+2025-05-12 18:34:12,671 - llm.routes - INFO - Mensaje recibido: quiero que la sonificacion dure 4 segundos, sea triste y que pueda hcar muchas cosas wooooooooo
+2025-05-12 18:34:12,671 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 1000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-12 18:51:15,141 - llm.routes - INFO - Loaded 22 documents
+2025-05-12 18:51:16,406 - llm.routes - INFO - Index created successfully
+2025-05-12 18:52:45,589 - llm.routes - INFO - Loaded 22 documents
+2025-05-12 18:52:46,963 - llm.routes - INFO - Index created successfully
+2025-05-12 18:54:13,460 - llm.routes - INFO - Loaded 22 documents
+2025-05-12 18:54:14,870 - llm.routes - INFO - Index created successfully
+2025-05-12 18:55:19,059 - llm.routes - INFO - Loaded 22 documents
+2025-05-12 18:55:20,666 - llm.routes - INFO - Loaded 22 documents
+2025-05-12 18:55:21,537 - llm.routes - INFO - Index created successfully
+2025-05-12 18:55:22,519 - llm.routes - INFO - Loaded 22 documents
+2025-05-12 18:55:23,328 - llm.routes - INFO - Index created successfully
+2025-05-12 18:55:24,051 - llm.routes - INFO - Index created successfully
+2025-05-12 18:57:06,934 - llm.routes - INFO - Loaded 22 documents
+2025-05-12 18:57:08,121 - llm.routes - INFO - Index created successfully
+2025-05-12 19:59:52,851 - llm.routes - INFO - Starting initialization...
+2025-05-12 19:59:53,677 - llm.routes - INFO - Loaded 22 documents
+2025-05-12 19:59:58,074 - llm.routes - INFO - Model loaded successfully
+2025-05-12 19:59:59,347 - llm.routes - INFO - Index created successfully
+2025-05-12 19:59:59,348 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-12 20:00:09,741 - llm.routes - INFO - Starting initialization...
+2025-05-12 20:00:10,551 - llm.routes - INFO - Loaded 22 documents
+2025-05-12 20:00:14,874 - llm.routes - INFO - Model loaded successfully
+2025-05-12 20:00:16,129 - llm.routes - INFO - Index created successfully
+2025-05-12 20:00:16,129 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-15 05:16:08,906 - llm.routes - INFO - Starting initialization...
+2025-05-15 05:16:09,930 - llm.routes - INFO - Loaded 22 documents
+2025-05-15 05:16:15,458 - llm.routes - INFO - Model loaded successfully
+2025-05-15 05:16:17,403 - llm.routes - INFO - Index created successfully
+2025-05-15 05:16:17,404 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-15 05:16:28,668 - llm.routes - INFO - Starting initialization...
+2025-05-15 05:16:29,547 - llm.routes - INFO - Loaded 22 documents
+2025-05-15 05:16:34,390 - llm.routes - INFO - Model loaded successfully
+2025-05-15 05:16:35,788 - llm.routes - INFO - Index created successfully
+2025-05-15 05:16:35,789 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-15 05:24:58,226 - llm.routes - INFO - Loaded 22 documents
+2025-05-15 05:24:59,641 - llm.routes - INFO - Index created successfully
+2025-05-15 06:27:42,710 - llm.routes - INFO - Loaded 22 documents
+2025-05-15 06:27:43,999 - llm.routes - INFO - Index created successfully
+2025-05-15 06:28:21,227 - llm.routes - INFO - Mensaje recibido: hola, quiero sonificar la tasa de natalidad de mexico, como puedo hacer para darle un motivo a la sonificacion de tension o drama al ver el pico de nacimientos?
+2025-05-15 06:28:21,229 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-20 01:42:57,030 - llm.routes - INFO - Starting initialization...
+2025-05-20 01:42:58,020 - llm.routes - INFO - Loaded 22 documents
+2025-05-20 01:43:04,447 - llm.routes - INFO - Model loaded successfully
+2025-05-20 01:43:06,334 - llm.routes - INFO - Index created successfully
+2025-05-20 01:43:06,334 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-20 01:43:18,147 - llm.routes - INFO - Starting initialization...
+2025-05-20 01:43:19,116 - llm.routes - INFO - Loaded 22 documents
+2025-05-20 01:43:23,715 - llm.routes - INFO - Model loaded successfully
+2025-05-20 01:43:25,241 - llm.routes - INFO - Index created successfully
+2025-05-20 01:43:25,241 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-20 03:11:02,018 - llm.routes - INFO - Loaded 22 documents
+2025-05-20 03:11:03,535 - llm.routes - INFO - Index created successfully
+2025-05-20 05:14:45,432 - llm.routes - INFO - Loaded 22 documents
+2025-05-20 05:14:46,163 - llm.routes - INFO - Loaded 22 documents
+2025-05-20 05:14:50,924 - llm.routes - INFO - Index created successfully
+2025-05-20 05:14:50,971 - llm.routes - INFO - Index created successfully
+2025-05-20 05:15:14,218 - llm.routes - INFO - Loaded 22 documents
+2025-05-20 05:15:16,499 - llm.routes - INFO - Index created successfully
+2025-05-20 05:16:51,730 - llm.routes - INFO - Mensaje recibido: Hola, soy ana, requiero sonificar los datos de natalidad para mi clase de ciencias sociales, podrias porfavor generar una sonificacion alagre para niños pero que sea algo vibrante para resaltar el pico de datos
+2025-05-20 05:16:51,730 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-20 05:16:56,434 - llm.routes - ERROR - Error en chat: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2025-05-20 05:17:59,964 - llm.routes - INFO - Starting initialization...
+2025-05-20 05:18:00,943 - llm.routes - INFO - Loaded 22 documents
+2025-05-20 05:18:08,676 - llm.routes - INFO - Model loaded successfully
+2025-05-20 05:18:10,153 - llm.routes - INFO - Index created successfully
+2025-05-20 05:18:10,153 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-20 05:18:21,709 - llm.routes - INFO - Starting initialization...
+2025-05-20 05:18:22,682 - llm.routes - INFO - Loaded 22 documents
+2025-05-20 05:18:31,478 - llm.routes - INFO - Model loaded successfully
+2025-05-20 05:18:32,940 - llm.routes - INFO - Index created successfully
+2025-05-20 05:18:32,940 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-05-20 05:18:47,653 - llm.routes - INFO - Loaded 22 documents
+2025-05-20 05:18:49,035 - llm.routes - INFO - Index created successfully
+2025-05-20 05:19:35,360 - llm.routes - INFO - Mensaje recibido: Hola, tengo una clase de ciencias sociales quiero dramatisar estos datos para poder resltar el pico de natalidad
+2025-05-20 05:19:35,361 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 5000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-05-20 05:21:19,291 - llm.routes - INFO - Mensaje recibido: ahora quiero sentir una vibracion para llamar mas la atencion
+2025-05-20 05:21:19,291 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "noteDuration"], "scale": "major", "instrument": "piano", "duration": 5000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "noteDuration": {"min": 30, "max": 1000}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}

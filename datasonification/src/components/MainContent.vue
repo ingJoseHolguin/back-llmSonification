@@ -2,156 +2,104 @@
   <div class="main-content-container">
     <div class="chart-wrapper">
       <!-- Componente de Highcharts adaptado de tu código -->
-      <div class="import-controls">
-        <button @click="handleFileImport" class="import-button">Importar CSV/Excel</button>
-        <input 
-          type="file" 
-          ref="fileInput" 
-          @change="onFileChange" 
-          accept=".csv,.txt,.xlsx,.xls" 
-          style="display: none;"
-        >
-      </div>
-
       <figure class="highcharts-figure">
         <!-- Área del gráfico ampliada -->
         <div id="container" ref="chartContainer" class="chart-container"></div>
         
-        <!-- MOVIDO: Botón de reproducción colocado aquí, justo después del gráfico -->
+        <!-- Botones de control agrupados en una sola fila -->
         <div class="playback-controls">
-          <button id="sonify" @click="toggleSonify">{{ isPlaying ? 'Detener' : 'Reproducir gráfico' }}</button>
-          <button id="export-midi" @click="exportMIDI">Exportar MIDI</button>
+          <button @click="handleFileImport" class="control-button import-button">Importar CSV/Excel</button>
+          <button id="sonify" @click="toggleSonify" class="control-button play-button">{{ isPlaying ? 'Detener' : 'Reproducir gráfico' }}</button>
+          <button id="export-midi" @click="exportMIDI" class="control-button export-button">Exportar MIDI</button>
+          <input 
+            type="file" 
+            ref="fileInput" 
+            @change="onFileChange" 
+            accept=".csv,.txt,.xlsx,.xls" 
+            style="display: none;"
+          >
         </div>
         
         <div id="controls">
-          <!-- Panel de configuración organizado en pestañas -->
-          <div class="tabs-container">
-            <div class="tabs">
-              <button 
-                :class="{ 'active-tab': activeTab === 'params' }" 
-                @click="activeTab = 'params'"
-              >
-                Parámetros de Mapeo
-              </button>
-              <button 
-                :class="{ 'active-tab': activeTab === 'json' }" 
-                @click="activeTab = 'json'"
-              >
-                Configuración JSON
-              </button>
-            </div>
-            
-            <!-- Pestaña de parámetros -->
-            <div v-if="activeTab === 'params'" class="tab-content">
-              <div class="parameters-container">
-                <h4>Selecciona Parámetros:</h4>
-                <div class="checkbox-grid">
-                  <div v-for="param in availableParams" :key="param.value" class="parameter-checkbox">
-                    <input 
-                      type="checkbox" 
-                      :id="param.value" 
-                      :value="param.value" 
-                      v-model="activeParams"
-                      @change="updateMapping"
-                    >
-                    <label :for="param.value">{{ param.label }}</label>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Configuración de rango para parámetros activos -->
-              <div v-if="activeParams.length > 0" class="min-max-container">
-                <h4>Configuración de Rangos:</h4>
-                <div v-for="param in activeParams" :key="param" class="param-range-controls">
-                  <h5>{{ getParamLabel(param) }}</h5>
-                  <div class="min-max-controls">
-                    <div class="control-group">
-                      <label :for="`${param}-min`">Min:</label>
-                      <input 
-                        :type="getInputType(param)" 
-                        :id="`${param}-min`" 
-                        v-model="paramRanges[param].min" 
-                        @change="updateParamRange(param)"
-                      />
-                    </div>
-                    <div class="control-group">
-                      <label :for="`${param}-max`">Max:</label>
-                      <input 
-                        :type="getInputType(param)" 
-                        :id="`${param}-max`" 
-                        v-model="paramRanges[param].max" 
-                        @change="updateParamRange(param)"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="control-row">
-                <div class="control-group">
-                  <label for="scale">Escala:</label>
-                  <select id="scale" v-model="selectedScale" @change="updateMapping">
-                    <option v-for="scale in availableScales" :key="scale" :value="scale">
-                      {{ scale }}
-                    </option>
-                  </select>
-                </div>
-                
-                <div class="control-group">
-                  <label for="instrument">Instrumento:</label>
-                  <select id="instrument" v-model="selectedInstrument" @change="updateMapping">
-                    <option v-for="instrument in availableInstruments" :key="instrument" :value="instrument">
-                      {{ instrument }}
-                    </option>
-                  </select>
-                </div>
-                
-                <div class="control-group">
-                  <label for="duration">Duración (ms):</label>
+          <!-- Panel de configuración sin pestañas ahora que solo tenemos una opción -->
+          <div class="tab-content">
+            <div class="parameters-container">
+              <h4>Selecciona Parámetros:</h4>
+              <div class="checkbox-grid">
+                <div v-for="param in availableParams" :key="param.value" class="parameter-checkbox">
                   <input 
-                    type="number" 
-                    id="duration" 
-                    v-model.number="sonificationDuration" 
-                    min="1000" 
-                    max="15000" 
-                    step="500"
+                    type="checkbox" 
+                    :id="param.value" 
+                    :value="param.value" 
+                    v-model="activeParams"
                     @change="updateMapping"
-                  />
+                  >
+                  <label :for="param.value">{{ param.label }}</label>
                 </div>
               </div>
             </div>
-            
-            <!-- Pestaña de configuración JSON -->
-            <div v-if="activeTab === 'json'" class="tab-content">
-              <div class="json-config-container">
-                <h4>Configuración JSON:</h4>
-                <textarea 
-                  v-model="jsonConfig" 
-                  placeholder="Pega tu configuración JSON aquí..." 
-                  class="json-textarea"
-                  @input="validateJson"
-                ></textarea>
-                <div class="json-status" :class="{ 'json-valid': isJsonValid, 'json-invalid': !isJsonValid && jsonConfig }">
-                  {{ jsonStatusMessage }}
+
+            <!-- Configuración de rango para parámetros activos -->
+            <div v-if="activeParams.length > 0" class="min-max-container">
+              <h4>Configuración de Rangos:</h4>
+              <div v-for="param in activeParams" :key="param" class="param-range-controls">
+                <h5>{{ getParamLabel(param) }}</h5>
+                <div class="min-max-controls">
+                  <div class="control-group">
+                    <label :for="`${param}-min`">Min:</label>
+                    <input 
+                      :type="getInputType(param)" 
+                      :id="`${param}-min`" 
+                      v-model="paramRanges[param].min" 
+                      @change="updateParamRange(param)"
+                    />
+                  </div>
+                  <div class="control-group">
+                    <label :for="`${param}-max`">Max:</label>
+                    <input 
+                      :type="getInputType(param)" 
+                      :id="`${param}-max`" 
+                      v-model="paramRanges[param].max" 
+                      @change="updateParamRange(param)"
+                    />
+                  </div>
                 </div>
-                <button 
-                  id="apply-config" 
-                  @click="applyJsonConfig" 
-                  :disabled="!isJsonValid || !jsonConfig"
-                  :class="{ 'button-disabled': !isJsonValid || !jsonConfig }"
-                >
-                  Aplicar Configuración
-                </button>
-                
-                <div class="json-example">
-                  <h5>Ejemplo de formato JSON:</h5>
-                  <pre>{{ jsonExample }}</pre>
-                </div>
+              </div>
+            </div>
+
+            <div class="control-row">
+              <div class="control-group">
+                <label for="scale">Escala:</label>
+                <select id="scale" v-model="selectedScale" @change="updateMapping">
+                  <option v-for="scale in availableScales" :key="scale" :value="scale">
+                    {{ scale }}
+                  </option>
+                </select>
+              </div>
+              
+              <div class="control-group">
+                <label for="instrument">Instrumento:</label>
+                <select id="instrument" v-model="selectedInstrument" @change="updateMapping">
+                  <option v-for="instrument in availableInstruments" :key="instrument" :value="instrument">
+                    {{ instrument }}
+                  </option>
+                </select>
+              </div>
+              
+              <div class="control-group">
+                <label for="duration">Duración (ms):</label>
+                <input 
+                  type="number" 
+                  id="duration" 
+                  v-model.number="sonificationDuration" 
+                  min="1000" 
+                  max="15000" 
+                  step="500"
+                  @change="updateMapping"
+                />
               </div>
             </div>
           </div>
-          
-          <!-- ELIMINADO: El botón ya no está aquí -->
         </div>
         
         <div class="help-container" v-if="activeParams.length > 0">
@@ -164,7 +112,7 @@
         <p class="highcharts-description">
           Este gráfico demuestra el mapeo de sonificación multi-parámetro. Selecciona múltiples parámetros de mapeo, 
           luego elige una escala e instrumento antes de reproducir el gráfico para escuchar cómo los datos se representan 
-          con múltiples dimensiones de sonido. También puedes pegar una configuración JSON para aplicar rápidamente ajustes complejos.
+          con múltiples dimensiones de sonido.
         </p>
       </figure>
     </div>
@@ -889,14 +837,20 @@ usarMetodoAlternativo() {
         
         // Update the chart
         this.chart.update({
-          sonification: {
-            duration: duration,
-            defaultInstrumentOptions: {
-              instrument: instrument,
-              mapping: combinedMapping
-            }
+      sonification: {
+        duration: duration,
+        defaultInstrumentOptions: {
+          instrument: instrument,
+          mapping: combinedMapping
+        },
+        // Agregar estos manejadores de eventos
+        events: {
+          onEnd: () => {
+            this.isPlaying = false;
           }
-        });
+        }
+      }
+    });
         
         // Generate and update the JSON config for reference
         this.generateJsonConfig();
@@ -1182,25 +1136,7 @@ label {
   font-weight: 500;
 }
 
-#sonify {
-  background-color: #3070d0;
-  color: white;
-  border: none;
-  font-size: 1rem;
-  min-height: 46px;
-  font-weight: 600;
-  border-radius: 6px;
-  padding: 12px 20px;
-  cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  max-width: 250px;
-  margin: 20px auto 0;
-}
+
 
 #apply-config:hover, #sonify:hover {
   background-color: #2560b8;
@@ -1381,20 +1317,6 @@ label {
 }
 
 
-.import-button {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 6px;
-  background-color: #25386f;
-  color: white;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-weight: 500;
-  font-size: 0.9rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
 
 .import-button:hover {
   background-color: #0056b3;
@@ -1408,25 +1330,7 @@ label {
 .import-button:active {
   transform: translateY(1px);
 }
-#export-midi {
-  background-color: #25386f;
-  color: white;
-  border: none;
-  font-size: 1rem;
-  min-height: 46px;
-  font-weight: 600;
-  border-radius: 6px;
-  padding: 12px 20px;
-  cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  max-width: 250px;
-  margin: 20px auto 0;
-}
+
 
 #export-midi:hover {
   background-color: #1a2a57;
@@ -1437,8 +1341,36 @@ label {
 .playback-controls {
   display: flex;
   justify-content: center;
-  gap: 16px;
-  margin-top: 20px;
+  gap: 20px;
+  margin: 30px 0;
+  width: 100%;
+}
+
+.control-button {
+  min-width: 200px;
+  min-height: 46px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 12px 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  border: none;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.control-button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.control-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 </style>
