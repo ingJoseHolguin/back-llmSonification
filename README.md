@@ -53,3 +53,52 @@ Si encuentras problemas:
 1. Verifica que Python esté correctamente instalado: python --version
 2. Confirma que Ollama esté ejecutándose: ollama list
 3. Asegúrate de que todas las dependencias estén instaladas: pip list
+
+
+## Frontend
+
+Este proyecto también incluye un frontend desarrollado en Vue.js ubicado en la carpeta datasonification.
+
+### Requisitos del Frontend
+
+#### Node.js y npm
+- Versión requerida: Node.js 14 o superior
+- Descarga desde: https://nodejs.org/
+
+### Instalación del Frontend
+
+1. Navegar a la carpeta del frontend:
+    ```bash
+    cd datasonification
+
+2. Instalar dependencias:
+     ```bash
+    npm install
+
+### Ejecución del Frontend
+
+Para iniciar el frontend, ejecuta:
+     ```bash
+    npm run serve
+
+El frontend estará disponible en: http://localhost:8080
+
+## Estructura Completa del Proyecto
+├── src/
+│   └── main.py          # Backend - Punto de entrada
+├── datasonification/    # Frontend Vue.js
+├── requirements.txt     # Dependencias de Python
+└── README.md           # Este archivo
+
+## Ejecución Completa del Proyecto
+
+Para ejecutar tanto el backend como el frontend:
+
+1. Terminal 1 - Backend:
+py .\src\main.py
+
+2. Terminal 2 - Frontend:
+cd datasonification
+npm run serve
+
+Asegúrate de tener ambos servicios ejecutándose simultáneamente para el funcionamiento completo de la aplicación.
