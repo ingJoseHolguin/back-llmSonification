@@ -20,11 +20,11 @@ El backend requiere **Ollama** instalado con el modelo de lenguaje **qwen2.5:14b
 
 ## Instalación
 
-### 1. Instalar dependencias de Python
+1. Instalar dependencias de Python
     ```bash
     pip install -r requirements.txt
 
-### 2. Verificar instalación de Ollama
+ 2. Verificar instalación de Ollama
 Asegúrate de que Ollama esté ejecutándose y el modelo esté disponible:
     ```bash
     ollama list
@@ -77,8 +77,8 @@ Este proyecto también incluye un frontend desarrollado en Vue.js ubicado en la 
 
 ### Ejecución del Frontend
 
-Para iniciar el frontend, ejecuta:
-     ```bash
+1. Para iniciar el frontend, ejecuta:
+    ```bash
     npm run serve
 
 El frontend estará disponible en: http://localhost:8080
