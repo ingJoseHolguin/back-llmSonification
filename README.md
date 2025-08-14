@@ -1,6 +1,29 @@
+# SonifyData
+SonifyData es una herramienta de autoría de sonificación de datos asistida por un chatbot conversacional, desarrollada como parte de una tesis de maestría. Su objetivo principal es mejorar la experiencia de uso, particularmente entre personas sin experiencia técnica previa en sonificación.
+
+Este proyecto combina un backend en Python un frontend en Vue.js para crear una aplicación completa de sonificación de datos. La aplicación utiliza modelos de lenguaje avanzados para procesar y transformar datos en experiencias sonoras mediante interacción conversacional.
+
+### Características Principales
+
+- **Interfaz conversacional**: Chatbot integrado que permite configurar sonificaciones mediante lenguaje natural
+- **Sonificación por parámetros**: Mapeo de variables numéricas a parámetros auditivos (tono, volumen, panorámica, etc.)
+- **Interacción guiada**: Asistencia paso a paso para usuarios no expertos
+- **Visualización sincronizada**: Gráficos interactivos que se sincronizan con la reproducción sonora
+- **Exportación MIDI**: Capacidad de exportar las sonificaciones creadas
+
+## Componentes del Proyecto
+
+- **Backend**: API desarrollada en Python que utiliza el modelo de lenguaje Qwen2.5:14b a través de Ollama
+- **Frontend**: Interfaz de usuario desarrollada en Vue.js para interactuar con los datos sonificados
+
+## Autores
+
+- Dr. Edgard Iván Benítez Guerrero
+- Mtro. José Pablo Rueda Holguín 
+
 # Backend
 
-Este es el backend del proyecto, desarrollado en Python.
+Este es el backend del proyecto, desarrollado en Python con Flask.
 
 ## Requisitos del Sistema
 
