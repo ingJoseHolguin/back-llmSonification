@@ -47,10 +47,35 @@
       </div>
 
       <div v-if="!isMinimized" class="input-group">
+        <!-- Botones de voz -->
+        <div class="voice-controls">
+          <button
+            class="voice-button"
+            :class="{ active: isRecording }"
+            @click="toggleRecording"
+            :disabled="!speechRecognitionSupported || !serverOnline"
+            :title="isRecording ? 'Detener grabación' : 'Iniciar grabación de voz'"
+          >
+            <span v-if="isRecording">🛑</span>
+            <span v-else>🎤</span>
+          </button>
+          
+          <button
+            class="voice-button"
+            :class="{ active: textToSpeechEnabled }"
+            @click="toggleTextToSpeech"
+            :disabled="!speechSynthesisSupported"
+            :title="textToSpeechEnabled ? 'Desactivar lectura de voz' : 'Activar lectura de voz'"
+          >
+            <span v-if="textToSpeechEnabled">🔊</span>
+            <span v-else>🔇</span>
+          </button>
+        </div>
+
         <input
           v-model="newMessage"
           type="text"
-          placeholder="Escribe tu mensaje..."
+          placeholder="Escribe tu mensaje o usa el micrófono..."
           class="chat-input"
           @keyup.enter="sendMessage"
           :disabled="isLoading || !serverOnline"
@@ -62,6 +87,16 @@
         >
           Enviar
         </button>
+      </div>
+
+      <!-- Indicador de reconocimiento de voz -->
+      <div v-if="isRecording && !isMinimized" class="recording-indicator">
+        <div class="recording-animation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <span class="recording-text">Escuchando...</span>
       </div>
     </div>
 
@@ -86,8 +121,8 @@
 import { emitter } from "../eventBus";
 import axios from "axios";
 
-const URLBackend = "http://100.90.193.113:5000"
-// const URLBackend = "http://127.0.0.1:5000:8080"; // Cambia esto según tu entorno
+//const URLBackend = "http://100.90.193.113:5000"
+const URLBackend = "http://127.0.0.1:5000:8080"; // Cambia esto según tu entorno
 
 export default {
   name: "LeftSidebar",
@@ -104,7 +139,14 @@ export default {
       serverOnline: false, // Estado del servidor
       serverCheckInterval: null, // Para el intervalo de verificación
       waitingForConfigConfirmation: false, // Para controlar si esperamos confirmación de cambios
-      suggestedConfig: null // Para almacenar la configuración sugerida
+      suggestedConfig: null, // Para almacenar la configuración sugerida - AGREGAR COMA AQUÍ
+      // Nuevas propiedades para funcionalidades de voz
+      isRecording: false,
+      speechRecognition: null,
+      speechRecognitionSupported: false,
+      textToSpeechEnabled: false,
+      speechSynthesisSupported: false,
+      currentUtterance: null
     };
   },
   created() {
@@ -113,6 +155,8 @@ export default {
       console.log("Configuración recibida en LeftSidebar:", config);
       this.processPendingMessage();
     });
+    this.initializeVoiceFeatures();
+
   },
   async mounted() {
     // Verificar estado del servidor al iniciar
@@ -330,6 +374,10 @@ export default {
 
         // Añadir el mensaje de respuesta del bot
         this.messages.push(this.createMessage("Bot", botResponseText));
+        if (this.textToSpeechEnabled) {
+          this.speakText(botResponseText);
+        }
+
 
         // Si hay una configuración sugerida y es diferente de la actual, preguntar al usuario
         if (
@@ -431,6 +479,120 @@ export default {
     stopResize() {
       this.isResizing = false;
     },
+
+    initializeVoiceFeatures() {
+    // Verificar soporte para reconocimiento de voz
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      this.speechRecognitionSupported = true;
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      this.speechRecognition = new SpeechRecognition();
+      
+      this.speechRecognition.continuous = false;
+      this.speechRecognition.interimResults = false;
+      this.speechRecognition.lang = 'es-ES';
+      
+      this.speechRecognition.onstart = () => {
+        console.log('Reconocimiento de voz iniciado');
+      };
+      
+      this.speechRecognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        console.log('Texto reconocido:', transcript);
+        this.newMessage = transcript;
+        this.isRecording = false;
+      };
+      
+      this.speechRecognition.onerror = (event) => {
+        console.error('Error en reconocimiento de voz:', event.error);
+        this.isRecording = false;
+        this.messages.push(
+          this.createMessage("Bot", `Error en reconocimiento de voz: ${event.error}`)
+        );
+      };
+      
+      this.speechRecognition.onend = () => {
+        console.log('Reconocimiento de voz terminado');
+        this.isRecording = false;
+      };
+    }
+    
+    // Verificar soporte para síntesis de voz
+    if ('speechSynthesis' in window) {
+      this.speechSynthesisSupported = true;
+    }
+  },
+  
+  toggleRecording() {
+    if (!this.speechRecognitionSupported) {
+      this.messages.push(
+        this.createMessage("Bot", "Reconocimiento de voz no soportado en este navegador.")
+      );
+      return;
+    }
+    
+    if (this.isRecording) {
+      this.speechRecognition.stop();
+      this.isRecording = false;
+    } else {
+      try {
+        this.speechRecognition.start();
+        this.isRecording = true;
+      } catch (error) {
+        console.error('Error al iniciar reconocimiento de voz:', error);
+        this.messages.push(
+          this.createMessage("Bot", "Error al iniciar el reconocimiento de voz.")
+        );
+      }
+    }
+  },
+  
+  toggleTextToSpeech() {
+    if (!this.speechSynthesisSupported) {
+      this.messages.push(
+        this.createMessage("Bot", "Síntesis de voz no soportada en este navegador.")
+      );
+      return;
+    }
+    
+    this.textToSpeechEnabled = !this.textToSpeechEnabled;
+    
+    if (!this.textToSpeechEnabled && this.currentUtterance) {
+      speechSynthesis.cancel();
+    }
+    
+    const statusMessage = this.textToSpeechEnabled 
+      ? "Lectura de voz activada" 
+      : "Lectura de voz desactivada";
+    
+    this.messages.push(this.createMessage("Bot", statusMessage));
+    this.scrollToBottom();
+  },
+  
+  speakText(text) {
+    if (!this.textToSpeechEnabled || !this.speechSynthesisSupported) {
+      return;
+    }
+    
+    speechSynthesis.cancel();
+    
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'es-ES';
+    utterance.rate = 0.9;
+    utterance.pitch = 1;
+    utterance.volume = 0.8;
+    
+    utterance.onend = () => {
+      this.currentUtterance = null;
+    };
+    
+    utterance.onerror = (event) => {
+      console.error('Error en síntesis de voz:', event);
+      this.currentUtterance = null;
+    };
+    
+    this.currentUtterance = utterance;
+    speechSynthesis.speak(utterance);
+  }
   },
 };
 </script>
@@ -645,10 +807,92 @@ export default {
 
 .input-group {
   display: flex;
+  align-items: center;
   padding: 12px;
   background-color: #fff;
   border-top: 1px solid #eaeaea;
+  gap: 8px;
 }
+
+.voice-controls {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.voice-button {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #007bff;
+  border-radius: 50%;
+  background-color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.voice-button:hover {
+  background-color: #f8f9fa;
+  transform: scale(1.05);
+}
+
+.voice-button.active {
+  background-color: #007bff;
+  color: white;
+  animation: voiceButtonPulse 2s infinite;
+}
+
+.voice-button:disabled {
+  background-color: #f5f5f5;
+  border-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+
+@keyframes voiceButtonPulse {
+  0% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(0, 123, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); }
+}
+
+.recording-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  background-color: #fff3cd;
+  border-top: 1px solid #ffeaa7;
+  gap: 8px;
+}
+
+.recording-animation span {
+  height: 6px;
+  width: 6px;
+  margin: 0 2px;
+  background-color: #dc3545;
+  border-radius: 50%;
+  display: inline-block;
+  animation: recording-pulse 1.5s ease-in-out infinite;
+}
+
+.recording-animation span:nth-child(2) { animation-delay: 0.2s; }
+.recording-animation span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes recording-pulse {
+  0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+  40% { transform: scale(1.2); opacity: 1; }
+}
+
+.recording-text {
+  font-size: 14px;
+  color: #856404;
+  font-weight: 500;
+}
+
 
 .chat-input {
   flex: 1;

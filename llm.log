@@ -1276,3 +1276,327 @@
 2025-05-20 05:19:35,361 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 5000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
 2025-05-20 05:21:19,291 - llm.routes - INFO - Mensaje recibido: ahora quiero sentir una vibracion para llamar mas la atencion
 2025-05-20 05:21:19,291 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "noteDuration"], "scale": "major", "instrument": "piano", "duration": 5000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "noteDuration": {"min": 30, "max": 1000}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-02 16:58:25,369 - llm.routes - INFO - Starting initialization...
+2025-06-02 16:58:26,308 - llm.routes - INFO - Loaded 22 documents
+2025-06-02 16:58:31,279 - llm.routes - INFO - Model loaded successfully
+2025-06-02 16:58:33,127 - llm.routes - INFO - Index created successfully
+2025-06-02 16:58:33,127 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-06-02 16:58:44,036 - llm.routes - INFO - Starting initialization...
+2025-06-02 16:58:44,909 - llm.routes - INFO - Loaded 22 documents
+2025-06-02 16:58:48,969 - llm.routes - INFO - Model loaded successfully
+2025-06-02 16:58:50,309 - llm.routes - INFO - Index created successfully
+2025-06-02 16:58:50,309 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-06-02 17:00:22,534 - llm.routes - INFO - Loaded 22 documents
+2025-06-02 17:00:23,875 - llm.routes - INFO - Index created successfully
+2025-06-02 17:02:37,772 - llm.routes - INFO - Mensaje recibido: hola
+2025-06-02 17:02:37,772 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-02 17:02:42,351 - llm.routes - ERROR - Error en chat: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2025-06-02 17:02:47,608 - llm.routes - INFO - Mensaje recibido: hola
+2025-06-02 17:02:47,609 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-02 17:02:51,739 - llm.routes - ERROR - Error en chat: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2025-06-02 17:03:29,594 - llm.routes - INFO - Mensaje recibido: hola
+2025-06-02 17:03:29,595 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-02 17:03:33,757 - llm.routes - ERROR - Error en chat: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2025-06-02 17:04:44,937 - llm.routes - INFO - Starting initialization...
+2025-06-02 17:04:45,862 - llm.routes - INFO - Loaded 22 documents
+2025-06-02 17:04:52,332 - llm.routes - INFO - Model loaded successfully
+2025-06-02 17:04:53,732 - llm.routes - INFO - Index created successfully
+2025-06-02 17:04:53,732 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-06-02 17:05:06,543 - llm.routes - INFO - Starting initialization...
+2025-06-02 17:05:07,508 - llm.routes - INFO - Loaded 22 documents
+2025-06-02 17:05:14,442 - llm.routes - INFO - Model loaded successfully
+2025-06-02 17:05:16,029 - llm.routes - INFO - Index created successfully
+2025-06-02 17:05:16,030 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-06-02 17:06:19,977 - llm.routes - INFO - Loaded 22 documents
+2025-06-02 17:06:21,133 - llm.routes - INFO - Index created successfully
+2025-06-02 17:06:23,778 - llm.routes - INFO - Mensaje recibido: hola
+2025-06-02 17:06:23,778 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-02 17:08:03,059 - llm.routes - INFO - Loaded 22 documents
+2025-06-02 17:08:04,221 - llm.routes - INFO - Index created successfully
+2025-06-02 17:16:58,003 - llm.routes - INFO - Loaded 22 documents
+2025-06-02 17:16:59,334 - llm.routes - INFO - Index created successfully
+2025-06-02 17:23:22,070 - llm.routes - INFO - Mensaje recibido: hola
+2025-06-02 17:23:22,071 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-02 17:24:04,073 - llm.routes - INFO - Loaded 22 documents
+2025-06-02 17:24:05,479 - llm.routes - INFO - Index created successfully
+2025-06-02 17:31:29,219 - llm.routes - INFO - Loaded 22 documents
+2025-06-02 17:31:30,404 - llm.routes - INFO - Index created successfully
+2025-06-02 18:13:02,368 - llm.routes - INFO - Loaded 22 documents
+2025-06-02 18:13:03,666 - llm.routes - INFO - Index created successfully
+2025-06-02 18:13:06,842 - llm.routes - INFO - Mensaje recibido: hola
+2025-06-02 18:13:06,842 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-02 18:13:33,857 - llm.routes - INFO - Loaded 22 documents
+2025-06-02 18:13:35,151 - llm.routes - INFO - Index created successfully
+2025-06-02 18:27:46,553 - llm.routes - INFO - Mensaje recibido: como puedo modificar la grafica
+2025-06-02 18:27:46,553 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-02 19:09:03,424 - llm.routes - INFO - Mensaje recibido: haz la canción más feliz
+2025-06-02 19:09:03,424 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "noteDuration", "pan", "gapBetweenNotes", "tremolo", "lowpass"], "scale": "minor", "instrument": "saxophone", "duration": 10000, "paramRanges": {"pitch": {"min": "c3", "max": "c4"}, "volume": {"min": 1, "max": 2}, "noteDuration": {"min": 10, "max": 300}, "pan": {"min": 5, "max": 10}, "gapBetweenNotes": {"min": 20, "max": 100}, "tremolo": {"min": 0.1, "max": 0.3}, "lowpass": {"min": 100, "max": 300}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-02 19:11:53,213 - llm.routes - INFO - Mensaje recibido: puedes hacer la canción más de terror
+2025-06-02 19:11:53,213 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "noteDuration", "pan", "gapBetweenNotes", "tremolo", "lowpass"], "scale": "major", "instrument": "trumpet", "duration": 10000, "paramRanges": {"pitch": {"min": "c4", "max": "c5"}, "volume": {"min": 1.2, "max": 2}, "noteDuration": {"min": 100, "max": 300}, "pan": {"min": -1, "max": 1}, "gapBetweenNotes": {"min": 40, "max": 80}, "tremolo": {"min": 0.2, "max": 0.5}, "lowpass": {"min": 300, "max": 1000}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-03 15:42:42,483 - llm.routes - INFO - Starting initialization...
+2025-06-03 15:42:43,474 - llm.routes - INFO - Loaded 22 documents
+2025-06-03 15:42:48,494 - llm.routes - INFO - Model loaded successfully
+2025-06-03 15:42:50,202 - llm.routes - INFO - Index created successfully
+2025-06-03 15:42:50,202 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-06-03 15:43:00,807 - llm.routes - INFO - Starting initialization...
+2025-06-03 15:43:01,650 - llm.routes - INFO - Loaded 22 documents
+2025-06-03 15:43:05,778 - llm.routes - INFO - Model loaded successfully
+2025-06-03 15:43:07,049 - llm.routes - INFO - Index created successfully
+2025-06-03 15:43:07,049 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-06-03 16:07:04,562 - llm.routes - INFO - Mensaje recibido: ¿Cómo puedo resaltar el punto más alto de los datos?
+2025-06-03 16:07:04,562 - llm.routes - INFO - Configuración actual: {"activeParams": [], "scale": "harmonicMinor", "instrument": "saxophone", "duration": 4500, "paramRanges": {}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-03 16:07:09,101 - llm.routes - ERROR - Error en chat: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2025-06-03 16:07:31,859 - llm.routes - INFO - Mensaje recibido: quiero saber cómo resaltar el punto más alto de los datos
+2025-06-03 16:07:31,859 - llm.routes - INFO - Configuración actual: {"activeParams": [], "scale": "harmonicMinor", "instrument": "saxophone", "duration": 4500, "paramRanges": {}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-03 16:07:35,988 - llm.routes - ERROR - Error en chat: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2025-06-03 16:07:44,777 - llm.routes - INFO - Mensaje recibido: ayudaaaa
+2025-06-03 16:07:44,777 - llm.routes - INFO - Configuración actual: {"activeParams": [], "scale": "harmonicMinor", "instrument": "saxophone", "duration": 4500, "paramRanges": {}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-03 16:07:48,884 - llm.routes - ERROR - Error en chat: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2025-06-03 16:08:21,604 - llm.routes - INFO - Starting initialization...
+2025-06-03 16:08:22,502 - llm.routes - INFO - Loaded 22 documents
+2025-06-03 16:08:27,526 - llm.routes - INFO - Model loaded successfully
+2025-06-03 16:08:28,859 - llm.routes - INFO - Index created successfully
+2025-06-03 16:08:28,859 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-06-03 16:08:40,015 - llm.routes - INFO - Starting initialization...
+2025-06-03 16:08:40,884 - llm.routes - INFO - Loaded 22 documents
+2025-06-03 16:08:45,074 - llm.routes - INFO - Model loaded successfully
+2025-06-03 16:08:46,254 - llm.routes - INFO - Index created successfully
+2025-06-03 16:08:46,254 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-06-03 16:08:48,578 - llm.routes - INFO - Loaded 22 documents
+2025-06-03 16:08:50,045 - llm.routes - INFO - Index created successfully
+2025-06-03 16:09:06,834 - llm.routes - INFO - Mensaje recibido: Como puedo resaltar el punto más alto de los datos
+2025-06-03 16:09:06,834 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-03 16:09:11,368 - llm.routes - ERROR - Error en chat: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2025-06-03 16:09:52,005 - llm.routes - INFO - Mensaje recibido: punto más alto de los datos
+2025-06-03 16:09:52,005 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-03 16:09:56,112 - llm.routes - ERROR - Error en chat: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2025-06-03 16:10:53,033 - llm.routes - INFO - Loaded 22 documents
+2025-06-03 16:10:54,125 - llm.routes - INFO - Index created successfully
+2025-06-03 16:10:59,644 - llm.routes - INFO - Mensaje recibido: hola
+2025-06-03 16:10:59,644 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-03 16:11:30,346 - llm.routes - INFO - Loaded 22 documents
+2025-06-03 16:11:31,783 - llm.routes - INFO - Index created successfully
+2025-06-03 16:12:18,176 - llm.routes - INFO - Mensaje recibido: Cómo resalto el punto más alto
+2025-06-03 16:12:18,176 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-03 16:14:01,246 - llm.routes - INFO - Mensaje recibido: quiero que dure 10 segundos
+2025-06-03 16:14:01,246 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "noteDuration"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "noteDuration": {"min": 30, "max": 1000}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-03 16:14:52,014 - llm.routes - INFO - Mensaje recibido: -quiero que transmita una sensación de tristeza
+2025-06-03 16:14:52,014 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "noteDuration"], "scale": "major", "instrument": "piano", "duration": 10000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "noteDuration": {"min": 30, "max": 500}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-03 16:16:19,740 - llm.routes - INFO - Loaded 22 documents
+2025-06-03 16:16:21,159 - llm.routes - INFO - Index created successfully
+2025-06-03 16:19:52,379 - llm.routes - INFO - Mensaje recibido: quiero un sonido que resalte el punto más alto, dure 10 segundos, transmita tristeza
+2025-06-03 16:19:52,379 - llm.routes - INFO - Configuración actual: {"activeParams": ["pan"], "scale": "major", "instrument": "flute", "duration": 4500, "paramRanges": {"pan": {"min": -1, "max": 1}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-03 16:54:14,434 - llm.routes - INFO - Loaded 22 documents
+2025-06-03 16:54:18,162 - llm.routes - INFO - Index created successfully
+2025-06-03 16:54:30,584 - llm.routes - INFO - Starting initialization...
+2025-06-03 16:54:31,442 - llm.routes - INFO - Loaded 22 documents
+2025-06-03 16:54:35,484 - llm.routes - INFO - Model loaded successfully
+2025-06-03 16:54:36,903 - llm.routes - INFO - Index created successfully
+2025-06-03 16:54:36,903 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-06-03 16:54:47,506 - llm.routes - INFO - Starting initialization...
+2025-06-03 16:54:48,360 - llm.routes - INFO - Loaded 22 documents
+2025-06-03 16:54:52,223 - llm.routes - INFO - Model loaded successfully
+2025-06-03 16:54:53,410 - llm.routes - INFO - Index created successfully
+2025-06-03 16:54:53,410 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-06-03 17:04:03,261 - llm.routes - INFO - Mensaje recibido: puedes resaltar el punto mas alto de los datos
+2025-06-03 17:04:03,261 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 10000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-03 17:05:11,182 - llm.routes - INFO - Mensaje recibido: pudees++
+2025-06-03 17:05:11,182 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "noteDuration"], "scale": "major", "instrument": "piano", "duration": 10000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.3, "max": 1}, "noteDuration": {"min": 500, "max": 2000}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-03 17:06:19,021 - llm.routes - INFO - Mensaje recibido: puedes transmitir una sensacion de tristeza el sonido debe de ir de izquierda a derecha y que se a un instrumento de viento
+2025-06-03 17:06:19,021 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "noteDuration"], "scale": "major", "instrument": "piano", "duration": 10000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.3, "max": 1}, "noteDuration": {"min": 500, "max": 2000}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 10:00:18,261 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 10:00:23,603 - llm.routes - INFO - Index created successfully
+2025-06-04 10:00:50,230 - llm.routes - INFO - Mensaje recibido: hola
+2025-06-04 10:00:50,230 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 10:01:26,963 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 10:01:28,238 - llm.routes - INFO - Index created successfully
+2025-06-04 10:12:08,614 - llm.routes - INFO - Mensaje recibido: Hola, requiero importtar un archivo, podrias decirme cuando ya lo haya logrado?
+2025-06-04 10:12:08,614 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 10:25:40,525 - llm.routes - INFO - Mensaje recibido: por favor comentame como resalto un punto en la grafica
+2025-06-04 10:25:40,525 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "pan", "volume", "gapBetweenNotes"], "scale": "harmonicMinor", "instrument": "flute", "duration": 10000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "pan": {"min": -5, "max": 5}, "volume": {"min": 0.1, "max": 1.2}, "gapBetweenNotes": {"min": 40, "max": 250}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 11:17:33,850 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 11:17:35,824 - llm.routes - INFO - Index created successfully
+2025-06-04 11:31:52,271 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 11:31:53,492 - llm.routes - INFO - Index created successfully
+2025-06-04 12:17:45,623 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 12:17:46,903 - llm.routes - INFO - Index created successfully
+2025-06-04 12:24:50,265 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 12:24:51,579 - llm.routes - INFO - Index created successfully
+2025-06-04 12:35:54,052 - llm.routes - INFO - Mensaje recibido: que informacion tienes previa a los datos que te eh enviado?
+2025-06-04 12:35:54,052 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 12:39:20,900 - llm.routes - INFO - Mensaje recibido: dime para que sirve este programa?
+2025-06-04 12:39:20,900 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 12:40:10,388 - llm.routes - INFO - Mensaje recibido: Solo pregunte que hace esta aplicacion, quien la diseño para que sirve
+2025-06-04 12:40:10,388 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 12:40:52,468 - llm.routes - INFO - Mensaje recibido: que parametros mueves y que hacen cada uno?
+2025-06-04 12:40:52,468 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 12:44:33,077 - llm.routes - INFO - Mensaje recibido: oye que hace cara parametro en esta aplicacion de sonificacion?
+2025-06-04 12:44:33,077 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 12:47:53,190 - llm.routes - INFO - Mensaje recibido: no pregunte eso, quiero saber que parametros tiene esta aplicacion?
+2025-06-04 12:47:53,191 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 13:06:12,458 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 13:06:13,746 - llm.routes - INFO - Index created successfully
+2025-06-04 13:17:34,482 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 13:17:35,806 - llm.routes - INFO - Index created successfully
+2025-06-04 13:30:14,440 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 13:30:15,674 - llm.routes - INFO - Index created successfully
+2025-06-04 13:34:32,638 - llm.routes - INFO - Mensaje recibido: como creo una sonificacion personalizada
+2025-06-04 13:34:32,638 - llm.routes - INFO - Configuración actual: {"activeParams": ["highpass"], "scale": "major", "instrument": "piano", "duration": 10, "paramRanges": {"highpass": {"min": 1, "max": 4000}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 13:37:33,924 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 13:37:35,229 - llm.routes - INFO - Index created successfully
+2025-06-04 13:43:03,622 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 13:43:04,826 - llm.routes - INFO - Index created successfully
+2025-06-04 13:55:29,626 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 13:55:31,029 - llm.routes - INFO - Index created successfully
+2025-06-04 14:04:29,168 - llm.routes - INFO - Mensaje recibido: c en do en teoria musical
+2025-06-04 14:04:29,168 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "frequency", "highpass"], "scale": "major", "instrument": "trumpet", "duration": 8500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0, "max": 1.2}, "frequency": {"min": 65.41, "max": 1046.5}, "highpass": {"min": 1, "max": 4000}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 14:05:57,140 - llm.routes - INFO - Mensaje recibido: c en la teria musical qeu nota es
+2025-06-04 14:05:57,140 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "frequency", "highpass"], "scale": "major", "instrument": "trumpet", "duration": 9500, "paramRanges": {"pitch": {"min": "c5", "max": "c6"}, "volume": {"min": 0, "max": 1.2}, "frequency": {"min": 65.41, "max": 1046.5}, "highpass": {"min": 1, "max": 4000}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 14:08:25,254 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 14:08:26,734 - llm.routes - INFO - Index created successfully
+2025-06-04 14:15:36,341 - llm.routes - INFO - Mensaje recibido: hola, necesito crear una sinificacion con la herranienta, debe contener los siguentes requisitos:
+2025-06-04 14:15:36,342 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 14:16:46,714 - llm.routes - INFO - Mensaje recibido: las caracteristicas que debe tener mi sonificacion son las siguentes: Resalte claramente el punto más alto de los datos  Duración de 10 segundos en total  Transmita una sensación de tristeza  El sonido debe ir de izquierda a derecha (panning/estéreo)  Cambie el instrumento a uno de viento
+2025-06-04 14:16:46,714 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 14:18:52,124 - llm.routes - INFO - Mensaje recibido: puedes canmbiar la melodia para que transmita mas tristesa, las demas caracteristicas dejalas intactas
+2025-06-04 14:18:52,124 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume"], "scale": "minor", "instrument": "flute", "duration": 10000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.1, "max": 1}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 14:20:33,386 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 14:20:34,732 - llm.routes - INFO - Index created successfully
+2025-06-04 14:28:16,567 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 14:28:17,911 - llm.routes - INFO - Index created successfully
+2025-06-04 14:30:59,418 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 14:31:00,728 - llm.routes - INFO - Index created successfully
+2025-06-04 14:42:19,028 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 14:42:20,486 - llm.routes - INFO - Index created successfully
+2025-06-04 14:47:58,662 - llm.routes - INFO - Mensaje recibido: quiero hacer una sonificacion con las siguientes carcateristicas: resalte el punto mas alto de los datos, duracion de 10 segundos en total, transmita una sensasion de tristeza, el sonido debe ir de izquierda a derecha y que cambie el instrumento a uno de viento
+2025-06-04 14:47:58,662 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "frequency", "gapBetweenNotes"], "scale": "major", "instrument": "piano", "duration": 4000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "frequency": {"min": 65.41, "max": 1046.5}, "gapBetweenNotes": {"min": 40, "max": 250}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 14:49:56,521 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 14:49:57,977 - llm.routes - INFO - Index created successfully
+2025-06-04 14:54:45,267 - llm.routes - INFO - Mensaje recibido: realiza una sonificacion con las siguientes caracteristicas que te proporcionare
+2025-06-04 14:54:45,267 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 15:01:23,875 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 15:01:25,177 - llm.routes - INFO - Index created successfully
+2025-06-04 15:10:28,278 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 15:10:29,588 - llm.routes - INFO - Index created successfully
+2025-06-04 15:15:04,502 - llm.routes - INFO - Mensaje recibido: necesito crear una sonificacion personalizada utilizando las herramientas del software, con las siguientes instrucciones:
+2025-06-04 15:15:04,502 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "gapBetweenNotes"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "gapBetweenNotes": {"min": 40, "max": 250}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 15:23:10,628 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 15:23:11,992 - llm.routes - INFO - Index created successfully
+2025-06-04 16:46:21,819 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 16:46:23,368 - llm.routes - INFO - Index created successfully
+2025-06-04 16:52:02,733 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 16:52:04,110 - llm.routes - INFO - Index created successfully
+2025-06-04 17:01:16,025 - llm.routes - INFO - Mensaje recibido: que puedo hacer para representar una sensacion de tristeza?
+2025-06-04 17:01:16,025 - llm.routes - INFO - Configuración actual: {"activeParams": ["pan", "pitch", "lowpass"], "scale": "major", "instrument": "wind", "duration": 10000, "paramRanges": {"pan": {"min": -1, "max": 1}, "pitch": {"min": "c2", "max": "c6"}, "lowpass": {"min": 100, "max": 4000}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 17:03:22,849 - llm.routes - INFO - Mensaje recibido: aun asi puedes darme la configuración?
+2025-06-04 17:03:22,849 - llm.routes - INFO - Configuración actual: {"activeParams": ["pan", "pitch", "lowpass"], "scale": "major", "instrument": "wind", "duration": 10000, "paramRanges": {"pan": {"min": -1, "max": 1}, "pitch": {"min": "c2", "max": "c4"}, "lowpass": {"min": 300, "max": 3000}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 17:06:10,066 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 17:06:11,309 - llm.routes - INFO - Index created successfully
+2025-06-04 17:07:14,594 - llm.routes - INFO - Mensaje recibido: puedes ayudarme a hacer una sonificacion triste?
+2025-06-04 17:07:14,594 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "pan"], "scale": "major", "instrument": "wind", "duration": 10000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "pan": {"min": -1, "max": 1}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 17:11:28,484 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 17:11:29,591 - llm.routes - INFO - Index created successfully
+2025-06-04 17:14:18,529 - llm.routes - INFO - Mensaje recibido: como resaltar el punto mas alto de los datos
+2025-06-04 17:14:18,529 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 17:20:12,982 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 17:20:14,162 - llm.routes - INFO - Index created successfully
+2025-06-04 18:40:16,265 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 18:40:17,483 - llm.routes - INFO - Index created successfully
+2025-06-04 18:49:38,359 - llm.routes - INFO - Mensaje recibido: como resalto el punto mas alto de los datos
+2025-06-04 18:49:38,360 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 18:51:23,122 - llm.routes - INFO - Mensaje recibido: como cambio la duracion a 10 segundos
+2025-06-04 18:51:23,122 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "noteDuration"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.1, "max": 1.2}, "noteDuration": {"min": 30, "max": 1000}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 18:52:06,992 - llm.routes - INFO - Mensaje recibido: ahora haz que transmita una sensación de tristeza
+2025-06-04 18:52:06,992 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "noteDuration"], "scale": "major", "instrument": "piano", "duration": 10000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.1, "max": 1.2}, "noteDuration": {"min": 30, "max": 1000}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 18:52:55,197 - llm.routes - INFO - Mensaje recibido: el sonido debe ir de izquierda a derecha (panning - estereo)
+2025-06-04 18:52:55,197 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "noteDuration"], "scale": "minor", "instrument": "piano", "duration": 10000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.5, "max": 0.8}, "noteDuration": {"min": 30, "max": 1000}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 18:53:32,319 - llm.routes - INFO - Mensaje recibido: cambia el istrymento a uno de viento
+2025-06-04 18:53:32,321 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "noteDuration", "pan"], "scale": "minor", "instrument": "piano", "duration": 10000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "volume": {"min": 0.5, "max": 0.8}, "noteDuration": {"min": 30, "max": 1000}, "pan": {"min": -1, "max": 1}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 18:55:17,722 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 18:55:18,986 - llm.routes - INFO - Index created successfully
+2025-06-04 19:09:14,882 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 19:09:16,073 - llm.routes - INFO - Index created successfully
+2025-06-04 19:15:55,971 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 19:15:57,297 - llm.routes - INFO - Index created successfully
+2025-06-04 19:23:11,200 - llm.routes - INFO - Mensaje recibido: oye como puedo hacer la tarea 3
+2025-06-04 19:23:11,200 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "pan"], "scale": "mixolydian", "instrument": "sine", "duration": 10000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "pan": {"min": -1, "max": 1}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 19:25:36,041 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 19:25:37,311 - llm.routes - INFO - Index created successfully
+2025-06-04 19:31:30,519 - llm.routes - INFO - Mensaje recibido: como resaltar el punto mas alto
+2025-06-04 19:31:30,519 - llm.routes - INFO - Configuración actual: {"activeParams": ["highpass", "pan"], "scale": "minor", "instrument": "wind", "duration": 10000, "paramRanges": {"highpass": {"min": 1, "max": 4000}, "pan": {"min": -1, "max": 1}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 19:38:14,069 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 19:38:15,270 - llm.routes - INFO - Index created successfully
+2025-06-04 19:48:14,924 - llm.routes - INFO - Mensaje recibido: herramientas avanzadas
+2025-06-04 19:48:14,924 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "frequency", "volume"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "frequency": {"min": 65.41, "max": 1046.5}, "volume": {"min": 0.1, "max": 1.2}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 19:50:40,047 - llm.routes - INFO - Mensaje recibido: Resalte claramente el punto más alto de los datos
+2025-06-04 19:50:40,047 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "frequency", "volume", "noteDuration"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "frequency": {"min": 65.41, "max": 1046.5}, "volume": {"min": 0.3, "max": 1}, "noteDuration": {"min": 100, "max": 800}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 19:51:46,429 - llm.routes - INFO - Mensaje recibido: Duración de 10 segundos en total (10 000 ms)
+2025-06-04 19:51:46,429 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "frequency", "volume", "noteDuration"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "frequency": {"min": 65.41, "max": 1046.5}, "volume": {"min": 0.3, "max": 1.5}, "noteDuration": {"min": 100, "max": 1200}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 19:53:15,713 - llm.routes - INFO - Mensaje recibido: Transmita una sensación de tristeza
+2025-06-04 19:53:15,714 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "frequency", "volume", "noteDuration"], "scale": "major", "instrument": "piano", "duration": 10000, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}, "frequency": {"min": 65.41, "max": 1046.5}, "volume": {"min": 0.3, "max": 1.5}, "noteDuration": {"min": 150, "max": 1200}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 19:55:05,921 - llm.routes - INFO - Mensaje recibido: El sonido debe ir de izquierda a derecha (panning/estéreo)
+2025-06-04 19:55:05,921 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "volume", "noteDuration", "frequency"], "scale": "minor", "instrument": "piano", "duration": 10000, "paramRanges": {"pitch": {"min": "c2", "max": "g4"}, "volume": {"min": 0.3, "max": 0.8}, "noteDuration": {"min": 200, "max": 1200}, "frequency": {"min": 65.41, "max": 783.99}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 19:57:04,681 - llm.routes - INFO - Mensaje recibido: Cambie el instrumento a uno de viento
+2025-06-04 19:57:04,681 - llm.routes - INFO - Configuración actual: {"activeParams": ["volume", "noteDuration", "frequency", "pan", "pitch"], "scale": "minor", "instrument": "piano", "duration": 10000, "paramRanges": {"volume": {"min": 0.3, "max": 0.8}, "noteDuration": {"min": 200, "max": 1200}, "frequency": {"min": 65.41, "max": 783.99}, "pan": {"min": -1, "max": 1}, "pitch": {"min": "c2", "max": "g4"}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-04 20:16:43,827 - llm.routes - INFO - Loaded 22 documents
+2025-06-04 20:16:45,048 - llm.routes - INFO - Index created successfully
+2025-06-05 13:41:43,393 - llm.routes - INFO - Starting initialization...
+2025-06-05 13:41:44,378 - llm.routes - INFO - Loaded 22 documents
+2025-06-05 13:41:49,741 - llm.routes - INFO - Model loaded successfully
+2025-06-05 13:41:51,279 - llm.routes - INFO - Index created successfully
+2025-06-05 13:41:51,280 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-06-05 13:42:02,115 - llm.routes - INFO - Starting initialization...
+2025-06-05 13:42:02,981 - llm.routes - INFO - Loaded 22 documents
+2025-06-05 13:42:06,931 - llm.routes - INFO - Model loaded successfully
+2025-06-05 13:42:08,013 - llm.routes - INFO - Index created successfully
+2025-06-05 13:42:08,013 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-06-05 13:42:10,382 - llm.routes - INFO - Loaded 22 documents
+2025-06-05 13:42:11,798 - llm.routes - INFO - Index created successfully
+2025-06-05 13:46:06,687 - llm.routes - INFO - Mensaje recibido: hola
+2025-06-05 13:46:06,688 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-05 13:48:03,339 - llm.routes - INFO - Loaded 22 documents
+2025-06-05 13:48:04,714 - llm.routes - INFO - Index created successfully
+2025-06-05 13:53:40,385 - llm.routes - INFO - Mensaje recibido: hola
+2025-06-05 13:53:40,385 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "noteDuration", "lowpass", "highpass", "frequency", "volume", "gapBetweenNotes"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c1", "max": "c5"}, "noteDuration": {"min": 30, "max": 1000}, "lowpass": {"min": 100, "max": 4000}, "highpass": {"min": 1, "max": 4000}, "frequency": {"min": 65.41, "max": 1046.5}, "volume": {"min": 0.1, "max": 1.2}, "gapBetweenNotes": {"min": 40, "max": 250}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-05 13:54:35,204 - llm.routes - INFO - Mensaje recibido: puedes crear un sonido triste?
+2025-06-05 13:54:35,204 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch", "noteDuration", "lowpass", "highpass", "frequency", "volume", "gapBetweenNotes"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c1", "max": "c5"}, "noteDuration": {"min": 30, "max": 1000}, "lowpass": {"min": 100, "max": 4000}, "highpass": {"min": 1, "max": 4000}, "frequency": {"min": 65.41, "max": 1046.5}, "volume": {"min": 0.1, "max": 1.2}, "gapBetweenNotes": {"min": 40, "max": 250}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-05 13:59:45,464 - llm.routes - INFO - Loaded 22 documents
+2025-06-05 13:59:46,842 - llm.routes - INFO - Index created successfully
+2025-06-05 19:15:10,331 - llm.routes - INFO - Loaded 22 documents
+2025-06-05 19:15:11,605 - llm.routes - INFO - Index created successfully
+2025-06-05 20:25:31,190 - llm.routes - INFO - Loaded 22 documents
+2025-06-05 20:25:32,785 - llm.routes - INFO - Index created successfully
+2025-06-05 21:00:33,387 - llm.routes - INFO - Loaded 22 documents
+2025-06-05 21:00:34,757 - llm.routes - INFO - Index created successfully
+2025-06-05 21:00:54,828 - llm.routes - INFO - Mensaje recibido: Cuales son todos los instrumentos de viento disponibles?
+2025-06-05 21:00:54,828 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-06 12:12:12,776 - llm.routes - INFO - Loaded 22 documents
+2025-06-06 12:12:13,884 - llm.routes - INFO - Index created successfully
+2025-06-06 12:15:51,157 - llm.routes - INFO - Loaded 22 documents
+2025-06-06 12:15:52,398 - llm.routes - INFO - Index created successfully
+2025-06-06 12:15:58,813 - llm.routes - INFO - Loaded 22 documents
+2025-06-06 12:15:59,995 - llm.routes - INFO - Index created successfully
+2025-06-06 12:16:46,357 - llm.routes - INFO - Loaded 22 documents
+2025-06-06 12:16:47,549 - llm.routes - INFO - Index created successfully
+2025-06-06 12:46:57,687 - llm.routes - INFO - Mensaje recibido: como hago que la escala suene triste
+2025-06-06 12:46:57,687 - llm.routes - INFO - Configuración actual: {"activeParams": ["highpass", "pitch", "pan", "frequency", "tremolo", "noteDuration", "lowpass", "gapBetweenNotes"], "scale": "minor", "instrument": "flute", "duration": 10000, "paramRanges": {"highpass": {"min": 3, "max": 4000}, "pitch": {"min": "c1", "max": "c4"}, "pan": {"min": -1, "max": 4}, "frequency": {"min": 65.41, "max": 1046.5}, "tremolo": {"min": 0.2, "max": 0.8}, "noteDuration": {"min": 34, "max": 1000}, "lowpass": {"min": 117, "max": 4000}, "gapBetweenNotes": {"min": 73, "max": 250}}, "data": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-24 20:35:59,186 - llm.routes - INFO - Starting initialization...
+2025-06-24 20:36:00,431 - llm.routes - INFO - Loaded 22 documents
+2025-06-24 20:36:08,011 - llm.routes - INFO - Model loaded successfully
+2025-06-24 20:36:10,137 - llm.routes - INFO - Index created successfully
+2025-06-24 20:36:10,138 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-06-24 20:36:22,537 - llm.routes - INFO - Starting initialization...
+2025-06-24 20:36:23,459 - llm.routes - INFO - Loaded 22 documents
+2025-06-24 20:36:29,333 - llm.routes - INFO - Model loaded successfully
+2025-06-24 20:36:30,730 - llm.routes - INFO - Index created successfully
+2025-06-24 20:36:30,730 - llm.routes - INFO - Initialization status: {'documents_loaded': True, 'model_loaded': True, 'index_created': True}
+2025-06-24 20:38:46,743 - llm.routes - INFO - Loaded 22 documents
+2025-06-24 20:38:48,222 - llm.routes - INFO - Index created successfully
+2025-06-24 21:45:50,994 - llm.routes - INFO - Loaded 22 documents
+2025-06-24 21:45:52,340 - llm.routes - INFO - Index created successfully
+2025-06-24 21:46:01,392 - llm.routes - INFO - Loaded 22 documents
+2025-06-24 21:46:02,817 - llm.routes - INFO - Index created successfully
+2025-06-24 21:46:06,415 - llm.routes - INFO - Mensaje recibido: probando texto
+2025-06-24 21:46:06,415 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+2025-06-24 21:46:55,653 - llm.routes - INFO - Mensaje recibido: Esta es una prueba de Qué es la zonificación
+2025-06-24 21:46:55,653 - llm.routes - INFO - Configuración actual: {"activeParams": ["pitch"], "scale": "major", "instrument": "piano", "duration": 4500, "paramRanges": {"pitch": {"min": "c2", "max": "c6"}}, "data": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
